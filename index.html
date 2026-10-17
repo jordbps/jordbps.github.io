@@ -1,0 +1,1155 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jordi Buckley-Paules · Hydrology and water for rice</title>
+<meta name="description" content="Jordi Buckley-Paules, postdoctoral researcher at IRRI working on hydrology, water management, irrigation optimisation and AI for rice systems.">
+<meta name="author" content="Jordi Buckley-Paules">
+<link rel="canonical" href="https://jordbps.github.io/">
+<meta name="theme-color" content="#f1f4f1" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1a1b" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d6a59'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Georgia,serif' font-size='30' fill='%23fff'%3EJB%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<meta property="og:type" content="profile">
+<meta property="og:site_name" content="Jordi Buckley-Paules">
+<meta property="og:title" content="Jordi Buckley-Paules · Hydrology and water for rice">
+<meta property="og:description" content="Jordi Buckley-Paules, postdoctoral researcher at IRRI working on hydrology, water management, irrigation optimisation and AI for rice systems.">
+<meta property="og:url" content="https://jordbps.github.io/">
+<meta property="og:image" content="https://jordbps.github.io/img/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Jordi Buckley-Paules: hydrology and water management for rice systems">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Jordi Buckley-Paules · Hydrology and water for rice">
+<meta name="twitter:description" content="Jordi Buckley-Paules, postdoctoral researcher at IRRI working on hydrology, water management, irrigation optimisation and AI for rice systems.">
+<meta name="twitter:image" content="https://jordbps.github.io/img/og-image.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Jordi Buckley-Paules", "url": "https://jordbps.github.io/", "image": "https://jordbps.github.io/img/imperial-graduation.jpg", "jobTitle": "Postdoctoral researcher", "worksFor": {"@type": "Organization", "name": "International Rice Research Institute (IRRI)"}, "alumniOf": [{"@type": "CollegeOrUniversity", "name": "Imperial College London"}, {"@type": "CollegeOrUniversity", "name": "University of Cambridge"}, {"@type": "CollegeOrUniversity", "name": "Durham University"}], "knowsAbout": ["Hydrology", "Irrigation", "Rice water management", "Alternate wetting and drying", "Methane MRV", "Machine learning"], "sameAs": ["https://scholar.google.com/citations?user=2eecasgAAAAJ&hl=en"]}</script>
+<script>try{var t=localStorage.getItem('jbp.theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0}
+img{max-width:100%}
+[hidden]:not([hidden=until-found i]){display:none!important}
+/* Layout: views (Home, Rice, Consulting, Teaching, Adventures, Game, Contact) switched by #hash, one 1040px column,
+   a terraced contour-line field behind the hero that nods to rice paddies and alpine maps. */
+:root {
+  --bg: #f1f4f1;
+  --surface: #fbfcfb;
+  --ink: #15292c;
+  --muted: #55696a;
+  --line: #d5ddd9;
+  --accent: #1d6a59;
+  --accent-soft: #dcebe5;
+  --water: #2c5c86;
+  --on-accent: #ffffff;
+  --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a;
+  --seq0: #e6ebe8; --seq1: #d4e9df; --seq2: #9fcfb8; --seq3: #5fae8f; --seq4: #2b8565; --seq5: #145741;
+  --land: #e3e6e3; --sea: #eef3f6; --river: #6f9cc4;
+  --display: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --body: "Public Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --maxw: 1040px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1a1b; --surface: #152224; --ink: #e2ebe8; --muted: #9bb0ac; --line: #26383a;
+    --accent: #6cc2aa; --accent-soft: #1b3330; --water: #8fb9df; --on-accent: #0c1716; --s1: #3987e5; --s2: #d95926; --s3: #199e70; --seq0: #26302e; --seq1: #1f3d34; --seq2: #2a5c4b; --seq3: #3d8268; --seq4: #5fae8f; --seq5: #a6dcc4; --land: #222c2c; --sea: #121c1e; --river: #4f7fa8;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1a1b; --surface: #152224; --ink: #e2ebe8; --muted: #9bb0ac; --line: #26383a;
+  --accent: #6cc2aa; --accent-soft: #1b3330; --water: #8fb9df; --on-accent: #0c1716; --s1: #3987e5; --s2: #d95926; --s3: #199e70; --seq0: #26302e; --seq1: #1f3d34; --seq2: #2a5c4b; --seq3: #3d8268; --seq4: #5fae8f; --seq5: #a6dcc4; --land: #222c2c; --sea: #121c1e; --river: #4f7fa8;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--body); font-size: 17px; line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--display); font-weight: 500; line-height: 1.15; margin: 0; text-wrap: balance; color: var(--ink); }
+h1 { font-size: clamp(2.5rem, 7vw, 4.4rem); letter-spacing: -0.015em; }
+h2 { font-size: clamp(1.7rem, 3.4vw, 2.3rem); }
+h3 { font-size: 1.3rem; font-weight: 600; }
+p { margin: 0; }
+.wrap { max-width: var(--maxw); margin-inline: auto; padding-inline: 20px; }
+.prose { max-width: 65ch; display: grid; gap: 1em; }
+.label {
+  font-family: var(--mono); font-size: .76rem; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--water);
+}
+.muted { color: var(--muted); }
+
+/* Header */
+header.site {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+  background: color-mix(in srgb, var(--bg) 90%, transparent);
+  backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+}
+header.site .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px 20px; flex-wrap: wrap; padding-block: 12px; }
+.brand { font-family: var(--display); font-size: 1.2rem; font-weight: 600; color: var(--ink); text-decoration: none; }
+nav.main { display: flex; flex-wrap: wrap; gap: 4px; }
+nav.main a {
+  font-size: .93rem; color: var(--muted); text-decoration: none;
+  padding: 6px 12px; border-radius: 6px;
+}
+nav.main a:hover { color: var(--ink); background: var(--accent-soft); }
+nav.main a[aria-current="page"] { color: var(--accent); background: var(--accent-soft); font-weight: 600; }
+
+/* Views */
+[data-view] { padding-bottom: 24px; }
+
+/* Hero */
+.hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--line); }
+.hero canvas {
+  position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent 15%, #000 75%);
+          mask-image: linear-gradient(90deg, transparent 15%, #000 75%);
+}
+.hero .wrap { position: relative; padding-block: clamp(48px, 9vw, 104px); display: grid; gap: 18px; }
+.creds { font-family: var(--mono); font-size: .85rem; color: var(--muted); }
+.lead { font-size: clamp(1.1rem, 2.2vw, 1.3rem); max-width: 40ch; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+  font: 600 .93rem/1 var(--body); padding: 12px 18px; border-radius: 6px;
+  text-decoration: none; border: 1px solid var(--accent);
+}
+.btn.primary { background: var(--accent); color: var(--on-accent); }
+.btn.ghost { background: transparent; color: var(--accent); }
+.btn:hover { filter: brightness(1.07); }
+.btn.ghost:hover { background: var(--accent-soft); }
+
+/* Organisations strip */
+.orgs { border-bottom: 1px solid var(--line); background: var(--surface); }
+.orgs .wrap { display: flex; flex-direction: column; align-items: stretch; gap: 12px; padding-block: 18px; }
+.orgs .label { flex: none; }
+.ticker {
+  flex: 1; min-width: 0; overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.ticker-track { list-style: none; margin: 0; padding: 0 0 0 16px; display: flex; gap: 16px; width: max-content; }
+.ticker-track li {
+  display: flex; align-items: center; justify-content: center; height: 64px; padding-inline: 20px; white-space: nowrap;
+  background: #ffffff; border: 1px solid var(--line); border-radius: 8px; overflow: hidden;
+  font-family: var(--display); font-size: 1.1rem; font-weight: 600; color: #1f3a8a;
+}
+.ticker-track li.dark { padding: 0; background: #5b63f0; border-color: transparent; }
+.ticker-track li img { width: auto; max-width: none; display: block; }
+@media (prefers-reduced-motion: no-preference) {
+  .ticker-track.moving { animation: tick var(--tick-dur, 40s) linear infinite; }
+  .ticker:hover .ticker-track { animation-play-state: paused; }
+  @keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+}
+@media (prefers-reduced-motion: reduce) { .ticker { overflow-x: auto; } }
+
+/* Sections */
+section.block { padding-block: clamp(40px, 6vw, 72px); }
+section.block + section.block { border-top: 1px solid var(--line); }
+.head { display: grid; gap: 10px; margin-bottom: 28px; max-width: 65ch; }
+.split { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+
+.now {
+  background: var(--accent-soft); border-radius: 8px; padding: 18px 20px;
+  display: grid; gap: 4px;
+}
+
+/* Education timeline */
+.timeline { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; }
+.timeline li { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 12px; }
+.timeline .yr { font-family: var(--mono); font-size: .85rem; color: var(--water); padding-top: 3px; }
+.timeline strong { display: block; font-weight: 600; }
+.timeline span { color: var(--muted); font-size: .94rem; }
+
+/* Research list: rows, not cards */
+.areas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--line); }
+.area { padding: 22px 22px 22px 0; border-bottom: 1px solid var(--line); display: grid; gap: 6px; align-content: start; }
+.area:nth-child(odd) { border-right: 1px solid var(--line); }
+.area:nth-child(even) { padding-left: 22px; padding-right: 0; }
+.area p { color: var(--muted); font-size: .97rem; }
+.unit { font-family: var(--mono); font-size: .76rem; letter-spacing: .08em; text-transform: uppercase; color: var(--water); }
+
+/* Steps */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.steps li { display: grid; gap: 8px; align-content: start; padding-top: 16px; border-top: 2px solid var(--accent); }
+.steps .n { font-family: var(--mono); font-size: .8rem; color: var(--accent); }
+.steps p { color: var(--muted); font-size: .97rem; }
+
+/* Feature (media) */
+.feature {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 20px; align-items: center;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 24px;
+}
+
+/* Lists with mono meta */
+.ledger { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.ledger li { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 16px; padding-block: 16px; border-bottom: 1px solid var(--line); }
+.ledger .meta { font-family: var(--mono); font-size: .85rem; color: var(--water); padding-top: 3px; font-variant-numeric: tabular-nums; }
+.ledger strong { font-weight: 600; }
+.ledger p { color: var(--muted); }
+
+/* Quotes */
+.quotes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+blockquote {
+  margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 24px;
+  font-family: var(--display); font-size: 1.12rem; line-height: 1.55; display: grid; gap: 14px; align-content: space-between;
+}
+blockquote footer { font-family: var(--mono); font-size: .8rem; color: var(--muted); }
+
+/* Table */
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: .97rem; }
+th, td { text-align: left; padding: 12px 14px 12px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--mono); font-weight: 500; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+td:first-child { font-weight: 600; white-space: nowrap; padding-right: 24px; }
+
+/* Stats */
+.stats { display: flex; flex-wrap: wrap; gap: 12px 36px; margin-block: 8px 4px; }
+.stat { display: grid; }
+.stat b { font-family: var(--display); font-size: 2rem; font-weight: 500; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.stat span { font-family: var(--mono); font-size: .78rem; color: var(--muted); }
+
+/* Photos */
+figure { margin: 0; display: grid; gap: 8px; align-content: start; }
+figure img { width: 100%; max-width: 100%; height: auto; display: block; border-radius: 8px; background: var(--line); object-fit: cover; }
+figcaption { font-size: .88rem; color: var(--muted); }
+figcaption b { color: var(--ink); font-weight: 600; }
+.hero .wrap.has-photo { grid-template-columns: minmax(0, 1fr) minmax(0, 340px); align-items: center; gap: 24px 56px; }
+.hero-text { display: grid; gap: 18px; min-width: 0; }
+.hero-photo img { aspect-ratio: 4 / 5; box-shadow: 0 24px 48px -28px rgba(10, 30, 30, .55); }
+.photo-row { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 20px; margin-block: 8px 32px; }
+.photo-row img { aspect-ratio: 4 / 3; height: 100%; }
+.photo-row .sq img { aspect-ratio: 1; }
+.trio { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.trio img { aspect-ratio: 1; }
+.tall img { aspect-ratio: 4 / 5; }
+.quad { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+.quad img { aspect-ratio: 3 / 4; }
+
+/* Photo reel: slow left-to-right drift */
+.reel {
+  overflow: hidden; padding-block: 4px;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+.reel-track { display: flex; gap: 20px; width: max-content; padding-inline: 10px; }
+.reel figure { width: clamp(220px, 28vw, 320px); flex: none; }
+.reel img { aspect-ratio: 1; }
+@media (prefers-reduced-motion: no-preference) {
+  .reel-track.moving { animation: drift var(--reel-dur, 90s) linear infinite; }
+  .reel:hover .reel-track, .reel:focus-within .reel-track { animation-play-state: paused; }
+  @keyframes drift { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reel { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
+}
+
+/* Pages that will host dashboards and maps */
+.panels { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.panel {
+  border: 1px dashed color-mix(in srgb, var(--muted) 45%, transparent); border-radius: 10px;
+  min-height: 230px; padding: 20px; display: grid; align-content: end; gap: 6px;
+  background-color: var(--surface);
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--line) 70%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--line) 70%, transparent) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+.panel.wide { grid-column: span 2; min-height: 340px; }
+.panel h3 { font-size: 1.15rem; }
+.panel p { color: var(--muted); font-size: .95rem; max-width: 46ch; }
+.status { justify-self: start; font-family: var(--mono); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--water); background: var(--bg); border: 1px solid var(--line); border-radius: 4px; padding: 3px 7px; margin-bottom: 4px; }
+.more { font-weight: 600; font-size: .93rem; text-decoration: none; margin-top: 4px; }
+.more:hover { text-decoration: underline; }
+.clients { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.client { display: grid; gap: 6px; padding-top: 16px; border-top: 1px solid var(--line); }
+.client p { color: var(--muted); }
+
+.banner { margin-top: 12px; }
+.banner img { aspect-ratio: 16 / 7; object-position: 50% 45%; border-radius: 10px; }
+
+/* Teaching photo layouts */
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; align-content: start; }
+.wide-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.wide-pair img { aspect-ratio: 2.55 / 1; }
+.pair-cap { font-size: .88rem; color: var(--muted); margin-top: 8px; }
+.quad4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+.quad4 img { aspect-ratio: 1; }
+figure.note { max-width: 760px; margin-bottom: 28px; }
+figure.note img { aspect-ratio: auto; border: 1px solid var(--line); box-shadow: 0 18px 40px -28px rgba(10,30,30,.45); }
+
+/* Data panels */
+.vpanels { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.vpanel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 20px; display: grid; gap: 14px; align-content: start; min-width: 0; }
+.vpanel.span2 { grid-column: span 2; }
+.vpanel.full { grid-column: 1 / -1; }
+.vpanel header { display: grid; gap: 6px; }
+.vpanel header p { color: var(--muted); font-size: .95rem; max-width: 70ch; }
+.vpanel h3 { font-size: 1.2rem; }
+.vz-wrap { min-width: 0; display: grid; gap: 10px; }
+svg.vz { width: 100%; height: auto; display: block; font-family: var(--mono); overflow: visible; }
+svg.vz.map { overflow: hidden; border-radius: 6px; }
+svg.vz text { fill: var(--muted); font-size: 11px; }
+svg.vz .t { font-family: var(--body); font-size: 11.5px; }
+.vz-grid line { stroke: var(--line); stroke-width: 1; }
+.vz-ref { stroke: var(--muted); stroke-width: 1; opacity: .6; }
+.vz-thresh { stroke: var(--s2); stroke-width: 1.5; stroke-dasharray: 5 4; }
+.vz-band { fill: var(--accent-soft); opacity: .7; }
+svg.vz .vz-note { fill: var(--ink); font-family: var(--body); font-size: 11.5px; }
+svg.vz .dl { fill: var(--ink); font-family: var(--body); font-size: 12px; font-weight: 600; }
+.ln { fill: none; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.ln.s1 { stroke: var(--s1); } .ln.s2 { stroke: var(--s2); } .ln.s3 { stroke: var(--s3); }
+.pt { stroke: var(--surface); stroke-width: 2; }
+.pt.s1 { fill: var(--s1); } .pt.s2 { fill: var(--s2); } .pt.s3 { fill: var(--s3); }
+.bar.s1 { fill: var(--s1); }
+.hit { fill: transparent; }
+g[data-tip]:hover .pt, g[data-tip]:focus .pt { r: 6px; }
+g[data-tip]:hover .bar { filter: brightness(1.12); }
+.vz-kpis { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.vz-kpis div { display: grid; gap: 2px; padding: 12px 14px; background: var(--bg); border-radius: 8px; }
+.vz-kpis b { font-family: var(--display); font-size: 1.7rem; font-weight: 500; line-height: 1.1; font-variant-numeric: tabular-nums; color: var(--ink); }
+.vz-kpis span { font-size: .8rem; color: var(--muted); }
+.vz-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; font-size: .82rem; color: var(--muted); }
+.vz-legend > span { display: inline-flex; align-items: center; gap: 6px; }
+.vz-legend-title { font-weight: 600; color: var(--ink); }
+.vz-ramp { display: inline-flex; flex-wrap: wrap; gap: 4px 10px; }
+.vz-ramp span { display: inline-flex; align-items: center; gap: 5px; }
+.sw { width: 14px; height: 14px; border-radius: 3px; display: inline-block; }
+.sw.s1b { background: var(--s1); }
+.ln-sw { width: 18px; height: 3px; border-radius: 2px; display: inline-block; }
+.ln-sw.s1 { background: var(--s1); } .ln-sw.s2 { background: var(--s2); } .ln-sw.s3 { background: var(--s3); }
+.vz-legend-key { display: inline-flex; align-items: center; gap: 6px; }
+.vz-legend-key .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--ink); display: inline-block; margin-left: 6px; }
+.vz-legend-key .star { font-style: normal; color: var(--s2); margin-left: 10px; }
+.seq0 { fill: var(--seq0); } .seq1 { fill: var(--seq1); } .seq2 { fill: var(--seq2); } .seq3 { fill: var(--seq3); } .seq4 { fill: var(--seq4); } .seq5 { fill: var(--seq5); }
+i.sw.seq1 { background: var(--seq1); } i.sw.seq2 { background: var(--seq2); } i.sw.seq3 { background: var(--seq3); } i.sw.seq4 { background: var(--seq4); } i.sw.seq5 { background: var(--seq5); }
+.map .vz-sea { fill: var(--sea); }
+.map .vz-land-other path { fill: var(--land); stroke: var(--surface); stroke-width: .6; }
+.map .vz-countries path { stroke: var(--surface); stroke-width: .9; stroke-linejoin: round; }
+.map .vz-countries path:hover, .map .vz-countries path:focus { stroke: var(--ink); stroke-width: 1.6; outline: none; }
+.map .vz-rivers path { fill: none; stroke: var(--river); stroke-width: 1.1; stroke-linecap: round; opacity: .85; }
+.map .vz-clabels text { font-family: var(--body); font-size: 11px; letter-spacing: .12em; fill: var(--ink); opacity: .75; font-weight: 600; paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-opacity: .6; }
+.map .vz-regions circle:not(.hit) { fill: var(--ink); stroke: var(--surface); stroke-width: 2; }
+.map .vz-regions text { font-family: var(--body); font-size: 12px; fill: var(--ink); font-weight: 600; paint-order: stroke; stroke: var(--surface); stroke-width: 3.5px; }
+.map .vz-irri polygon { fill: var(--s2); stroke: var(--surface); stroke-width: 1.5; }
+.map .vz-irri text { font-family: var(--body); font-size: 12px; font-weight: 700; fill: var(--ink); paint-order: stroke; stroke: var(--surface); stroke-width: 3.5px; }
+.map .vz-scale path { stroke: var(--ink); stroke-width: 1.5; fill: none; }
+.map .vz-scale text { fill: var(--ink); }
+.vz-src { font-size: .8rem; color: var(--muted); }
+.vz-table summary { cursor: pointer; font-size: .85rem; color: var(--accent); font-weight: 600; }
+.vz-table table { margin-top: 8px; max-width: 420px; }
+.vz-table td.num { font-variant-numeric: tabular-nums; text-align: right; }
+.node rect { fill: var(--bg); stroke: var(--line); stroke-width: 1.2; }
+.node.core rect { fill: var(--accent-soft); stroke: var(--accent); }
+.node.core2 rect { fill: var(--bg); stroke: var(--water); }
+svg.vz .nt { fill: var(--ink); font-family: var(--body); font-size: 12px; font-weight: 600; }
+svg.vz .ns { fill: var(--muted); font-family: var(--body); font-size: 10.5px; }
+.edge { fill: none; stroke: var(--muted); stroke-width: 1.3; }
+.ahd { fill: var(--muted); }
+.vz-outs { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: .9rem; color: var(--muted); }
+.vz-outs li { padding-left: 14px; position: relative; }
+.vz-outs li::before { content: ""; position: absolute; left: 0; top: .6em; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+.vz-outs b { color: var(--ink); }
+.vz-axis-x { fill: var(--muted); }
+#vz-tip { position: fixed; z-index: 50; pointer-events: none; background: var(--ink); color: var(--bg); font-size: .82rem; line-height: 1.35;
+  padding: 7px 10px; border-radius: 6px; max-width: 260px; box-shadow: 0 8px 24px -10px rgba(0,0,0,.5); }
+
+/* Contact */
+.contact-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.contact-item { display: grid; gap: 10px; align-content: start; padding-top: 16px; border-top: 1px solid var(--line); }
+.email-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.email { font-family: var(--mono); font-size: 1rem; user-select: all; overflow-wrap: anywhere; }
+.copy {
+  font: 500 .8rem/1 var(--body); padding: 7px 10px; border-radius: 6px; cursor: pointer;
+  background: var(--accent-soft); color: var(--accent); border: 1px solid transparent;
+}
+
+footer.site { border-top: 1px solid var(--line); padding-block: 28px; color: var(--muted); font-size: .9rem; }
+footer.site .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+footer.site a { color: var(--muted); }
+
+@media (max-width: 980px) and (min-width: 761px) {
+  .vpanels { grid-template-columns: minmax(0, 1fr); }
+  .vpanel.span2 { grid-column: auto; }
+  .quad4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .quad { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 760px) {
+  body { font-size: 16px; }
+  .split, .quotes, .steps, .contact-grid { grid-template-columns: minmax(0, 1fr); }
+  .areas { grid-template-columns: minmax(0, 1fr); }
+  .area, .area:nth-child(even) { padding: 18px 0; border-right: 0; }
+  .area:nth-child(odd) { border-right: 0; }
+  .feature { grid-template-columns: minmax(0, 1fr); }
+  .hero .wrap.has-photo, .photo-row, .trio { grid-template-columns: minmax(0, 1fr); }
+  .quad { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .vpanels, .wide-pair { grid-template-columns: minmax(0, 1fr); }
+  .vpanel.span2 { grid-column: auto; }
+  .quad4 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .vz-kpis b { font-size: 1.3rem; }
+  .vpanel { padding: 14px; }
+  .vz-wrap.scroll { overflow-x: auto; }
+  .vz-wrap.scroll svg.vz { min-width: 620px; }
+  .vz-kpis { grid-template-columns: minmax(0, 1fr); }
+  .orgs .wrap { flex-direction: column; align-items: stretch; }
+  .panels, .clients { grid-template-columns: minmax(0, 1fr); }
+  .panel.wide { grid-column: auto; min-height: 260px; }
+  .hero-photo { max-width: 300px; }
+  .ledger li { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  header.site { position: static; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  [data-view]:not([hidden]) { animation: rise .35s ease-out; }
+  @keyframes rise { from { transform: translateY(6px); } to { transform: none; } }
+}
+
+/* ---- added: skip link, theme toggle, mobile menu, game view ---- */
+.skip { position: absolute; left: 12px; top: -48px; z-index: 20; background: var(--accent); color: var(--on-accent); padding: 8px 14px; border-radius: 6px; font-weight: 600; text-decoration: none; }
+.skip:focus { top: 12px; }
+.hdr-tools { display: flex; align-items: center; gap: 6px; }
+.icon-btn { display: inline-grid; place-items: center; width: 38px; height: 38px; border-radius: 8px; border: 1px solid var(--line);
+  background: var(--surface); color: var(--ink); cursor: pointer; padding: 0; }
+.icon-btn:hover { background: var(--accent-soft); }
+.icon-btn svg { width: 18px; height: 18px; }
+.theme-btn .moon { display: none; }
+:root[data-theme="dark"] .theme-btn .sun { display: none; }
+:root[data-theme="dark"] .theme-btn .moon { display: block; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-btn .sun { display: none; }
+  :root:not([data-theme="light"]) .theme-btn .moon { display: block; }
+}
+.menu-btn { display: none; }
+nav.main a.game-link::after { content: "new"; font-family: var(--mono); font-size: .62rem; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--on-accent); background: var(--water); border-radius: 3px; padding: 1px 4px; margin-left: 6px; vertical-align: 2px; }
+.game-frame { position: relative; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--surface);
+  height: min(86vh, 900px); min-height: 560px; }
+.game-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.game-facts { display: flex; flex-wrap: wrap; gap: 8px; }
+.game-facts span { font-family: var(--mono); font-size: .76rem; letter-spacing: .04em; color: var(--muted);
+  border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; background: var(--surface); }
+.wrap.wide { max-width: 1480px; }
+@media (max-width: 760px) {
+  header.site .wrap { flex-wrap: nowrap; }
+  .menu-btn { display: inline-grid; }
+  nav.main { display: none; position: absolute; left: 0; right: 0; top: 100%; flex-direction: column; gap: 2px;
+    padding: 8px 16px 14px; background: var(--bg); border-bottom: 1px solid var(--line); box-shadow: 0 16px 30px -24px rgba(0,0,0,.5); }
+  header.site { position: sticky; }
+  header.site .wrap { position: relative; }
+  nav.main.open { display: flex; }
+  nav.main a { padding: 10px 12px; font-size: 1rem; }
+  .hdr-tools { margin-left: auto; }
+  .game-frame { height: 82vh; min-height: 520px; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="#home">Jordi Buckley-Paules</a>
+    <nav class="main" id="site-nav" aria-label="Main">
+      <a href="#home">Home</a>
+      <a href="#rice">Rice</a>
+      <a href="#consulting">Consulting</a>
+      <a href="#teaching">Teaching</a>
+      <a href="#adventures">Adventures</a>
+      <a href="#game" class="game-link">Game</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="hdr-tools">
+      <button class="icon-btn theme-btn" id="theme-btn" type="button" aria-label="Switch between light and dark mode">
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+      </button>
+      <button class="icon-btn menu-btn" id="menu-btn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-nav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+
+<!-- ================= HOME ================= -->
+<div id="home" data-view>
+  <div class="hero">
+    <canvas id="terraces" aria-hidden="true"></canvas>
+    <div class="wrap has-photo">
+      <div class="hero-text">
+      <span class="label">Postdoctoral researcher, IRRI · Associate Professor, UPLB</span>
+      <h1>Jordi Buckley&#8209;Paules</h1>
+      <p class="creds">PhD (Imperial College London) · MEd, PGCE (University of Cambridge) · BSc (Durham University)</p>
+      <p class="lead">Hydrology and water management for agriculture: using process-based models and AI to optimise irrigation and water use in rice systems.</p>
+      <div class="actions">
+        <a class="btn primary" href="https://scholar.google.com/citations?user=2eecasgAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a>
+        <a class="btn ghost" href="#contact">Contact</a>
+      </div>
+      </div>
+      <figure class="hero-photo">
+        <img decoding="async" src="img/imperial-graduation.jpg" alt="Jordi in PhD graduation robes outside Imperial College London" width="880" height="1100" fetchpriority="high">
+        <figcaption>South Kensington, London (2026)</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="orgs">
+    <div class="wrap">
+      <span class="label">Experience collaborating with some amazing institutions</span>
+      <div class="ticker">
+        <ul class="ticker-track">
+          <!-- LOGOS: to use a logo, replace the text inside an <li> with <img decoding="async" src="img/logo-name.png" alt="Name"> -->
+          <li><img decoding="async" src="img/logo-irri.png" alt="International Rice Research Institute (IRRI)" style="height:38px"></li>
+          <li><img decoding="async" src="img/logo-imperial.png" alt="Imperial College London" style="height:20px"></li>
+          <li><img decoding="async" src="img/logo-cambridge.png" alt="University of Cambridge" style="height:34px"></li>
+          <li><img decoding="async" src="img/logo-durham.png" alt="Durham University" style="height:42px"></li>
+          <li><img decoding="async" src="img/logo-fao.png" alt="Food and Agriculture Organization of the United Nations (FAO)" style="height:44px"></li>
+          <li class="dark"><img decoding="async" src="img/logo-superpower.png" alt="The Superpower Institute" style="height:52px"></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <section class="block">
+    <div class="wrap split">
+      <div class="prose">
+        <h2>About</h2>
+        <p>I'm an environmental scientist with a NERC-funded PhD in Environmental Engineering from Imperial College London (2025). My doctoral research focused on process-based modelling of coupled hydrological, carbon and vegetation dynamics under climate change, at the intersection of eco-hydrology and Earth system science.</p>
+        <p>Before my PhD, I taught Geography at Cheltenham Ladies' College. I have since built applied experience across local government, NGOs, the private sector, the UN and CGIAR. My professional work includes large-scale agricultural climate impact modelling and the development of operational decision-support tools.</p>
+        <div class="now">
+          <span class="label">Now</span>
+          <p>Postdoctoral researcher at the International Rice Research Institute (IRRI), part of CGIAR, working on water management and hydrology in rice systems, including AI approaches to irrigation and water-use optimisation. <a class="more" href="#rice">More on this work →</a></p>
+          <p>Associate Professor at the University of the Philippines Los Baños (UPLB).</p>
+        </div>
+      </div>
+      <div style="display:grid; gap:18px">
+        <h3>Education</h3>
+        <ol class="timeline">
+          <li><span class="yr">2025</span><div><strong>PhD, Environmental Engineering</strong><span>Imperial College London · NERC-funded</span></div></li>
+          <li><span class="yr">MEd</span><div><strong>Master's in Education</strong><span>University of Cambridge · cross-curricular learning</span></div></li>
+          <li><span class="yr">PGCE</span><div><strong>Secondary Geography</strong><span>University of Cambridge</span></div></li>
+          <li><span class="yr">BSc</span><div><strong>Geography, First Class</strong><span>Durham University</span></div></li>
+        </ol>
+        <figure class="tall">
+          <img decoding="async" src="img/cambridge-senate-house.jpg" alt="Jordi in academic gown outside Senate House, Cambridge" width="840" height="1000" loading="lazy">
+          <figcaption>Senate House, Cambridge (2022)</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="research">
+    <div class="wrap">
+      <div class="head">
+        <h2>Research</h2>
+        <p class="muted">Most of my work is open access. The full list of publications is on Google Scholar, and I presented posters at the European Geosciences Union (EGU) General Assembly in 2024 and 2025.</p>
+      </div>
+      <div class="areas">
+        <div class="area">
+          <span class="unit">Water management</span>
+          <h3>Irrigation and water-use optimisation</h3>
+          <p>Improving how, when and how much water is applied in rice systems, to save water while sustaining yields.</p>
+          <a class="more" href="#rice">Current postdoc →</a>
+        </div>
+        <div class="area">
+          <span class="unit">AI</span>
+          <h3>AI for water decisions</h3>
+          <p>Combining machine learning with physical understanding to support irrigation scheduling and water allocation.</p>
+          <a class="more" href="#game">Play the basin game →</a>
+        </div>
+        <div class="area">
+          <span class="unit">Hydrology</span>
+          <h3>Coupled water–carbon–vegetation models</h3>
+          <p>Process-based modelling of how soil moisture, carbon exchange and vegetation interact and respond to a changing climate (PhD, Imperial).</p>
+        </div>
+        <div class="area">
+          <span class="unit">Applied tools</span>
+          <h3>Decision support</h3>
+          <p>Turning model outputs into operational tools, from field-scale water management to agricultural climate impact assessments.</p>
+          <a class="more" href="#consulting">Consulting work →</a>
+        </div>
+      </div>
+      <div class="actions" style="margin-top:28px">
+        <a class="btn primary" href="https://scholar.google.com/citations?user=2eecasgAAAAJ&amp;hl=en" target="_blank" rel="noopener">Publications on Google Scholar</a>
+        <a class="btn ghost" href="https://docs.google.com/presentation/d/1T5bfALhKF1XDqYVPb3DJB7Y2GRx4-NZzkO3MvnVeYdY/present" target="_blank" rel="noopener">View EGU poster</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="media">
+    <div class="wrap">
+      <div class="head"><h2>Media and recognition</h2></div>
+      <div class="feature">
+        <div style="display:grid; gap:8px">
+          <span class="label">2026 · Geneva</span>
+          <h3>IDDEA Prize finalist</h3>
+          <p class="muted">Climate Curriculum Labs, an initiative I founded to make climate science accessible to everyone, was a finalist in the 2026 “Sustainable Development Ideas for the Businesses of the Future” competition.</p>
+        </div>
+        <a class="btn ghost" href="https://prix-iddea.ch/decouvrez-les-finalistes-2026-climate-curriculum-labs/" target="_blank" rel="noopener">Read more</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= RICE ================= -->
+<div id="rice" data-view hidden>
+  <section class="block">
+    <div class="wrap" style="display:grid; gap:18px">
+      <span class="label">Postdoctoral research · IRRI · CGIAR</span>
+      <h1>Water for rice</h1>
+      <p class="lead muted">Hydrology, irrigation and water-use optimisation in rice systems, using process-based models, field data and AI.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap split">
+      <div class="prose">
+        <h2>Overview</h2>
+        <p>Rice is one of the world's most water-intensive crops. As a postdoctoral researcher at the International Rice Research Institute (IRRI), part of CGIAR, I work on water management and hydrology in rice systems, with a focus on optimising irrigation and water use.</p>
+        <p>The work combines process-based hydrological modelling with AI methods to support decisions on when and how much to irrigate. Water management in paddies is closely linked to methane emissions, and fieldwork includes emissions measurement, reporting and verification (MRV).</p>
+        <p>This page will bring together maps, dashboards and outputs from that work as they become available.</p>
+      </div>
+      <figure class="sq">
+        <img decoding="async" src="img/rice-selfie.jpg" alt="Jordi and Dr Jean-Martial in a rice field" width="1000" height="984" loading="lazy">
+        <figcaption>Methane emissions MRV research with my friend Dr Jean-Martial.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="head">
+        <h2>Maps and dashboards</h2>
+        <p class="muted">Outputs from ongoing water-management research. Dashboard panels show illustrative example data until project results are published.</p>
+      </div>
+      <div class="vpanels">
+        <!-- SLOT rice-map -->
+        <article class="vpanel full">
+          <header><span class="status">FAOSTAT 2022</span><h3>Where rice grows in Southeast Asia</h3>
+          <p>National paddy rice production, major rice-growing regions and the IRRI headquarters. Hover over a country for its total.</p></header>
+          <div class="vz-wrap"><svg class="vz map" viewBox="0 0 1000 810" role="img" aria-labelledby="map-t map-d"><title id="map-t">Paddy rice production in Southeast Asia, 2022</title><desc id="map-d">Choropleth of national paddy rice production from FAOSTAT 2022, with major rice-growing regions and the IRRI headquarters marked.</desc><rect class="vz-sea" width="1000" height="810"/><g class="vz-land-other"><path d="M933.7 388.9L934.3 389.9L931.3 392.5L932.3 389.8Z"/><path d="M586.8 139.2L584.9 138.6L581.6 130.5L576.3 126.6L571.4 114.4L572.9 109.4L572.6 104.2L582.6 87.5L590.8 76.3L597.3 73.7L599 71.9L601.9 71.4L603.7 73.3L607.1 74.8L608.6 77.5L606.4 80.5L606.6 86.4L602.3 96.1L597.9 114L595.9 118.1L588.9 127.5L587.9 130ZM539 88L538.7 88.8L535.9 88.4L535.7 87.5L536.8 87.7L538.1 86.6Z"/><path d="M1060 798.9L1060 736.4L1059 737L1058.6 738.7L1057 738.4L1054.5 740.4L1048 738.6L1043.1 734.2L1044.8 736.1L1048.8 744L1046.8 744L1047.8 745.5L1040.4 745.2L1042.3 749.2L1031.9 751.5L1024.2 750.7L1020.5 751.7L1019 751.6L1016.9 748.6L1014.1 749.1L1016.5 749.2L1017.8 751.5L1019.5 752.7L1021.5 752L1026 752.2L1032.2 754.8L1037.5 760.6L1037.3 764.6L1022.9 772.1L1014.6 768.9L1002.4 769.7L998.1 768.5L992.7 769.9L989.5 767.8L989.5 723L987.2 719.7L987.5 717.1L989.5 711.7L989.5 636L993.7 636.4L1014.2 645.6L1028.1 650.4L1040.2 652.7L1051.3 660.2L1057.5 660.2L1060 661.2Z"/><path d="M860.7 434.1L860.3 430.8L863 427L861.9 433.7Z"/><path d="M656 85.3L656.5 85.7L654.7 89.9L652.7 90.2L651.7 88.4L652.4 87.7L654.2 87.9ZM648.7 89.9L647.8 91.5L643.6 91.4L643.6 90.8L645 90.1L645.4 88.8ZM678.9 82.1L675.4 82.4L675.7 79.5ZM735.1 38.8L736.6 40.3L736.2 42.1L732.5 45.5L727.3 47.7L728.1 50.1L727 50.2L725.8 51.5L726.1 53.6L724.6 54.7L723.1 54.8L723.1 52.7L724.5 50.5L724.6 47.9L726.4 47.3L728.9 44.7L727.8 43.9L728.1 42.7L730.9 43.7L732 43.2ZM749.1 22.2L748 21.7L747.7 19.4L749 18L750.3 20.9ZM753.3 11.1L756.4 8.9L760.2 8.2L763.8 5.7L764.2 7.4L759.1 10.7L759.1 12L757.3 13.6ZM756.6 14.5L754.6 14.2L753.8 12.3L755.1 12.6Z"/><path d="M-60 -60.7L-60 49.4L-60 15.5L-58.4 14.3L-53.9 16.1L-53 18.9L-55 25.9L-54.7 27.7L-52.2 30L-55.2 32.9L-53.3 35.1L-52.8 37.2L-47 40.2L-43.4 39.5L-38.3 40.9L-37.8 42.1L-34.7 42.5L-27.5 41.4L-25.9 39.5L-23.1 38.7L-18.8 40.6L-15.2 41.1L-4.3 40.7L-1.5 39.1L0.4 40.4L3.4 40.5L6.8 39.4L10 39.4L11.5 38.2L9.8 34.4L11.7 30.6L9.8 27.3L4.9 27.5L1.9 25.2L1.6 24.1L2.6 21.1L9.6 21.7L12 20.1L15 19.4L18.3 19.8L20.9 18.6L23.8 16.4L22.9 15L24 13.2L30.7 9.6L32.4 8.1L35 3.5L45.2 1.4L49.5 -1.2L50.4 -3.2L52.2 -3.6L55.9 -7L62.5 -10.4L64.7 -9.1L65.4 -7.6L70 -7.1L77.8 -4.8L80.3 -7.1L80.3 -8.2L90.7 -13.1L94.7 -9L97.1 -9.1L96.8 -8.3L92.4 -5.7L92.7 -2.5L98.7 -5.1L101.6 0.7L97.9 3.9L95.6 7.9L97.8 8.7L102.1 6.9L105.5 8.8L109.6 9.4L111.5 8.7L116.4 11.8L116.1 14.5L116.9 16.6L116.1 18.1L114.5 18.4L109.3 22.3L107.5 24.6L108 27.5L112.1 33.1L112 34.1L109.1 33.7L104.6 29.7L93.8 31.2L91.2 32.1L88.1 35.5L79.3 41.4L72.6 44.6L71.2 47.1L71.4 52.8L72.6 55.9L70.3 58.5L68.9 62.8L65.7 66.4L63.4 67.7L61.6 70.5L61.1 72.6L63.5 74.1L64.2 76L61.7 81.7L55.9 90.7L52.6 99.7L43.7 97.1L39.9 97.7L37.1 95.7L36.1 96.8L38.3 103.6L37.3 114.8L36.2 116.8L33.3 116.8L33.2 119.3L31.6 123.2L33.2 130.4L33 133L30.9 134L29.3 137.6L28.2 137.9L24.4 135L21.5 138.1L19.8 123.8L17.2 118.9L16.7 110.9L14.9 103.6L13.7 103.8L13 102.8L10.9 103.7L8.6 103.6L8.8 107.2L5.1 111.6L5 116.4L2.4 117.9L0.2 116.8L-1.3 113.4L-2.6 113.4L-2.6 115.9L-3.7 115.3L-6.7 105.7L-5.4 98.8L-2.7 95.3L0.5 95.4L4.5 93L7.5 93.2L9 90L12 88.9L14.5 81.6L14.6 79.3L18.9 80L19.7 78.9L19.4 78.1L11 73.5L-0.4 74.1L-4.1 73.3L-21.2 73.8L-33.3 71L-34.1 69.3L-33.5 57.9L-36.6 52.4L-38.3 52.9L-38.2 55.2L-39 56.6L-42.6 56.6L-46.3 54.6L-47.8 52.6L-48.7 49.1L-49.6 48.4L-51 48.4L-51.5 49.1L-50.4 50.9L-50.6 51.6L-56.3 50.8L-56.4 49.6L-60 45.1L-60 66.1L-58.1 66.9L-54.6 67L-53.6 69.5L-51 71.7L-52.2 73L-53.7 73.4L-60 73.1L-60 90.2L-57.2 90.6L-55.5 91.6L-56 97.1L-58.7 103.8L-55.2 108.6L-55.9 111.5L-55.5 112.3L-51.4 113.7L-53 116.6L-51.6 124.9L-48.9 133.9L-49.4 139L-51 139L-49.6 141.1L-49 144.7L-51.9 144.7L-52.8 142.9L-53.3 144.6L-55.1 146.1L-56.2 143.1L-55.2 137.6L-57.2 135.2L-58.7 141.1L-58 143.5L-58.3 144.6L-60 145.5L-60 130.1L-60 419.6ZM46.6 446.5L44.2 441.4L43.2 441.1L43.1 438.7L43.7 437.7L46.4 436.6L47.2 437.2L48.6 442ZM44.7 434.2L42.8 436.1L41.9 435L43.8 433.1ZM33.4 416.9L32.3 416.8L31.3 415.6L31.9 414.1ZM38.9 423.7L37.3 423.7L36.2 421.9L36.7 421L37.5 420.8L38.7 422.2ZM39.8 420.8L39.1 417.7L39.9 416.6L40.6 416.9L40.7 420ZM24.9 398.3L24.3 396.8L25.7 396.1L26.2 397.4ZM19.5 370.1L17.4 369.6L17.1 365.5L20.2 362.5L21.5 366.4ZM22.9 353.1L21.9 352.6L22.8 350.1L23.8 351.1L23.9 352.7ZM24 350.1L21.5 345.9L20.7 342.8L22.2 341.2L23.5 336.3L25.8 335.6L25.6 334.1L24.4 333L24.4 329.2L25.2 326.6L24.8 324.4L26.1 322.4L26.6 319.9L26.2 319.1L27.1 312.7L28.5 310.1L31.2 308.9L31.5 311.8L30.3 313.1L31.3 315.5L27.7 321.1L29.3 323L29.8 329.3L28.7 331L27.3 331.4L27.6 335.6L25 340.3L26 342.7L25.3 347.5ZM29.9 339.5L31.2 342.2L29.1 340.1ZM23.7 324L23.6 321.2L24.2 320.7Z"/><path d="M533.7 87.1L533 88.4L531.8 88.2L531.5 87L532.1 86ZM564.9 68.6L564 68.2L564.5 65.8L563.9 65L565.6 63.7L566.8 65L566.2 66.7L566.6 67.2ZM375.3 157.4L377.7 156.1L378.4 156.8L380.4 156.3L380.8 157.2L380.1 158.6ZM592.6 14.9L592.7 13.5L594.1 12.1L595 14.4ZM441.3 122.3L438.1 119.4L439.3 119.4ZM425.4 146.2L424.3 143.8L425.6 142.3L427.3 142.7L426 143.9ZM423 143.6L422.9 145L420.5 145.3L421.2 144.3ZM-60 19.9L-60 -60.7L865 -60.7L521.1 -60.7L623.3 -60.7L553.3 -60.7L607.1 -60.7L607.3 -58.8L605.3 -58.7L597 -60.7L570.7 -60.7L585.8 -60.7L591.1 -59.1L597 -54.4L603.2 -51L606.7 -45.8L607.6 -42.9L598.4 -40.3L596.2 -38.5L590 -35.6L587.9 -32.2L586.4 -31.5L579 -32.2L573.9 -29.2L577.1 -29.3L579.9 -30.4L582.7 -27L588.1 -27.6L593.2 -30.4L595.2 -30.5L598.7 -28.9L603.6 -23.9L611.7 -21.7L608.1 -19.8L600.1 -13.9L603.8 -14.4L607.8 -16.8L608.8 -16.3L609.4 -14L608.4 -6.8L607.1 -6.7L605.8 -8.6L604.3 -9.2L600.7 -8.8L599 -6.7L600.4 -6.4L603.3 -4.3L603.6 -3.1L602.8 -2.3L600.8 -2.7L603.2 -1L602.6 0.6L600.4 1.7L599.5 3.2L602.2 10.3L600.2 9.6L597.1 11.5L595.4 11.7L594.3 9.2L592.9 9.6L589.2 15.4L587.8 16.1L585 16L586.7 17.5L586.7 18.4L583.7 21.4L583.3 23.5L581.8 24.7L582.6 26.7L582.2 28.1L577.7 33.3L575.6 34.5L572.8 38.8L571.7 43.1L569.4 44.8L567.6 44.3L567.6 42.9L566.4 41.8L566.5 39.6L564.2 41.9L561.8 40.8L562.8 44.1L564.5 44.4L565.7 45.6L567.6 49.9L563.9 51.9L559.3 55.6L556.3 55.4L552.8 54.2L555.3 57.2L556.6 57.7L558.4 57.6L560 56.5L562.4 56.6L563 58.3L560.8 65L562.4 69L561.9 69.5L558.4 67.6L553.6 67.8L552.9 68.6L553.4 69.7L555.7 72.2L554.7 72.8L549.6 72.7L548.3 74.4L549.1 76.9L548.2 78.4L542.7 80.3L544.4 82.1L543.1 84.6L541.2 85.4L538.2 85L535.9 85.6L533.9 84.5L531.7 84.5L530.3 85.9L530.1 87.4L526.9 87.6L527.6 89.2L530.5 89.5L531.1 92.2L526.8 96.9L524.8 96.9L522.6 100.5L519.3 100.4L518.7 101.4L519.2 102.5L518.3 104.9L517.4 105.5L516.6 103.1L515.8 103L511.7 105.7L510.7 104.8L508.2 104.4L507.2 108.3L504.2 110.1L502.6 110.3L504 111.8L503.4 112.8L500.8 113.8L500.4 117.3L499.4 118.5L496.9 118.6L495 117.8L493.1 119.7L487 121.5L482.8 120.4L481.2 121L480 123.1L477.7 123.1L473.9 121.1L468.3 123.8L467.1 125.2L465 125L464.2 122.7L463 122.4L460.9 125.1L461.1 127L456.8 125.7L455.3 126.7L452.5 126.3L450.3 127.3L446.6 125.4L445.1 122.8L442.4 120.3L441.7 117L442.4 114.9L438.9 116.3L438.8 118.6L436.6 119.2L441.1 125.7L441 129.5L441.8 130.6L441 133.1L439.9 132.8L439.6 133.7L436.6 134.8L435.3 135.9L433 136.2L431.8 133.5L430.2 135.3L429.1 139.6L428.1 140.1L426.2 138.8L421.7 142.2L418.4 140.1L418.6 138.5L417.2 138.1L417.8 141.7L416.1 142.9L408.9 140.7L407.5 143.4L405.5 143.4L402.1 146.6L397.8 147.1L396.4 148.1L390.3 147.6L389.9 149.2L385.4 150.1L381.3 153.6L379.2 153.3L378.2 151.1L377.5 154.5L373.9 157.2L373.1 159.1L373.6 160.8L377.3 161.2L377.8 162.2L376.3 164.6L380.2 167.7L380.4 168.9L379 171L376.9 172.2L372.5 172.9L368.8 172.2L367.7 170.8L367.7 169.8L369.7 170L369.4 169.1L367.2 167.8L365.8 165.6L366.1 163.8L363.3 159.6L364.1 156.9L363.6 155.3L365.2 153.3L365.6 151.1L368.4 150.3L368.6 148.2L366.6 148.2L365.2 146.6L363.7 147.3L361.9 144.3L360.4 143.9L360.9 147.1L356.9 148.8L351.6 149L352.7 146.9L352 146L350.6 145.3L345.4 145.2L342.3 142.3L341.9 139.7L339.6 139.6L340.5 144.3L338.9 145.6L337.7 144.2L336.5 143.9L334.9 146.6L332.9 146.5L329.5 147.7L325.2 144.7L322.8 145.5L319.4 145.8L318.7 144.9L317 145.6L315.4 143.6L313.6 143.4L311.2 141.9L309.4 139.2L304.6 137.7L303.3 138.1L303.1 132.8L301.1 130.8L301 127.5L301.6 126.1L304 124.8L305.6 121.9L300.8 119.3L295.6 120.3L293 118.1L290 118L289.2 118.7L286.9 119L283.8 116.8L281 116L278.8 112.7L275.5 110.5L266.5 115.4L265.9 119.2L263.7 121L260.5 121.4L257.4 123.4L256 123.3L254.2 121.3L251.1 122.5L248.8 126.8L242.4 121.9L239.9 125.8L237.1 122.4L236 122.2L232.8 125.7L232.7 126.7L229.6 128.6L226.6 125.8L219.4 122.5L212.5 130L210.5 128.8L206.8 129.8L205.2 127.8L204.2 127.8L202.4 131.1L200.5 132.6L202.1 137.9L204.7 141.2L204.5 151.6L206 153.2L204.6 154.8L200.8 153.2L195 153.9L193.5 149.7L193.9 147.4L192.8 146.5L192.6 143.1L191.6 142.6L186.7 144.7L182.1 148.4L177 147.8L174.3 148.6L173 148.2L171.8 146.6L171.9 144.6L169.6 143.7L168.8 142.6L169 137.9L168.4 137.1L154.7 135.5L153.5 134.6L154.9 130.2L156.8 127.6L156.8 123.8L157.7 121L160.1 118.3L158.4 116L147.3 113.6L147.7 109.7L146 106.9L146.6 104.8L145.8 102.5L143.6 100.4L143.5 99.1L146.7 94.7L141.7 95.8L140 94.9L134.2 95L130.3 95.9L123.7 99.3L121.3 99L121.4 97.4L123.8 94.5L124.2 92.6L123.3 89.5L120.6 87.2L120.6 84.4L121.7 81.5L124.8 79.6L124.3 76.3L126.4 71.8L128.4 72.2L130.2 71L132 68.5L132.9 65.4L136.7 65.1L139.3 61L142.5 60.2L143.1 59.5L141.3 55.2L141.4 54.4L143.3 53.9L143.7 52.9L143.4 50.7L144.8 42.6L143 24.9L139.1 23.1L137 25.6L136 25.3L132.6 16.9L132 13.3L127.8 9L125.4 9L123.2 6.1L120.8 5.9L116.4 11.8L111.5 8.7L109.6 9.4L105.5 8.8L102.1 6.9L97.8 8.7L95.6 7.9L97.9 3.9L101.6 0.7L98.7 -5.1L92.7 -2.5L92.4 -5.7L96.8 -8.3L97.1 -9.1L94.7 -9L90.7 -13.1L80.3 -8.2L80.3 -7.1L77.8 -4.8L70 -7.1L65.4 -7.6L64.7 -9.1L62.5 -10.4L55.9 -7L52.2 -3.6L50.4 -3.2L49.5 -1.2L45.2 1.4L35 3.5L32.4 8.1L23.1 14.3L22.9 15L23.8 15.7L23.3 17.2L18.3 19.8L15 19.4L12 20.1L9.6 21.7L2.6 21.1L2.8 17.8L-4.5 14.6L-9.6 16.8L-15.7 14.7L-22.9 14.6L-23 11.3L-30.4 9.9L-33.7 11L-35 12.4L-40.4 15L-46.8 22L-48 24.4L-51 27.1L-52.2 30L-54.7 27.7L-55 25.9L-53 18.9L-53.9 16.1L-58.4 14.3L-60 15.5ZM388.8 179.3L390.3 185.2L386.4 187.1L381.4 195L379 203.5L378 204.6L375 205.4L371 208.5L371.3 209.6L370.4 210.3L366.3 210.7L364.1 213.4L360.4 214.3L356.8 212.6L350.6 211.2L344 207.9L342.7 200.3L343.3 192.3L355.5 183L353.5 182.9L355.3 180.6L360.3 180.1L363 178.5L368.1 178.9L371.7 178.3L373.4 177.1L376.9 177.4L377.8 178.7L377.9 177L381.8 178.7L382 176.2L383 175.4Z"/><path d="M439.6 133.7L439.9 132.8L441 133.2Z"/><path d="M447.9 129L451 126.7L453.8 126.3L455.3 126.7L456.7 129.7L455.8 130.1L455.4 131.7L450.7 130.1L448.7 130.3ZM454.1 133.7L452.7 131.8L454.9 132.4ZM450.9 130.9L450 133.4L447.5 133.4L446.8 132.8Z"/><path d="M11.7 30.6L9.8 34.4L11.5 38.2L10 39.4L6.8 39.4L3.4 40.5L0.4 40.4L-1.5 39.1L-4.3 40.7L-15.2 41.1L-18.8 40.6L-23.1 38.7L-25.9 39.5L-27.5 41.4L-34.7 42.5L-37.8 42.1L-38.3 40.9L-43.4 39.5L-47 40.2L-52.8 37.2L-53.3 35.1L-55.2 32.9L-52.4 30.4L-51 27.1L-48 24.4L-46.8 22L-40.4 15L-35 12.4L-33.7 11L-30.4 9.9L-23 11.3L-22.9 14.6L-15.7 14.7L-9.6 16.8L-4.5 14.6L2.8 17.8L1.9 25.2L4.9 27.5L9.8 27.3Z"/><path d="M16.5 162.2L11.1 154.4L10.2 144.1L8.3 140.1L6.5 133.1L7.3 130.6L5.9 131.7L3.9 127.5L0.6 123.4L-0.4 119.8L-5.7 124.7L-11.1 125.6L-13.5 123.1L-17.3 115.5L-16.9 111.9L-17.9 105.5L-18.8 106.6L-18.9 108.9L-24.6 108.2L-22.2 110L-19.5 110.4L-18.2 112.1L-18.1 114.7L-20.7 116.4L-20.4 117.7L-19 119.4L-20.8 119.8L-21.3 122.5L-17.7 130.4L-18.2 132.5L-22.9 136.7L-25.4 141.1L-26.8 141.4L-28.6 140L-28.2 137.3L-25.8 134.5L-30.9 137.2L-31.6 135.3L-32.1 131.5L-30.3 128.3L-32.4 129.8L-33.8 138L-38.6 142.4L-40.3 132.1L-40 139.4L-41 141.3L-42.9 143.3L-44.4 143.6L-48.1 140.3L-49 132.1L-51.6 124.9L-53 116.6L-51.4 113.7L-55.5 112.3L-55.9 111.5L-55.2 108.6L-58.7 103.8L-56 97.1L-55.5 91.6L-57.2 90.6L-60 90.2L-60 73.1L-53.7 73.4L-52.2 73L-51 71.7L-53.6 69.5L-54.6 67L-58.1 66.9L-60 66.1L-60 45.1L-56.4 49.6L-56.3 50.8L-50.6 51.6L-50.4 50.9L-51.5 49.1L-51 48.4L-49.6 48.4L-48.7 49.1L-47.8 52.6L-46.3 54.6L-42.6 56.6L-39 56.6L-38.2 55.2L-38.3 52.9L-36.6 52.4L-33.5 57.9L-34.1 69.3L-33.3 71L-21.2 73.8L-4.1 73.3L-0.4 74.1L11 73.5L19.4 78.1L19.7 78.9L18.9 80L14.6 79.3L14.5 81.6L12 88.9L9 90L7.5 93.2L4.5 93L0.5 95.4L-2.7 95.3L-5.4 98.8L-6.8 104.1L-3.7 115.3L-2.6 115.9L-2.6 113.4L-1.3 113.4L0.2 116.8L2.4 117.9L5 116.4L5.1 111.6L8.8 107.2L8.6 103.6L10.9 103.7L13 102.8L13.7 103.8L14.9 103.6L16.7 110.9L17.2 118.9L19.8 123.8L22.6 151.7L21.4 152.6L20.8 151.5L16.6 149L14.2 150.7L13.8 153.8L15.3 156.7ZM0.2 130.6L-1.8 128.1L-0.9 125.2L1.1 130ZM6.8 142.8L6.4 141.5L7.2 139.2L7.7 140.1ZM9 147.7L7.2 147.2L7.1 143.6L8.7 143.3Z"/><path d="M1060 870.7L433.7 870.7L692 870.4L692.2 869L691.1 866.2L692.4 865.8L693.7 866.7L695.2 870L696.5 867.9L698.1 867.1L701.4 869.9L703.6 868.5L705.6 865.8L705.5 862.4L708.1 861.5L710.1 862.1L712 864L715.9 865.3L723.5 870.6L767 870.7L757.6 870.7L759.2 870.7L764.2 866.3L766.8 858L768.8 856.6L772.7 855.5L775.2 852.5L772.7 849.4L773.4 845.6L776.4 844L778 840.1L782.3 839.3L782.5 834.9L783.4 834.4L784.7 834.8L787.3 837.5L788 836.8L787.5 833.6L790.5 833.1L790.4 830.5L794.4 829.8L795.8 827.5L796.8 830.4L798.8 831.8L804.5 831.8L807.8 830.9L811.3 831.9L815.1 829.9L817.4 831L818.2 832.1L818.8 829.7L820.2 828.9L824.3 828.7L822.6 826.9L822.6 822.8L823.5 819.1L819.5 815.9L815.6 815.4L812.7 816.1L811.5 815.5L808.9 813L806.4 812L806.2 811.4L809.2 809.6L813.1 812.2L814 812.1L815.3 810.1L816.7 810.4L821.1 813.4L823.7 816.2L827.1 813.8L829.2 814.2L830.5 815.1L833.7 820.2L837.1 820.7L840.7 822.4L848.1 822.8L854.7 826.3L860.8 827.4L864.6 825.9L867.1 828.2L870.6 830.1L874.4 830.7L888.4 822.6L886.7 825.2L887.9 825.6L884.1 829.2L884.1 830.4L884.9 831.1L888.8 829.3L890.2 830L891.6 834.7L895.2 835L896.6 832.4L895.8 830.1L895 829.7L898.9 825.2L900.8 825.3L902.2 828.9L904.4 830.8L907.9 831.1L908.9 833.3L900.7 842.1L900.4 843L901.9 846.5L899.2 851L898.2 851.2L895.9 849.2L888.5 852.6L888.6 859L889.8 862.8L887.7 869.8L886.1 870.7L878.1 870.7L1002.5 870.7L1000.5 870.7L1001.9 869.8L999.6 865.2L999.5 862.6L1002.9 851.7L1002.3 845.3L1005.6 841.9L1008.4 842.4L1008.6 841.2L1007 837.9L1003.6 836.1L1003.8 833.3L1007.4 825.7L1009.2 827.3L1009 824.1L1012.8 811.5L1013.4 804.8L1016.5 803.6L1019.1 800L1020.9 800L1022.1 800.8L1021.1 803.4L1024.5 806.1L1026.7 812.1L1027.5 822.6L1029.8 824.5L1033.6 825.3L1032.1 829.6L1032.2 832.3L1035.1 834.2L1038 839.1L1038 841.1L1039.2 843.5L1040.6 852.6L1041.7 855.4L1041 861.4L1044.1 870L1045.1 870.7ZM782.1 822.5L780.1 822.8L776.3 821.6L771.5 822.6L770.9 821.9L771.4 819.7L772.8 820L774 819.3L773.1 815.6L775 813.2L776.8 812.7L779.2 819.7L781.6 820.8ZM777.4 810.3L778.5 809.6L782.4 813.5L785 813.7L788.3 812.2L790.5 812.7L795.4 809.8L798.7 812.3L800.8 814.8L799.4 816.2L799.2 817.8L797.7 817.7L795.8 820.3L789 824.7L782.9 821L780.2 818.4L778.5 814.9ZM900.5 814.8L900.4 813.9L904.2 809.1L904.6 806.4L905.6 806.2L904.8 809.9ZM821.5 812.4L819.9 809.2L820.3 808.3L819.7 806.7L820.8 806.5L821.6 805.3L822.6 809.3Z"/><path d="M284.1 794.4L284.5 795.7L283.9 797.1L281.7 796.1L281.9 795Z"/></g><g class="vz-countries"><path class="seq5" d="M250.6 372L251.7 373.8L251 379.5L250.4 380.1L249 375.8L247 373.2ZM275.5 110.5L278.8 112.7L281 116L283.8 116.8L286.9 119L289.2 118.7L290 118L293 118.1L295.6 120.3L300.8 119.3L305.6 121.9L304 124.8L301.6 126.1L301 127.5L301.1 130.8L303.1 132.8L303.3 138.1L304.6 137.7L309.4 139.2L311.2 141.9L313.6 143.4L315.4 143.6L317 145.6L318.7 144.9L319.4 145.8L322.8 145.5L325.2 144.7L329.5 147.7L326.2 147.9L322.7 150.5L318.2 152.2L317.1 156.8L313.3 159L311.5 158L307.7 159L303.7 157.9L305.1 163.3L301 167.5L301.5 170.3L300.4 172.3L293.3 178.4L291.2 178.4L289.7 179.4L286.3 186.5L285.8 192.5L284.3 195.9L282.8 197.3L282.4 199.1L287.8 208.5L291.3 212.3L294.8 214.2L300 219.8L299.2 221.3L299.6 224.4L297.1 223.5L300.3 225.5L304.7 231.5L312.4 237.8L313.6 241L321 246.2L320.8 246.9L326.1 251L326.7 252.7L330.6 252.5L334.2 257.3L335.3 257.4L335.7 259.4L341.6 267.6L346.4 271.8L348.8 279.4L351.7 285.2L351.7 288.5L356.1 302.6L355.8 304.4L354.9 302.6L355.8 310.8L355.4 314.3L358.5 320.8L358.9 328L356.7 325L354.4 327.1L356.1 332.3L354.1 331.8L354.3 338.7L355.2 341.1L354.9 342L354 340.2L353.2 343.5L354 345.8L352.7 348.3L350.8 348.4L349.7 353.6L346.4 354.1L344 356.4L341 357.3L335.4 361.8L331.9 362.5L330 366.1L326.9 366.5L315.2 372.6L313.9 371.1L311.8 370.6L310.1 367.3L308.9 372.6L308 372.9L306.3 371.9L304.5 369.8L302.1 371.3L304.8 371.7L305.6 373.1L305.1 374.7L299.3 374.6L304.6 376.8L305.7 378.3L303.2 380.9L303.1 382.7L301.9 383.5L299 381.9L292.7 376.2L300.1 384.3L301.4 388L299.7 389.6L297.6 389.7L294.1 387.3L288.5 381.5L286.6 380.7L293.2 388.9L294.1 390.8L293.4 392.9L280 399L276.4 405L272.3 408.4L267.8 409.4L265.4 409.1L267.9 406.1L266.4 404.9L266.9 388.7L268.1 384.4L271.9 382.7L271.7 380.8L270.6 379.3L267.5 378.4L266 376.6L263.3 377.2L258.5 372.4L261.3 370.2L267 369.9L270.9 366.5L270.4 362.7L270.9 362.2L276.3 363.6L278.1 361.4L285.1 360.6L287.1 363.2L288.8 362.8L293.3 364.6L292.6 362L293.2 359.7L287.1 354.5L287 347.6L288.5 347.2L290.1 345.1L298 346.5L298.3 341.2L304 340.6L305.3 339.1L308.6 338.6L314.2 334L316.6 333.7L317.9 334.9L320.1 332.8L321.1 329.3L319.5 319.3L322.1 311.1L316.6 297.1L317.3 292.2L319 290.6L320.7 286.5L320.5 282L319.6 279.8L321.1 278.3L323.1 274.3L321.3 271.5L315.6 266.9L313.3 263.2L317.8 260.2L317.9 258.3L308.6 252L307 248.8L304.8 250L303.1 249.2L300.9 246L300 239.9L298.5 238.9L295.4 234.6L290.1 230.5L283.8 224L281.8 219L279.2 215.6L276.7 214.9L272.3 210.5L271.7 208.6L272.9 205.5L264.3 202.4L247.8 192.3L251.3 188.7L250.3 185.4L250.6 184.8L255.2 184.6L261.8 185.9L264.9 183.2L266.3 180.1L268.6 177.8L268.6 176.5L267 174.1L264 174L262.4 170.6L257.4 169.3L260.7 167L261.7 165.1L257 161.6L252 159L247.6 160.8L244.3 163.7L242.7 164.1L232.1 160.1L227 152.6L229 146.4L229 144.1L226.9 143.1L226.3 141.6L224.8 144.2L223.2 144.3L221.7 139.6L219.8 138.6L212.5 130L219.4 122.5L226.6 125.8L229.6 128.6L232.7 126.7L232.8 125.7L236.5 122.1L239.9 125.8L242.4 121.9L248.8 126.8L251.1 122.5L254.2 121.3L256 123.3L257.4 123.4L260.5 121.4L263.7 121L265.9 119.2L266.5 115.4ZM301.4 407L303.2 405.7L303.1 407ZM313.9 371.7L311.7 373.9L311.6 372.8ZM307.1 162.1L305.4 160.7L305.9 159.4L307.1 160.8ZM322.1 153.6L319.2 156.1L318.1 156L319.5 152.5ZM321 157.3L320.4 159.4L318 159.9ZM310.6 163.1L309.8 163.1L308.2 161.5L309.1 160.6L311.3 161.6Z" tabindex="0" data-tip="Viet Nam: 42.7 Mt paddy rice (2022)"/><path class="seq1" d="M682.9 748L681.6 751.5L680.1 750.7ZM669.4 771.4L669.2 769.8L672 769.3L673 767.9L673 766.3L672 765.5L668.7 766.5L668.4 764.3L670.5 762.6L673.6 758.3L676.5 757.1L686.1 755.1L702.4 754.5L709.3 751.6L714.3 752.7L715.9 753.8L708.3 759.7L703.3 761L699.7 763.7L693.3 765.4L688.9 767.9L686.8 768.1L678.2 771L671.4 775.8L670.7 773.2ZM650.7 772.3L654 770.6L658.9 769.3L658.3 771.8L655.6 774.1L651.8 773.9Z" tabindex="0" data-tip="Timor-Leste: 76 thousand t paddy rice (2022)"/><path class="seq4" d="M221.4 346.4L222.1 346.7L221.8 348.9L220.7 348ZM218.6 340.9L216 340.6L215.5 337.1L217.6 338.7ZM135.9 425.7L135.2 422.7L136.4 417.8L137 418.9L138.7 419.5L138 424.7ZM167.8 169.6L172.4 171.8L172.8 173.2L174.4 171.3L176.4 170.4L180.4 174.6L180.9 176.4L178 183.1L178.4 185.4L180.3 187.2L182.5 188.3L184.9 188L189.3 186.1L194.2 187.3L194 191.8L195.7 198.9L193.3 206.2L190.9 209.7L192.8 212.9L192.9 215.8L188.2 227.1L192.1 229.2L193.3 228.8L198.3 224.4L203.8 220.9L205.5 218L208.9 217L212 214.4L219.2 219L221.1 219.4L222 220.2L222.3 222.1L223.2 222.4L226.1 219.8L231 218.1L233 214.2L235.3 213.1L235 211.1L235.8 210.4L239.8 210.2L248 212.7L249 212.2L258.6 224.8L264.8 229.6L266.3 232.9L264.9 241.3L265 246.1L266.4 249.8L269 252.3L270.9 255.9L278.1 259.4L277.5 260.4L278 262.6L282.4 265.3L282.8 266.1L282.3 269.6L280.3 272.1L279.8 274.2L280.9 280.8L279.5 289L276.8 291.3L273.4 292.9L271.5 295.1L270.1 294.5L269.4 292.3L265.6 291L258.2 292.2L254.6 291.7L249.6 292.4L244.8 292.1L242 291.2L234 293L230.6 294.6L228.2 296.9L224.6 302.9L220.9 306.6L220.9 308.1L216.4 309L216.6 314.1L219.2 319.6L220 326.6L225.1 331.6L224.1 335L224.7 338.4L228.7 346.1L225.8 342.4L225.3 339.9L221.9 336.1L220.8 338L216.9 335.1L215.2 332.2L214.6 333.5L210.7 329.4L204.5 326.2L198.9 327.7L191.8 326.5L189.1 327.6L188 326.9L187.3 325.7L189.3 311.2L183.1 309.4L182.1 308.4L180.7 309.5L174.7 310.1L170.3 312.8L169.8 315L171.8 319L169.3 326.2L170.1 333L169.8 336.7L166.7 341.5L166 345.3L162.5 351.1L160.3 358.4L159.7 362.7L155.7 369.2L154.7 372.8L153.3 374.2L153.9 377.1L153.2 386.1L155.8 392.5L155.1 395.6L157.9 396.6L164.5 394.6L166.7 395.1L168.1 398.7L169.8 409.3L172.6 412.5L173.3 410.9L175.6 415.7L179.1 432.5L180.9 436.8L178.8 435.7L177.6 430.5L175.7 430.3L176.3 426.9L175.1 425.7L173.2 426.7L173.2 429.3L178.5 437.6L181.7 437.9L185.9 441.5L190.4 444.3L196 443.3L200 444.2L202.3 446.4L206 452.1L212 456.8L211.1 459.7L208.7 462.1L207.5 465.2L205.8 466.2L203.6 466.2L201.1 463.6L195.1 465.9L193.8 468.4L192.3 469L189.6 466.3L189.9 464.8L191.5 462.6L191.1 456.8L187.5 456.7L185.1 452.4L184.3 452L182.6 452.6L176.9 450.5L175.2 447.9L173.5 448.1L172.4 452.7L167.4 446.5L163.9 443.9L164.4 439.3L162 438.3L161.1 437L161.9 434.2L158.7 434.7L157.2 433.9L155.3 428.9L153.7 426.9L151.6 426.9L150.9 425.9L151 423.5L145.8 420L144.1 416L141.6 414.2L140 414.7L138.4 417.6L136.1 416.6L134.8 412.6L134.8 405.6L136.5 401.6L137.4 395.1L139.9 389.6L144.9 373.6L145.1 367.3L153.8 358.3L159.6 348L161.5 346.5L162.3 344.6L159.3 336.3L157.9 330.6L158.1 329.1L154.4 325.2L153.5 320.7L152.1 317.8L153.5 315.2L152.7 305.4L148.7 298.7L141.4 292.4L134.9 283.2L134 279.9L133.8 275.3L139 272.2L141.1 272L141.8 258.2L146.4 255.5L147.3 254.4L147.8 252.1L146.7 250.7L143.8 253L139.6 244.4L138.8 239.4L124.1 222.8L124.8 220L122.6 212.8L120.5 212.7L119 211.4L117.5 208.2L120.3 208.6L124.9 206.8L124.1 199.8L126.1 195.8L126.3 189.1L129.8 185.2L130.3 183.3L132.2 183L134.8 184.5L137.4 184.5L148.3 182.8L149.7 181L150.4 177.3L151.5 176.2L153.9 175.9L156.8 176.6L159.7 175.2L159.2 170.8L164.4 171.6ZM171.3 387.2L169.7 384.9L170.9 384.9ZM171.4 389.1L171.1 391.6L169.2 392.4L168.8 389.6ZM162.9 451.2L162.1 449.6L163.1 447.2L164 450.1ZM141.6 422.9L140.6 419L142.1 420ZM135 400.1L136 398.1L136.2 399.9ZM150.9 428.5L152.1 431.9L150.8 430.3Z" tabindex="0" data-tip="Thailand: 34.3 Mt paddy rice (2022)"/><path class="seq0" d="M249.9 555.5L246.4 557.6L243 556.3L244.1 554.4L246.4 553.9Z" data-tip="Singapore: negligible paddy production"/><path class="seq3" d="M582 208.4L586.3 206.5L588.5 206.8L592 206.2L601.9 211.1L609 212.9L610.8 212.1L612.9 208.8L614.4 208.6L616 210.5L615.9 213.9L613.6 217.4L613 225.5L614.7 230.1L617.8 232.7L618.2 235.3L620.4 236.4L612.7 255.4L605.8 257.6L601.9 260.5L601.2 262.7L602.1 265.9L598.2 271.8L598 274L603.9 284.8L602.5 285.9L602.6 287.9L605.3 296.3L608.2 299.3L614.2 301.1L614.6 300.1L615.8 299.8L614 296.7L619.8 293.2L622.5 293.3L627.1 294.6L628.7 295.9L631.4 300.5L631.2 304L632 304.7L634.6 304.8L635.9 303L636.1 301L635.2 300.2L636.4 298.4L638.6 300.4L644.5 302L647.2 303.7L646.1 305.3L642.1 305.7L641 306.9L646.4 314.5L645.7 317.7L647.5 317.6L651.4 319.3L652.9 319.2L652.7 324.2L651.2 328.7L649.2 328.1L647.6 326.2L649 321.6L648.4 321.2L644.7 322L642.5 321.7L638 319.3L636.2 319L635.9 315.6L633.3 311L627.3 307.4L621.9 301.6L619.7 301.1L619.4 302L620.2 306.6L621.9 308.6L623.4 311.9L623.5 314.8L622 316L620.3 314.7L620 312.6L617.5 309.4L611.5 304L605.6 301L603.8 301L600 302.9L599 303.9L598.9 305.5L596.9 306.8L594.1 307L591.9 306.2L590.1 304.6L588.6 304.5L586.8 302L584.6 301.7L582.7 303.6L582.3 295.9L583.8 293.8L588.4 289.7L588.8 286.6L587.8 285.2L584.2 284L581.7 281.8L580.9 284.2L581.8 289.9L581.1 290.8L578.8 290.5L577.3 287.4L575.7 285.8L575 283.6L572.8 283.5L571.6 282.5L568.7 270.7L567.8 262.5L565.2 258.1L565.5 254L566.6 252.6L570.7 255.5L573.2 258.2L576.7 257.8L577.8 255.9L576.1 248.5L576.4 243.8L578.2 239.8L578.5 230.1L577.2 226L581.7 211.2ZM514.4 413.7L515.1 410.2L517 406.7L527.7 396.1L530.5 395.5L550.5 373.5L554.5 371L556.3 366.8L555.2 363.6L560 353.4L561.1 354.1L560.7 358.4L561.2 359.5L560.5 361.4L563.7 370.6L561.9 372.4L557.4 374.1L555.7 375.6L553.8 379.4L545.6 382.4L545.1 383.5L545.5 385.4L538.7 395.8L532.7 398.9L529.8 403.4L525.6 406.4L521.4 408.2L520.3 410.3ZM633.2 349.6L632.9 353.1L630.3 358.1L626.1 360.6L625.4 364L623.5 364.5L620.4 366.7L614 368.1L609.1 371.7L609.3 363L611 358.5L612.1 347.4L611.3 345.8L607.8 344.4L609.3 342.3L610.6 342.3L622.3 349L624.5 348.1L626.8 348.4L628.6 349.7L627.9 351.5L632.1 349.5ZM629.9 399.7L627.3 394.5L621.2 391.2L618.2 386.9L618 384.3L619.4 381.5L624.3 380.9L627.1 378.9L627.3 374.9L626.3 370.5L629.2 366.5L629.7 362.7L635.1 360.6L640.2 362L641.4 364.9L633.2 383.4L633 388.7L636.2 393.7L636.4 395.4L633.8 399.2ZM656.6 349.6L662.9 354.2L664.5 353.9L666.4 352.3L668.6 352.9L670.5 356.2L670.3 364.8L673.3 367.8L673.9 371.4L675.4 374.5L675.1 375.3L673 375.2L672.9 376.9L669.8 373.2L670.5 380L665.6 377.3L665.8 374.1L664.8 371.8L666 366.9L665.7 364.9L663.3 361.2L660.1 362.4L658.9 362L657.3 352.9L656.2 350.6ZM655.9 328.7L661.3 329.5L673 328.6L674.8 329.5L676.2 331.2L676.4 333.7L679.6 335.1L680.7 336.3L679.1 341.1L679.8 348.4L682.2 353.9L681.5 355.6L682.5 355.7L684.1 357.1L684.7 359.4L682.6 357.8L678.6 358.2L674.7 357.5L673.1 355L670.7 353.5L668.3 349.1L669.6 347.5L669.9 344.9L667.7 344.7L663.5 339.8L660.6 338.6L658.9 337.1L656.5 332ZM578 309.5L585.1 310.4L588.3 309.8L592.4 312.2L594.1 311.2L600.5 317.3L600.8 318.1L599.5 321.3L600.8 327.3L598.2 331.6L597.9 334.1L596.4 334L594.7 335.8L592.3 335.1L591.7 333.3L588.4 329.8L588 327.1L585.9 325L585.3 320.6L583.6 317.3L580.2 314.7L579.1 312L576.8 311.6ZM693.9 395.3L693.8 398.4L696.1 401.9L696.4 404.1L692.8 409.1L697.3 411.4L697.6 414.6L699.2 417.1L698.7 424.6L701.4 427.7L701.6 436.4L698.8 441.2L695.9 443.8L694.3 443.6L693.8 444.4L694.8 446.8L693.8 455.4L692.2 451.8L690.9 444.6L686.5 434.7L683.8 436.1L682.8 439.3L680.8 441.1L678 445.6L677.6 447.7L681.8 452.3L683.4 457.1L683.4 462.1L679.1 468.5L676.9 469.8L675.8 469.1L674.8 466.6L675.4 461L674.6 460.3L673.5 460.7L670.7 464.3L668.5 464.2L654.3 457L651.6 453.5L649.7 441.6L650.9 439.1L653.8 436L654.1 433.4L649.4 428L645.3 426.4L643.3 424.9L639.9 425.1L637.8 433.2L633.6 430.7L631.9 427.3L629.8 430.4L626.9 430.7L625.8 426.8L624.3 425.8L622.3 426L619.5 428.5L612.8 442.5L612 443.2L609.3 442.1L608.1 439.9L608.5 437.4L610.9 434.1L612.6 425L614.9 422.3L617.7 420.3L623.5 418.5L628.2 418L629.9 416.7L630 414L632.9 410.7L636.8 409.6L638.7 406.9L643.6 408.6L645.7 410.1L647 412.4L647.5 417.4L645.1 420L646 420.2L654 416.5L656.5 410.9L658.1 409L662.4 410.6L664.6 409.8L665.7 403.5L667.4 401.5L672.8 403.6L674.2 400.4L677.5 401.1L680 400.6L680.7 398.1L678.3 387.4L679.4 385.6L680.4 385.6L687.5 390.5L690.1 394.4L691.8 395.7ZM636.6 392.4L636.5 389.2L638.1 382.9L637.7 381.4L644.2 371.1L648.6 361.2L649.3 356.7L650.8 354.9L651 368.8L650.1 372.6L649 374.3L644 378.1L639.9 389ZM607.2 202L606.5 201.6L607.2 199.7L608.9 198.2L609.8 199.3ZM600.6 192.9L597.7 191.8L597.8 190.4L600.4 191.1ZM608.3 170.9L608.8 169L610.6 168.7L609.2 170.8ZM607.3 161.2L607.6 162.4L606.6 164L605.8 164ZM598.3 462.4L595.9 464.3L594.4 462.8L591.7 463.9L590.4 463.2L588.6 463.8L587.5 462.6L588 461.5L590.8 459.7L593.2 460.2L594.3 461.6L597.8 461.6ZM510.6 425.1L509.4 423.3L509.5 420.8L511.5 419.8L511.6 423.5ZM565.9 371.5L565.3 369.5L567 367.7L570.2 369.1L568.3 370.8ZM567.7 334.1L568.3 333.7L573.1 337.1L574.6 335.7L575.2 337.3L576.8 338.6L576.3 339.9L570.2 340L567.3 336.2ZM570.8 346.2L569.3 346.9L567.2 341.1L568.3 340.6L570.7 341.9L571.5 344.6ZM620.8 372.1L620.8 368.4L624 365.7L624.7 367.4L623.6 370.6ZM661.5 380.1L661.1 383.1L661.7 385.7L659.6 385.8L657.2 388.2L652.4 388.8L648.7 388.3L646.6 385.5L646.3 384.4L647.3 383.1L651.2 380.7L653.5 377.9L656.7 377.4ZM574.2 475L575 476.7L573.8 478.5L572.4 477.6L572 478.5L570.3 478.9L569.2 480.3L566.4 480.5L566.5 479.2ZM616.5 449.5L615 449.9L614 451.9L609.2 453.3L606.2 449.3L606.6 448.2L611.2 446.7ZM690.9 385.5L689.8 384L690 382.2L691.5 379.5L692.6 381.8L692.4 383.4L693.5 384.7ZM683.5 383L679.9 378.3L680.5 374.4L683.3 371.8L683.7 372.7L682.9 375.7L684.1 379.2ZM575.5 306.1L572.1 304.1L572.1 302.9L574.2 303.3L575.4 304.7ZM607.3 308.5L609.9 308.9L612.3 310.6L612.4 312.5L610.1 315.8L606.6 313.3L606.3 311.3ZM610.3 338L608.5 333.5L609.8 331.4L610 328.1L612.9 327ZM623.1 333.9L622.1 334.4L618.5 331L619.4 330.2L622.1 330.2L623.5 331.6ZM637.3 326L629 318.8L629.2 317.8L630.9 317.6L635.6 322.9ZM645.6 332.8L641.7 327.4L642.4 326.5L644.2 327.8ZM650.9 345.2L647 341.9L644.5 341.2L644.7 340.1L639.5 335.8L633.2 341.7L635.3 332.2L634.7 328.4L641.2 331.2L644.3 334.4L648.2 336.8L650.8 340.9ZM653.5 309.2L651.1 307.7L650.8 306.5L652.5 303.9L652.5 300.1L654.5 298.1L656.2 300.8L658.3 302.3L658.1 306.2L656.5 308.4L655 308.1ZM613.4 299.5L609.1 296.5L609.2 295.1L613.5 298.7ZM606.8 278.7L609.4 278.5L611 280.1L609.4 281.6L610.4 284.3L609.8 286.3L608.2 286.2L608.5 283.5L606.4 280.2ZM655.8 368.5L656.7 366.4L657.4 366.7L657.6 367.9ZM675.8 382L673.2 379.4L672.7 377.5L674.6 378.3ZM628.9 434.1L626.1 435L626.4 432.8L627.4 433.4L628.3 432.7ZM685.4 443.3L683.7 440L684.3 437.7L685.7 438.8ZM662.2 350.5L659.7 350.6L657.2 347L660.2 346.5L662.4 349.3ZM665.6 399.3L663.3 398.3L663.1 396.4L664.7 396L665.8 397.1ZM594.9 198.1L593.7 196.4L594.3 194.7L594.9 195.5ZM567.2 349.8L567.7 350.9L566.6 352.8L564.6 351.7L564.5 350.8ZM644.8 354.8L646.3 357.4L644.7 357.4L644.2 355.4ZM615.6 330.1L615 328.9L615.6 328.2L616.2 329.5ZM689 389.4L688.4 388.4L689.4 385.6L689.9 387.1ZM666.7 349.4L665.6 348.7L664.6 346L667.1 348.4ZM517.1 416.8L515.7 417.3L515.6 414.8L517.1 415.3ZM644.1 398.2L642.3 398.8L640.8 398.3L639.9 396.6L643.1 395.3L644 396.1Z" tabindex="0" data-tip="Philippines: 19.8 Mt paddy rice (2022)"/><path class="seq1" d="M173.5 448.1L175.2 447.9L176.9 450.5L181.3 452.2L185.1 452.4L187.5 456.7L191.1 456.8L191.5 462.6L189.9 464.8L189.6 466.3L192.3 469L193.8 468.4L195.1 465.9L201.1 463.6L203.6 466.2L205.8 466.2L207.5 465.2L208.7 462.1L211.1 459.7L212 456.8L216.8 458.2L220.7 464.5L231.9 473.7L238.3 485L239.1 488.6L239.4 494.2L238.4 502.7L237.2 506.9L237.5 508.8L239.1 511.9L238.8 523.8L240.7 527L246.2 530.9L254.4 548.3L255.8 553.2L255 555.1L253.5 555.5L252.3 554.6L251.5 552.2L249.6 550.3L249.8 553.7L246.3 553.3L243.9 553.8L241 556.2L239.6 556.3L237.1 551.9L224.5 545.6L221 541.8L212.9 537.6L205.6 531.1L200.4 528.8L195.9 524.8L197.1 522.2L196 517.3L190.5 509.8L187 506.7L184.3 502.9L185.9 501.7L183.2 497.6L182.3 494.6L182.3 489L179.5 481L177.1 470L177.5 466.2L176.9 462L172.4 452.7ZM555.1 474.5L555 477.9L552.6 479.9L543.4 482.7L537.6 481.6L535.2 482.2L533.7 485.4L536.5 488.6L541.9 492.9L541.7 493.9L540 494.8L530.2 497.1L523.9 495.2L521.5 498.7L519 498.3L515.6 496.1L512 495.4L501.8 495.3L500.3 494.7L498.3 495.9L494.7 494.8L492.7 495L490.4 496.3L487.9 495.1L486.7 495.4L485.6 497L483.6 498.3L481.4 503.4L481.3 513.4L480.3 515.5L479.1 521.7L476.2 522.6L474.9 521.9L471.7 525.6L471.6 529.8L473.6 531.2L473.6 532.1L465.7 537.6L465.2 539.4L466.6 543.1L466 544.8L464.1 545.7L462.6 550.4L460.2 553.8L457.7 552.8L448 554.1L442.4 558.2L440.3 556.7L430.1 554.1L429.8 551.8L428.9 551.4L419.5 551.6L413.7 554L411.6 560L408.5 560.6L406.2 562.7L399.7 563L392 561.9L380.1 565.7L376.3 563L363.1 550.5L362.7 547.2L361 545.8L360.8 544.8L362.6 542.1L364.4 545.6L367.3 547.5L372.3 548.8L377 548.4L383.5 551.8L387.9 552.1L392 554.8L394.5 554.9L391.2 553.1L390.6 551.6L390.9 550.1L393.1 548L393.4 544.7L395.4 539.9L394.2 538.7L393.9 536.7L394.8 533.9L397 535.3L398.9 535L398.9 529.8L400.2 527.6L402.5 526.1L424.7 521L430.9 518.3L438.9 507.4L448.5 497.3L450.2 490.5L451.3 490.2L454.5 492.5L456.5 496.9L458.3 497L461.4 501.2L463.1 501.4L465.5 498.8L466.2 496.8L465.7 496.5L466.8 494.2L465.8 492.8L464.9 487.6L470.5 484L470.5 488.2L472.1 494.3L474.9 495.2L476.4 494.8L474.6 487L472.8 484L477.5 483.3L481.1 480L481.6 478L479.3 476.8L478.4 473.6L482.1 469.7L482.5 470.8L485.9 471.1L487.5 469.5L488.4 467.3L491.2 464.1L492.8 459.1L499.9 451.1L505.5 441.6L506.7 442.4L507 444.9L505.8 449.4L508.3 448.3L512.6 442.1L515 443.1L515.9 448L522.9 452.1L523.9 456.2L522.3 457.7L522.9 461.6L522.3 462.9L520 464L526.4 462.9L530.1 460.6L532.3 464.5L528.7 466L529.5 467.6L535 465.3L537.1 465.6L540.3 467.2L541.9 469.9L549.1 473.2L553.6 473.2ZM253.5 528.1L252.6 527.1L253.7 525L254.4 527.9ZM175.3 476.5L173.8 476.2L174.1 472.9L174.9 472.5L176.8 473.6ZM167 452.3L168.4 454.4L167.3 455.7L166.5 455.4L164.9 456.4L162.9 453.2L165 453.4ZM511.6 439.1L511.3 436.2L512.9 434.6L515.3 434.3L515.6 435.5L514.8 437.7L512.8 438ZM195.4 523L196.2 521.1L196.4 522.7ZM397.2 534.5L396.2 533.8L396 527.7L396.7 527.1L397.6 528.3L397.8 534.3ZM527.7 498.4L523 498.8L523.2 497.1L524.2 496.9Z" tabindex="0" data-tip="Malaysia: 2.4 Mt paddy rice (2022)"/><path class="seq1" d="M203.4 128.3L205.2 127.8L206.8 129.8L208.9 128.8L211.8 129.3L219.8 138.6L221.7 139.6L223.2 144.3L224.8 144.2L226.3 141.6L226.9 143.1L229 144.1L229 146.4L227 152.6L232.1 160.1L242.7 164.1L244.3 163.7L247.6 160.8L252 159L257 161.6L261.7 165.1L260.7 167L257.4 169.3L262.4 170.6L264 174L267 174.1L268.6 176.5L268.6 177.8L266.3 180.1L264.9 183.2L261.8 185.9L255.2 184.6L250.6 184.8L250.3 185.4L251.3 188.7L247.8 192.3L264.3 202.4L272.9 205.5L271.7 208.6L272.3 210.5L276.7 214.9L279.2 215.6L281.8 219L283.8 224L290.1 230.5L295.4 234.6L298.5 238.9L300 239.9L300.9 246L303.1 249.2L304.8 250L307 248.8L308.6 252L317.9 258.3L317.8 260.2L313.3 263.2L315.6 266.9L321.3 271.5L323.1 274.3L321.1 278.3L319.6 279.8L320.5 282L320.4 285.4L318.3 288.3L315.9 287.7L312.2 291.3L310.6 291.1L308.8 293.1L306.4 293.3L300 288L297.1 290.5L294.5 290L293.3 292.1L289.6 292.7L292.5 298.7L291.3 301.3L288.1 301.2L284.8 298L280.6 296.5L277 297.5L274.9 295.6L273.7 292.7L278.5 290.1L279.9 287.7L280.9 280.8L279.8 274.2L280.3 272.1L282.3 269.6L282.8 266.1L282.4 265.3L278 262.6L277.5 260.4L278.1 259.4L270.9 255.9L269 252.3L266.4 249.8L265 246.1L264.9 241.3L266.3 232.9L264.8 229.6L258.6 224.8L249 212.2L248 212.7L239.8 210.2L235.8 210.4L235 211.1L235.3 213.1L233 214.2L231 218.1L226.1 219.8L223.2 222.4L222.3 222.1L222 220.2L221.1 219.4L219.2 219L212 214.4L208.9 217L205.5 218L203.8 220.9L198.3 224.4L193.3 228.8L192.1 229.2L188.2 227.1L192.9 215.8L192.8 212.9L190.9 209.7L193.3 206.2L195.7 198.9L194 191.8L194.2 187.3L189.3 186.1L184.9 188L182.5 188.3L180.3 187.2L178.4 185.4L178 183.1L180.9 176.4L180.4 174.6L176.4 170.4L174.4 171.3L172.8 173.2L172.3 173L172.6 170.7L175 163.4L176.5 162.1L182.5 160.8L180.4 159.5L180.7 158.1L182.3 156.7L184.1 152.9L185.1 151.6L188.6 150.5L191.6 148.5L192.8 146.5L193.9 147.4L193.5 149.7L195 153.9L200.8 153.2L204.1 154.9L206 153.6L204.5 151.6L204.7 141.2L202.1 137.9L200.5 132.6L202.4 131.1Z" tabindex="0" data-tip="Lao PDR: 3.6 Mt paddy rice (2022)"/><path class="seq5" d="M111.6 554.3L114.9 554.4L117.1 552L119.6 553.5L124 559.2L125.7 560L128.6 563.5L127.5 570.5L126.4 571.8L123.7 571.1L122.1 566.3L119.2 564.1L118.1 564L115.9 559.1ZM155.4 618.4L151.4 619.3L146.6 615.8L146.3 614.3L142 607.4L143.5 602.8L147.4 601.7L148.7 602.5L152.6 612.4L155.3 616.1ZM504.4 752L504.7 753L502.8 757.6L500.3 761.8L501.7 763.1L497.5 764L487.5 761.9L487.4 760.2L491.5 760.3L491.2 754L496.1 750L498 749.3ZM484.1 753.4L481.2 755.6L476.7 757.6L474.4 761.8L472.9 762.4L471.8 762L472.8 760.7L472.8 759.3L471.1 756.8L466.8 753.9L461.4 752.2L459.6 749.5L459.5 747.6L468.8 749L473.8 746.5L481 749.4ZM278.3 615.8L281.7 614.1L284 618.2L285.1 616.8L284.4 614.2L288.2 613.7L290.5 615.4L293.2 621L294.2 627.5L297.3 633.1L306.4 635.3L304.1 637L302.2 641.8L303.3 645.4L300.9 645.1L295 641.8L290 640.4L288.2 636.7L288.8 633.7L286.1 629.9L285.7 627.4L281.1 625.3L276.9 626.2L272.7 624.5L272.8 623.1L273.8 622L277.5 619.9L277.5 616.7ZM631.5 672L631.4 673L633.6 675.3L633.9 680.8L632.4 678.8L631.1 679.3L629.4 687.2L629.6 688.2L631 687.6L634 690L633.7 691.2L630.9 692.9L629.4 692.6L626.2 698L624.7 697.3L622.9 697.9L621.7 694.3L625.3 688.7L627 681L627.1 676.7L628.9 673.1ZM616.1 692.1L615.7 690.9L616.6 687.2L617.9 685.8L616.7 681.3L617.4 679.7L624 676.7L624.8 677.8L625.2 683.1L622.3 687.2L622.9 689.9L622.4 691.2L621.3 692.3L617.8 691.2L617.4 692.2ZM333.6 509.2L332 508.2L334.9 506L330.9 504.4L330.1 501.3L335 497.8L335.1 499.1L337.9 502.5L338 504.7L336.3 508.5ZM331.1 648.5L329.5 648.4L328.8 646.5L327.2 645.7L326.4 647.2L322.3 648.2L322.7 646.5L321.3 642.3L322.1 641.2L323.3 635.1L326.8 634.4L331.5 635.8L334.3 637.8L335.8 640.5L333.8 646ZM877.7 596.4L883.5 597.1L885 598L887.9 597.9L893.1 603L897.5 605.3L896.1 606.9L893.3 607.8L888.3 607L886.8 605.8L884.9 599.8L882.9 601L880.5 599.1L878.6 598.7ZM879.5 615.4L894 616.7L897.8 618L906.3 618.7L907.9 619.6L902.4 621.1L894.6 621.5L887.3 618.7L879.8 617ZM796.8 589.1L794.4 590.8L792 589.9L790.1 590.5L786.2 587.8L783.7 584.8L782.4 584.9L785.2 589.1L786.9 589.2L788 590.2L787.9 591.6L785 592.2L784 591.1L783.8 589.2L781 590.6L779.9 588.6L776.8 588.5L774.7 587.4L775.9 585.2L777.2 584.7L778.6 585.2L786.3 583.3L790.5 584L795.5 586.2ZM735.9 542L734.4 536.7L736.6 533.2L739.4 531.1L742 530.6L743.8 533.1L742.5 538.1L741 540.7ZM733.1 616.8L731.2 617.9L728.3 617.3L721.2 618.2L717.8 616.5L719.1 612.6L722.9 610.2L728.1 612.3L733 615.7ZM690.8 633.2L689.6 632.1L687.3 625.2L688.5 623.2L689.9 623.9L689.5 627.1L691.3 631.1ZM696.6 620.1L695.8 620.8L689.1 622L678.7 622.4L677.7 620.5L680.4 619.6L690.5 619.4ZM676.4 619.8L676.3 621.2L672.7 621.4L670.1 622.5L666.7 621.5L660.4 623.8L658.4 623.8L656.6 620.8L657.6 617.4L659.7 616.5L663.3 616.3L671.3 618.4L672.9 617.5L673.8 617.9L674 619.2L675.2 619ZM792.3 745.1L792.5 743.6L791.7 742.4L792.7 740.8L792.8 738.8L793.8 738.5L795.2 734.5L797 733.5L800.7 729.4L801.2 727.7L802.9 727.2L804 727.8L804.7 728.9L802.9 730.3L803.8 733.8L802.5 737.6L797.5 742.5L796.5 745.2ZM706 738.4L706.3 739.9L701.5 741.3L699.4 744.2L690.8 742.9L686 744.9L686.9 741.5L689.5 738.4L694.3 739.2L702.2 736.5L704.5 738.3ZM657.1 753L658.5 751.2L657.9 750.3L658.6 748.9L660.2 747.9L661.5 748L662 749.3L665 748.4L672.5 749.3L672.6 751.8L671.9 752.3L658.9 754.2ZM790 609.8L789.3 610.4L786.9 609.9L785.6 608.6L783.5 602.6L787.9 601.2L790.7 601.8L791.5 602.8ZM74.6 470.5L77.9 469.2L82.6 469.6L86.8 471.5L92.7 476L102.3 477.5L106.9 476.4L113.8 477.7L119 477.2L120.9 477.8L128.2 484.4L130 488.8L135 493.8L135.5 495.7L134.8 498.2L136.1 500.3L143.2 503.6L145.6 507.1L153 510.7L164.6 518.7L168.1 522.7L172.5 529.6L180.5 538.9L183.7 540.2L187.8 543.7L187.5 541.7L186.3 539.8L186.6 537.8L188.7 536.7L190.9 537.5L196 542.4L198.1 547.6L199.5 548.9L205.7 550.3L210.4 554L213.1 557.7L214.8 563.1L217.8 566.1L221.3 568L227 568.7L230.6 571.5L231.3 573.2L230.2 574.8L221 578.8L227.9 577.5L236.8 572.8L239.6 573.5L243.5 577.3L245.7 582.2L238.6 587.1L238.2 588L238.9 588.7L238.1 590.5L239.9 591.6L240.2 592.6L238.6 594L240.7 598.5L244.4 601.1L254 604.5L257.2 604.2L260.4 617.6L260.3 620L261.4 622.1L266.9 625.6L266.5 628.4L262.9 632.4L263 635.7L264 635.8L267.6 632.2L269.4 631.2L277.9 631.4L281.6 633.6L290.9 646.1L291.2 648.3L288 652.2L286.9 656.4L287 658.7L288.6 660.8L286.6 667.5L287.7 675.4L287.7 684.6L286.3 698.1L285 701L282.4 700.6L280.5 698L277 695.6L271.6 699.5L262.8 695L262.4 697.4L263.7 702.5L262 702.7L251.3 692.2L246.6 686L228.4 673.7L220.8 667.3L217.4 663.6L212.6 656.1L203 648.9L196.1 638.4L192.4 635.6L187.8 628.7L187 626.6L187.1 622.3L179.7 609.5L175.8 599.4L167.2 589.5L163.4 582.3L156.7 579L153.2 576.1L145.9 552.9L141.9 545.4L131.7 538.7L125.9 537L124 535.4L121.8 525.5L117.8 522.9L109.4 510.8L106 508.1L100.5 506.9L98.9 505.9L94.6 500.7L81.6 488.8L74.1 476.2L74.9 473.6ZM630.1 751.8L626.2 754.9L626.9 756.6L625.7 757.6L619.4 759.9L611.9 760.3L606.8 762.6L603 763.4L601.7 761.8L598.3 761.7L596.6 763.7L593.8 763.3L590.7 764.1L581 761.4L576.4 761.8L572.4 760.9L568.2 762.5L566.2 759.3L567.5 753.7L569.3 754L574.6 751L582.2 750L585 751.7L590.2 752.6L598.9 756.9L609.3 754.4L615.3 757.8L618.7 757.3L621.1 753.9L627 751.3L628.4 749.7L625.2 748.9L626.9 747.1L629.6 748.3ZM549.2 775.9L550.6 774.3L553.7 773.2L562.3 772.6L565.9 773.1L568.8 771.5L571.2 773.9L574.4 775.7L575.8 778.5L580.1 779.1L586.7 786.4L584 789.9L578.8 791.6L572.9 789.7L568.6 785L562 781.1L557.3 781.1L551.7 779.7ZM552.6 758.7L551.6 760L550.1 760.4L548.1 759.4L544.9 760.1L546.7 762.1L544.6 761.5L538.5 762.5L538 761.6L537.6 758.8L533.8 762.2L527.2 764L524.6 763.8L517.8 766.1L514.2 766.1L511.2 767.4L505.8 765.6L505.4 764.5L506.1 761.6L505.7 758.6L506.7 756L509.1 755.4L513.3 752.6L517.1 753.9L521.3 753.8L526.1 759.6L529.4 759.9L532.1 758.3L534.1 758.4L534.7 757.2L532 754.8L529.6 754.5L525.3 750.8L525.1 748.2L528.4 747L532.3 747.7L535.8 752.4L541 750.6L543.4 751.7L544.3 753.6L545 751.9L548.5 751.2L549.8 752L550.9 754.4L550.8 756.5ZM672.2 549L674.7 552.8L672.3 555.3L669.3 561.3L664 566.5L658.6 573.7L654.3 575.5L640.5 577.1L635.3 576.6L631.7 573.3L615.6 573.4L606.8 574.3L600.3 573.1L590.3 574.2L581.6 572.5L577 574.1L573.8 577.7L571.6 582.4L570.3 587.2L571.3 594.4L574.8 600.8L580.4 604.2L583.3 610.9L590.7 611.7L593 610.3L595.5 605.8L601.5 600L604.8 601.9L609.4 602.1L615.6 598.5L627.8 598.5L626.6 596.5L633.4 594.7L637.6 596.3L638.7 598.9L637.6 603.5L636 604L634.5 603.5L633.1 601.5L631 600.8L628.1 601.4L626.1 602.7L620.1 610.5L615 614.7L607.2 617.5L604.4 620.9L601.5 621.8L597.9 620.3L597.1 621.2L597 622.6L600 624.6L601.5 626.7L605.4 628.6L611.7 638.9L615.8 642.1L616.1 645L618 648L616.3 649.5L615.1 656.5L621.6 661.8L622.1 663.9L623.8 665.9L625 666.2L626 665.3L627 665.5L628 668.8L627.4 672.1L624.4 671.1L624.4 672.5L619.4 672.7L612.3 675.1L611.1 676.7L611.5 680.2L610.8 681L608.3 681.3L601.8 679.6L600.3 678L599.7 675.9L600.8 669.9L602.4 666.1L600.7 664.5L596.3 662.5L587.8 654.5L588.1 652.1L591.1 647.3L591 638.9L589.8 637.3L587.6 636.8L583.1 637.2L575.2 642.9L575.1 645L577.8 651L578.7 658.3L577.7 661.2L577.2 665.9L578.4 676.7L575.6 687.4L577.8 692.4L578.6 696.4L576.2 695.4L569 696.1L564.3 698.5L561.1 696.8L557.5 693L557.2 690.8L560.4 681.9L560.3 679.2L561.9 674.8L562.5 664.9L559.6 658.7L559.9 655.1L559.3 654.3L557.2 653.2L549.9 654.8L547.4 652L546.2 647.1L547.2 642.5L545.7 638.3L551.8 633.5L553.4 626.5L556.4 622.3L557 620.1L556.2 616.8L556.2 611.7L560.2 601.5L564.2 597L566.9 600.6L564.4 585L564.7 584.2L566.8 583.6L567.3 582.4L566.2 578.3L568.3 574.2L570.7 571.7L571.1 569.2L574.6 565.7L575.9 563.4L576.4 563.3L578.3 566L580.3 566.6L582.1 565.9L585.1 562.2L587.4 557.8L590.5 556.3L594.2 557.6L598.1 558L600.3 560.8L601.8 561.6L607.3 561.1L612.2 562.3L618.7 562.6L626.8 566.1L627.8 566L629.2 564.5L631.3 564.1L648.6 566L655.5 562.5L658.2 559.2L660.7 558.3L662 555L665.8 553.5L669.8 548.7ZM274.9 720.4L277.4 718.1L277.7 719.9L279.7 720.5L281.6 718.3L283.1 714.2L284.1 714.8L285.7 713.9L287.4 707L288.7 705L291.5 702.9L293.3 704L303.5 705.5L306.5 706.7L308.6 706.2L310.2 704.8L310.9 702.7L316.6 704.2L319.5 707.1L323.3 709L332.8 710.7L335.1 710.1L336.6 710.5L340.3 714.2L342.1 719.4L343.6 720.7L355.9 722.2L358.1 722.1L360 721.1L366.4 722.9L374 722.8L378.5 723.9L380.4 722.8L384.7 714.2L386.7 713.3L389.4 713.5L393.6 718.6L396.8 718.8L400.8 717.8L404.8 720.3L409.8 721L411.7 722.8L420.8 723.4L423 729.4L425.9 731.1L425.9 736.1L430.3 738.2L435 739.5L440 739.6L451.4 737.7L457.7 740.5L458.9 743.1L457.7 753.4L459 756.5L461.9 759L461.7 760.8L459.2 760.2L455.5 757.6L453.2 757.9L448.8 756.7L435.1 751L430.4 751.5L423.6 753.5L412.3 751.7L400.2 751.4L382.1 748.2L370.8 743L355.6 739.2L344.8 738.4L341.4 739.2L339 741.1L328.3 739.6L320.9 735.9L315.7 734.5L302.6 733.3L299.1 732.4L298.2 731.2L298.3 729.8L300.4 726L294 723.5L286.7 721.8L275.1 721.6ZM348.1 567.1L349.2 560.2L352.6 557.8L350.2 558.1L351.5 552.9L355.5 548.6L357.6 544.2L362.6 542.1L360.8 544.8L361.4 546.6L362.7 547.2L363.1 550.5L370.8 558.2L380.1 565.7L392 561.9L399.7 563L406.2 562.7L408.5 560.6L411.6 560L413.7 554L419.5 551.6L428.9 551.4L429.8 551.8L430.1 554.1L440.3 556.7L442.4 558.2L448 554.1L457.7 552.8L460.9 553.5L463.2 549L464.1 545.7L466 544.8L466.6 543.1L465.2 539.4L465.7 537.6L473.6 532.1L473.6 531.2L471.6 529.8L471.7 525.6L474.9 521.9L476.2 522.6L479.1 521.7L480.3 515.5L481.3 513.4L481.4 503.4L483.6 498.3L487.2 495.1L490.4 496.3L492.7 495L494.7 494.8L498.3 495.9L500.3 494.7L501.8 495.3L512 495.4L515.6 496.1L519 498.3L521.5 498.7L519.3 500.6L521.2 502.4L521.3 503.6L524.6 506.3L525.5 508.5L522.6 509.5L520.2 507.6L519 509.7L511.1 509.8L513.3 510.4L517.7 515L516.4 517.5L517 518.5L522.2 521.1L522.8 523.4L521.4 523.9L524 524.7L522.8 526L525.7 527.6L527.7 531.7L531.3 536.2L530.8 538.3L527.6 541.5L525.8 542.1L531.6 548.7L542.8 556.5L547.1 561L549.3 562L549.7 563.3L547.8 565.2L540.7 566.7L533.9 565.5L528.2 560.9L529.5 563.7L529.3 565.2L528.5 566.3L524.9 568.4L520.4 578.4L519.3 589.7L521 594.4L521.2 598.8L514.8 601.9L510.1 607.2L508.3 608L505.9 607.2L504.8 604.3L505.1 610.1L501.1 613L500.4 615.5L496.6 617.9L495.5 619.3L498.5 619.3L499 622.1L498.5 624.7L496.3 626.5L500.6 627.9L501.3 629.7L500.6 634L499 634.6L497.1 634.2L496.3 634.9L496.1 635.9L497.5 635.4L496.6 641.9L494.5 643.5L493.3 642.6L493.4 644.4L495.1 646.5L493.3 647.6L491.2 651L489.1 656L463.9 667.6L462.5 666.4L462.1 658.2L460.5 651.6L458.9 653.7L456.9 652.9L456 651.3L456.9 648.7L454.7 651.2L451.6 649.6L449.2 651.9L444.1 653.1L442.7 652.4L442.2 647.9L440.5 647.7L436.9 648.9L430.7 642.6L429.4 647.7L422 652L415.7 650.4L412.5 651.7L409.1 654.7L407.2 655.1L406.4 654.7L406.5 645.1L403.9 641.7L402.5 643.4L397.4 642.6L388.6 645.4L386.6 643.8L388 642.1L384.1 644.4L381.5 641.7L377.6 642.6L376.1 643.6L375.1 643.2L371.5 622.6L369.2 620.9L369.3 618.5L370.5 616.4L370.7 614.1L369.7 609L365.7 603.7L359.1 600.8L356.7 600.9L355.2 599.5L355.4 598L357.5 596.1L353.2 593.2L352.4 591.1L352.4 588.5L353.9 583.4L355.2 582.5L351.5 578.1L348.9 576ZM730.7 538.7L730.6 540.3L728.1 543.8L727.7 546.1L730.2 548.7L730.2 556.2L727.7 559.6L723.1 562.6L722.7 564.2L724.7 566L727.6 566.3L729.3 562.1L733.2 559.7L733.1 556.5L734.4 554.8L738.5 552.5L743.8 551.3L744.1 560.8L736 565.4L735.2 568.3L743.1 572.9L743.8 575.9L746.3 577L748 578.8L738.9 575.3L729.7 573.6L728.5 574.3L727.7 577.1L728.3 579L727.8 582.2L729.6 588.2L735.1 598L738.5 601.3L735.6 600.8L734.7 599.1L730.9 597.5L727.8 591.8L723.8 588.1L724.2 577.3L721.1 573.3L720.7 570.8L722.2 566L720.4 564.5L718.6 560.1L718.4 557.8L720.7 553.5L720.7 551.3L722.6 545.8L728 539.9ZM787.2 655.5L786.1 661.3L770.4 653.5L766.9 650.6L760.2 650.6L760.4 652.7L759.4 653.1L749.3 650.5L749.2 648.8L747.2 648.7L745 650L742.8 652.7L740.3 653L738.4 652.4L735.6 648.8L732.6 647.1L731.6 647.7L730.6 650.8L728.4 654.2L728.6 650.8L727.6 648.4L734 641.2L751.2 640.7L752.3 642.7L755.6 641.7L758.5 639.7L760.9 639.7L769.7 643.5L777.6 643.7L781.4 646.6L783.4 651.9L785.5 652.4ZM714.6 656.7L711.7 657.5L708.8 659.4L704.8 660.4L700.9 659.6L693.6 655.7L691.1 652.5L690.5 647.4L691.8 646.1L694.4 646.9L696.1 646L701.1 645.2L707.2 645.7L710.5 647.3L711.8 649.5L714.5 651.8ZM673 766.3L673 767.9L672 769.3L669.2 769.8L671.4 775.8L670 776.9L669.3 778.9L658.6 788.7L653.5 789.4L647.2 792.6L644.9 792.7L642.1 791.1L644.3 787.3L642 786L641.8 785L644.2 777.9L650.7 772.3L652.3 774L656.4 773.8L658.3 771.8L658.9 769.3L661.5 768.6L668.4 764.3L668.7 766.5L672 765.5ZM862.3 693.3L862.9 696.2L864 696.6L864.9 698.7L865.1 702.3L864.2 703.7L865.1 708.1L864.3 710.7L862.8 712.1L858.8 711.5L853.1 705.9L853.1 705.1L856 704.9L856.9 701.3L854.1 698.7L854.9 698.2L856.8 698.9L859.8 695.1L860.1 693.3ZM853.4 708.2L858.3 712.5L860.7 713.6L860.1 716.7L858.2 718.4L857.1 721.2L854 723.1L851.8 721.6L851.2 720.3L852.1 714.2L853.9 714L852.5 713.3L852.3 708.5ZM923 753L926.7 743.8L930.2 737.9L933.7 735L940.9 732.6L945.4 732.8L949.3 736.8L949.8 739L945.7 746.4L940.7 750.7L935.9 753.4L927.4 752.9L923.8 753.5ZM989.5 767.8L983.2 762.3L979.8 757.7L970.1 749.1L969.9 748L972.3 743.6L968.7 747.2L957.7 749L955.6 747.3L955 744.8L953.9 746.9L948.7 750.5L947.8 750L947.1 748.1L951.8 736.8L951 735.6L948.8 734.5L947.7 732.5L945 730L947.3 729L951.2 729.5L953.5 728.8L951 729L944.4 726.3L942 723.1L947.3 722.1L944.5 719.5L944 717.3L938.8 711.6L935.9 703.6L936.3 702.4L937.5 701.5L934 700.8L934.9 699.1L936.8 698.1L931.7 698.8L931.2 693.8L927.7 691.5L926.8 691.5L925.2 689.6L916.1 684.7L915.6 683.3L913.9 684.2L911.8 682.9L902.4 680.8L889.6 674.9L879 673.1L873.9 673.3L865.1 668.1L863.6 665.8L864.1 663.3L867.7 662.9L865.2 662.6L860.9 663.8L857.8 662.4L855.3 663.1L852.9 660.1L849.5 660.5L848.1 658.5L844.5 655.6L843.6 653.6L843.9 649L846.8 645L845.3 644.8L844 645.7L843.2 647.7L843.1 651.3L842 652.4L840.4 652.3L840.8 654.4L838.3 658.8L838 662.1L835 665.4L829.4 666.1L826.7 663.1L825.1 658.2L827.4 655.1L825 649.9L817 643.4L811.1 642.2L809.4 639.6L814.6 637.5L821.5 638.4L824.5 639.7L827.9 637L830.7 633.5L833.8 632.5L842.2 634.8L844 636.3L845.1 632.8L848.1 631.6L848 629.8L845.8 629.6L848 627.4L848.4 625.7L844.2 627.5L839.8 628.2L834.5 628L829.3 629.2L820.1 628.1L816.2 628.6L810.5 623.5L808.7 617.9L808.6 614.8L804.6 614.4L795.9 611.4L792.4 612.6L789.9 612L790.9 609.2L793.8 606.8L795.1 603.6L795.1 600.5L806.1 597.4L812.6 592.4L817.9 590.4L820.2 590.2L827.1 591.6L839.5 597.9L847 598L850.5 598.8L852.2 600.3L851.4 603.5L855.2 610.8L854.3 614.1L852.1 618L853.9 629.9L859.2 640.5L859.7 635.5L861.3 634L862.5 634.5L864 642.6L866.9 642.1L867.7 648.2L871.8 651L877.4 651.5L879.7 650.9L887.2 643.8L890.3 638.5L894.9 635.5L897.8 629.2L906.9 627.7L911.4 625.8L913.4 624.2L912.5 620.5L926.1 613.2L928.2 613.2L932.2 615.9L943 619.4L946.2 622L953 624.5L965.8 630.7L973.1 630.8L975 632L982.5 632.7L984.4 634L984.9 636L989.5 636L989.5 711.7L987.5 717.1L987.2 719.7L989.5 723ZM947.9 753L941.9 752.7L941.3 751.4L943.5 749.2L945.9 748.7L948 752ZM202.8 540.1L205.2 542.8L204.4 547L202.1 548.4L200 548.1L198.1 544.7L198.2 542.2L199 541.3L200.9 541.5ZM217.6 563.7L215.1 560L214.6 555.9L215.1 554.9L217.2 555.9L218.9 558.2L218.5 563.1ZM220 556.2L215.5 553.8L211.6 552.8L210.4 551.6L210.5 550.6L219.4 552.6ZM230.2 568.8L219.8 565.8L219.1 565.2L220.1 561.1L221 560.3L224.5 563.1L230 565.8ZM233.3 565.6L231.7 566L227.7 563L224 561.8L224.5 559.7L225.8 559.6L230 561.6ZM235.7 572.2L232.8 572.1L233.7 569L234.8 569L235.9 570.7ZM238.6 570L236.9 567.4L237.7 565.6L239.9 568.5ZM250.5 559.3L251.8 560.2L252.8 559.6L251.3 563.1L249.3 562.7L248.6 561.5L249.1 560.1L250 560.2ZM263.1 563.7L261.5 566.3L260.1 565.9L259.6 564.3L258.6 563.8L259.2 563L258.8 561.9L255 562.6L254.9 561.4L257.2 559.3L260 559.3L261.7 558.6L261.8 560.1L263 560.8ZM270.1 588.9L268.3 589.7L264 587.4L261.3 588.2L258.9 587L260.9 582.8L262.7 583.6L263.1 584.7L266.2 587.1L266.9 586ZM259.5 590L261.8 592.6L260.1 595.3L258.3 595L257.3 596.5L256.6 594.1L255.1 592.6L256 591L257.3 591.3ZM245.3 589.6L242.1 590.9L239.2 590.4L241 587.8L244.5 588.8ZM365 606.4L360.2 609.2L358.6 608.3L359.5 603.1L364 603.6L364.9 604.2ZM451.7 724.7L447.7 725.9L446.5 727.4L443.1 727.2L439.4 729.3L430.8 729.2L425.3 727.8L424.5 726.4L427.4 722.9L449.5 722.4ZM869.3 605.8L867.2 605.7L866.2 604.2L866.6 603L867.8 602.2L869.1 604L869.9 604.1ZM712.4 593.7L712.1 591.6L712.5 588.8L713.8 588.4L715.8 588.9L715.1 589.6L715.6 591.1L715 593.2ZM716.5 590L717.4 589.9L719.1 591.4L720.5 589.4L721.3 589.6L723.6 592.7L722.1 595.5L723.2 597.1L726.1 597.2L727.6 599.6L725.2 601.1L722.5 598.7L719.3 599.5L718.8 598.1L719.4 596.2L717.6 595.3L716 593.3ZM826.9 704.4L828.8 698.2L830.2 697L832.3 690.7L833.5 691.5L832.4 696.1L829.4 699.3L828.5 702.7ZM824.9 703.6L823.6 702.9L823.6 699.4L822.6 696.7L824 696.8L826.1 700.4L826.1 701.7ZM736.6 654.4L735 658.3L732.9 658.8L732.9 657.6L729.6 659.5L728.7 659L728.6 657.7L730.3 656.1ZM704.2 501.8L704.1 500.7L706.3 496.9L704.4 495.2L705.1 491.1L707.3 492.5L708.4 496.3L707 498.5L706.3 501.5ZM682.7 514.2L680.2 513.1L679.4 507.6L680.9 508.9L682.9 512.8ZM785.5 752.3L790.4 747L793.5 747.8L790.9 749.5L788.2 750.1L787.2 751.6ZM765.6 746.1L764.3 746L761.8 743.5L762.2 741.2L766.3 741.5L766.8 744.3ZM725.7 747.6L726.5 747.2L732 747.9L732.4 748.6L730.5 750.3L726.4 749ZM778.5 619.7L777.6 621.7L778.4 623.1L772.7 625L767.7 623.4L764.8 621L769.9 618.8L777.1 617.4ZM218.1 692.6L217.3 694.1L215.7 694.2L212.2 691L214 690.3ZM179.3 650.6L176.9 648.6L176.6 646.2L174.1 643.7L174 639.6L174.9 639.5L179.1 644L179.3 646.3L178.5 647.6ZM172.7 640.3L170.3 640.3L169.4 635.7L170.2 634L174 637.4L174.1 638.7ZM167 631.2L162.1 628.9L160.7 626.9L161.4 624.2L162.4 624L163.7 625ZM138 594.9L136.2 593.9L138.5 587.8L136.5 583.2L137.5 583L140.9 588.4L139.2 593.9ZM99.3 535.4L96.8 535.1L90.4 530.6L86.2 529.4L84.3 526L86.1 524.1L87.9 524.7L90 526.9L98.3 532.2ZM609.6 693.8L606.2 689.6L607.5 687.4L607.3 686.4L609.3 686L611.2 688.9L610.9 693.3ZM640.5 609.2L640.9 610.3L640.2 612.5L639 613.5L637.3 613.7L636.6 612.4L635.5 612.3L634.7 615.1L633.5 615.9L632.5 614.7L633.7 613.4L633 609.6L627.8 615.3L626.2 612.2L626.6 609.2L628.2 607.1L634.2 606.9L634.7 608.2L634 609.3L634.8 611.3L636.8 608.6L638.7 608.2ZM608.1 592.3L607.6 593.4L605.1 593.1L603.1 593.8L605 591.4L607.3 591.4ZM579.7 714.1L578.7 708.3L579.5 700.1L581 704.1ZM480.9 723.7L475.9 724.7L474.4 724L474.8 722.1L477.1 721.7L479.6 722.3ZM491.9 665.3L491.2 664.3L491.5 660.5L490.4 658.1L490.4 656.3L492.3 650.8L495.4 649L496.1 661.5ZM626.5 803.9L626.9 801.1L631.2 799.8L635.3 796.2L637.4 795.3L638.4 798.9L636.2 799.8L634.3 802L629 804.1ZM656.1 749.8L655.7 751.8L652.9 755.9L651.3 756.3L650.3 754.2L648.6 754.3L650.3 751.6L651.4 751.6L652.2 752.6L654.8 749.3ZM648.5 750.7L645.7 751.2L644 753.8L642.6 753.7L641.1 756.7L639.8 756L638.2 757.1L636.6 756L634.6 755.9L639.5 751.7L637.8 750.9L640.6 750.5L642 751.1L645.5 749ZM636.7 750.6L635.9 753.2L630.5 753.2L630.7 752L632.7 750.3L634.3 749.9ZM864.3 715.8L863.2 716L862.7 714.3L863.6 713.9L864.6 714.9ZM238.6 563.1L237.3 562.8L236.3 561.5L237.6 560.2ZM246.7 567.5L244.8 566.4L245 565.1ZM254.8 566.3L253.5 566.9L252 565L252.2 564.3L254.5 565.4ZM264 582.5L262.1 581.3L260 578.5L260.9 578.7ZM295.7 520.6L294.3 519.8L294.5 517.8L295.4 518.1ZM285.2 525.2L284.1 524.7L283.8 521.2L286.7 522.9ZM347.7 522.5L347.8 524.3L346.8 525.4L345.7 524.7ZM349.1 616L346.8 616.8L346.1 614.9L347.5 614.4L349.1 614.9ZM318.7 642.4L318.4 640.6L320 640.8ZM308.2 642.6L307.4 644.4L305.5 643.7L304.9 642.6L305.9 641.9ZM458 728.4L456.9 728.2L456 726.9L457.7 726.6ZM424.5 699.7L424 701.6L422 701.5L421.7 700.7L423 699.2ZM275.2 715.3L275.1 717.6L272.9 717.7L272.4 717.1ZM116.6 541.6L114.5 539.5L112.2 538.3L115.8 538.6L116.6 539.7ZM76.9 466.1L75.7 465.8L74.4 463.9L77.2 464.2ZM642 617.7L639.7 617.2L639.7 614.3L640.6 613.6L642.3 616.1ZM634.8 666.5L632.9 668.9L631.5 668.8L629.9 667.2L629.4 664.8L630.5 663.8L634.2 664.1L634.9 665ZM647.3 623.6L646.1 623.6L645.7 621.2ZM632.8 619.1L633.1 620L631.6 621.6L631.7 619.9ZM557.7 760.1L557.6 757.1L558.9 753.9L560.9 754.9L561.1 756.4L558.9 758.8L559.3 760.2ZM550.6 750L550.7 748.4L552 748L552.7 749.2ZM481.6 761.5L479.6 759.7L481.2 758.7L482.3 759.6ZM522.5 499.7L523 498.8L527.7 498.4L528.5 501.1L524.7 502.1ZM522.9 517.4L521.2 515.8L521 513.7L523.6 514.2ZM650.8 705.1L649.4 703.4L649.5 702.2L650.5 702.7ZM641.2 689.5L642.5 689.9L642.5 692L641 691.1ZM585.5 727.3L582.8 727.3L582.7 725.3L585.6 726.2ZM519.8 752.2L519.8 748.9L523.3 748.2L521.1 752.6ZM498.5 652L497.8 656.8L496.5 654.8ZM716.8 567.8L715.7 566.7L716.4 565.7L717.5 567.2ZM856.9 626.5L857 624.4L858.4 624.7ZM842.4 670.2L836.7 667.6L836.4 666.4ZM788.1 598.9L786.6 600.7L778 601.9L779.7 600L786.3 599.7L786.1 598.7ZM783.7 592.7L782.5 593.9L779.3 593L781.9 591.6ZM761 587L760.1 587L757.4 584.5L756.2 582.3L760.8 586ZM719 583.9L717.9 582.8L718.6 580.3ZM717.7 570.4L717.7 568.1L718.5 568.1L718.9 569.3ZM715.8 599.4L713.1 598.6L714.2 595.7L715.2 595.8ZM744.3 656.1L742.4 655.8L741.9 653.9L744.4 655ZM741.3 655.8L737.8 656.8L739 654.4L740.7 654.9ZM704.4 505.6L702.8 501.3L704.8 503.8ZM707 506.9L706 506.6L705.6 505.4L706.1 505.1L707.1 506ZM677.9 529.9L677.2 527.6L677.8 526.4L678.9 527.2ZM809.4 730L807.7 728.3L805 727.3L808.4 727L809.6 729ZM743.4 728.6L742.5 729.1L740.6 727.6L742.6 726.3L743.5 727.2ZM717.1 738L717.4 735.3L719.5 735.7L719.3 737ZM636.5 792.5L636.5 791L639.2 788.5L639.9 789.6L638.1 790.3L638.3 791.8ZM604.1 796.9L607.3 794.6L610 794.7L609.6 796.4L607.7 797.6ZM865.9 713.6L866.5 711.8L867.7 711.2ZM863.1 720.2L862.6 719.1L864 717.3L864.7 717.3ZM729.8 642.6L728.8 644.3L726.7 644ZM722.6 651.2L719.8 649.8L721.1 649.1ZM627.8 757.1L628.7 755.2L630.2 754.3L631.8 754.1L633.1 754.8L630.6 755.2L628.9 757.4Z" tabindex="0" data-tip="Indonesia: 54.7 Mt paddy rice (2022)"/><path class="seq2" d="M230.2 354.9L229.9 353.4L230.7 352.5L230.9 354.7ZM235.6 366.9L234.5 364.9L236.4 366.1ZM320.4 285.4L320.7 286.5L319.9 288.6L317.3 292.2L316.6 297.1L322.1 311.1L319.5 319.3L320.9 325.9L320.8 331.4L317.9 334.9L316.6 333.7L314.2 334L308.6 338.6L305.3 339.1L304 340.6L298.3 341.2L298 346.5L290.1 345.1L288.5 347.2L287 347.6L287.1 354.5L293.2 359.7L292.6 362L293.3 364.6L288.8 362.8L287.1 363.2L285.1 360.6L278.1 361.4L276.3 363.6L270.9 362.2L270.4 362.7L270.9 366.5L267 369.9L261.3 370.2L258.5 372.4L255.2 369.7L248.7 368.8L247.4 367.4L246.8 368.9L243.2 370.4L240.6 368.4L240.8 367.1L243.6 365.3L244.4 362.7L243.1 359.2L240.6 357.5L237.1 362L233.1 362.2L231.8 356.2L232.5 351.1L230.2 348.5L230.1 346L229 344.8L228.7 346.1L224.7 338.4L224.1 335L225.1 331.6L220 326.6L219.2 319.6L216.6 314.1L216.4 309L220.9 308.1L220.9 306.6L224.6 302.9L228.2 296.9L230.6 294.6L234 293L240.9 291.2L249.6 292.4L254.6 291.7L258.2 292.2L265.6 291L269.4 292.3L270.7 295.1L271.5 295.1L273.7 292.7L274.9 295.6L277 297.5L280.6 296.5L284.8 298L288.1 301.2L291.3 301.3L292.5 298.7L289.6 292.7L293.3 292.1L294.5 290L297.1 290.5L300 288L305.7 292.9L308.8 293.1L310.6 291.1L312.2 291.3L315.9 287.7L318.3 288.3Z" tabindex="0" data-tip="Cambodia: 11.6 Mt paddy rice (2022)"/><path class="seq3" d="M122 5.7L123.9 6.7L125.4 9L127.8 9L132 13.3L132.6 16.9L136 25.3L137 25.6L139.1 23.1L143 24.9L144.8 42.6L143.4 50.7L143.7 52.9L143.3 53.9L141.4 54.4L141.3 55.2L143.1 59.5L142.5 60.2L139.3 61L136.7 65.1L132.9 65.4L132 68.5L130.2 71L128.4 72.2L126.4 71.8L124.3 76.3L124.8 79.6L121.7 81.5L120.6 84.4L120.6 87.2L123.3 89.5L124.2 92.6L123.8 94.5L121.4 97.4L121.3 99L123.7 99.3L130.3 95.9L134.2 95L140 94.9L141.7 95.8L146.7 94.7L143.5 99.1L143.6 100.4L145.8 102.5L146.6 104.8L146 106.9L147.7 109.7L147.3 113.6L158.4 116L160.1 118.3L157.7 121L156.8 123.8L156.8 127.6L153.4 133.8L153.9 135.1L168.4 137.1L169 137.9L168.8 142.6L169.6 143.7L171.9 144.6L171.8 146.6L173 148.2L174.3 148.6L177 147.8L182.1 148.4L186.7 144.7L191.6 142.6L192.6 143.1L192.9 146.2L191.6 148.5L188.6 150.5L185.1 151.6L184.1 152.9L182.3 156.7L180.7 158.1L180.4 159.5L182.5 160.8L176.5 162.1L175 163.4L172.4 171.8L167.8 169.6L164.4 171.6L159.2 170.8L159.7 175.2L156.8 176.6L153.9 175.9L151.5 176.2L150.4 177.3L149.7 181L148.3 182.8L137.4 184.5L134.8 184.5L132.2 183L130.3 183.3L129.8 185.2L126.3 189.1L126.1 195.8L124.1 199.8L124.9 206.8L120.3 208.6L117.5 208.2L119 211.4L120.5 212.7L122.6 212.8L124.8 220L124.1 222.8L138.8 239.4L139.6 244.4L143.8 253L146.7 250.7L147.8 252.1L147.3 254.4L146.4 255.5L141.8 258.2L141.1 272L139 272.2L133.8 275.3L134 279.9L134.9 283.2L141.4 292.4L148.7 298.7L152.7 305.4L153.5 315.2L152.1 317.8L153.5 320.7L154.4 325.2L158.1 329.1L157.9 330.6L159.3 336.3L162.3 344.6L161.5 346.5L159.6 348L153.8 358.3L145.1 367.3L145.4 372L144.1 376.8L143.2 377.1L141.3 380L139.9 377L140.5 373.5L139.3 367L143.5 360.7L143.7 357.7L144.9 355.6L144.8 348.5L147.5 345.9L146.1 344.7L143.9 345.9L142.7 345.5L142.9 342L143.8 341.1L143.3 337.6L143.9 335.6L142 335.2L143.6 333.1L142.5 331.3L143.3 329.3L141.5 316.7L139.7 314L138.4 310.1L134.9 305.1L134.8 301L134 300.1L133 306.8L132.2 305.5L131.5 300L132 296.4L130 292.9L128.2 286.5L128.6 285.6L130.4 286.5L128.7 284.2L127.4 284.7L126.2 282.3L126 275.7L124.9 273.2L125.5 270.7L124.2 261.7L121.7 258.8L122.8 254.1L122.7 249.9L124.5 247.7L117.5 248.6L114.2 241.1L113.6 237.7L114 237L107 230.8L108.2 232.8L107 234.8L108.2 238.3L105.3 244.8L102.4 247.8L98.6 249L95.6 247.1L95 243.7L93.8 243.6L94.7 247.7L96.5 250.2L92.7 252.3L90.9 252.3L90.2 254.1L85.3 255.8L83.6 259.7L81.1 262.5L77.8 264.8L76 264.1L76.2 261.6L77.3 259.5L76.9 257.2L73.5 262.7L68.9 262.9L67.8 259.6L67.9 255.5L66 259.8L63.2 261.1L63 257.9L64.4 251.1L64.1 248.8L63.3 252.4L61.8 253.3L58.8 257.3L56 259L54.5 258.9L55.4 248.7L57.1 246.2L59.5 236.2L61.3 232.7L61.8 227.4L59.9 222.2L58.6 214.6L53.4 203.9L54.9 203.7L51.4 200.6L50.9 192.6L50 194.8L48.8 195.5L49.4 198.5L48.6 200.5L44.1 197.9L39.9 191L41.6 190.3L44.6 193L46.5 193.6L49.2 191.8L50 189.5L46.8 187.6L44.8 184.3L42.2 182.7L44.1 180L41.6 180L38.2 177.4L35 176.8L33.1 177.4L34 180.3L33.8 181.2L32.6 181.1L30 176.7L31.9 174.5L30.3 174.4L31.3 170.5L30.7 170L29.8 172.4L27.6 175.1L25.8 173.9L27.8 171.3L24.2 166.8L24.5 172.2L16.5 162.2L13.6 152L15.6 149.3L16.6 149L20.8 151.5L21.4 152.6L22.6 151.7L21.9 148.5L21.5 138.1L22.6 137.5L23.8 135L25.4 135.6L27.1 137.5L29.3 137.6L30.9 134L33 133L33.2 130.4L31.6 123.2L33.2 119.3L33.3 116.8L36.2 116.8L37 115.7L38.3 103.6L36.1 96.8L37.1 95.7L39.9 97.7L43.7 97.1L52.6 99.7L55.9 90.7L61.7 81.7L64.2 76L63.5 74.1L61.1 72.6L61.6 70.5L63.4 67.7L65.7 66.4L68.9 62.8L70.3 58.5L72.6 55.9L71.4 52.8L71.2 47.1L72.6 44.6L79.3 41.4L88.1 35.5L91.2 32.1L93.8 31.2L104.6 29.7L109.1 33.7L112 34.1L112.1 33.1L108 27.5L107.5 24.6L109.3 22.3L116.7 17.5L116.8 15.6L116.1 14.5L116.4 11.8L120.8 5.9ZM133.3 360.8L135.9 364.9L135.4 365.7L133.1 362.5L131.6 362.7ZM132.4 383.2L132.8 381.2L134.4 379.8L135.8 379.6L134.6 381.6ZM134.2 351.2L134 349L136 344.6L135.7 348.4ZM141.5 341.7L139.5 342.2L139.3 338.5L142.2 341.1ZM140.5 344.1L141.1 345.4L140.6 349.5L138.7 349L137.5 344.4ZM136.2 326.5L139.4 328.6L139.2 330.6L137.6 333L136.7 333.4ZM132.5 337.3L130.7 335.5L131.4 334.3L132.4 334.5ZM58.2 262.3L57.8 259.3L62 255L62.4 256.3L61.3 258.8ZM120.7 254.3L119.6 253L119.4 249.9L120.8 249L122 250.5L121.5 254.1ZM44.4 204.2L43.5 205L39.8 201.1L42.4 200.7L44.9 201.2ZM38.3 179.2L39.8 180.4L40.3 183.2L38.9 182.1ZM42.9 188.4L44.3 187.1L48.9 189.8L48.7 191L46.3 192.4L45.1 191.8L44.6 190ZM139.5 360.8L140.5 358.7L140.8 361.2ZM131.7 347.5L130.4 346.3L130.2 343L131.6 345.6ZM131.3 332.3L130 334.5L128.8 333.2L129.8 332.2ZM135.3 315.8L136.3 317.9L136.2 321.3L135.2 319.7ZM64.9 263L66.6 260.5L65.7 263.4ZM30.5 181.7L28.3 178.2L28.3 176.4L29.2 177.3Z" tabindex="0" data-tip="Myanmar: 24.7 Mt paddy rice (2022)"/><path class="seq1" d="M470.5 484L472.8 484L475.3 489.3L476.4 494.8L474.9 495.2L472.1 494.3L470.5 488.2ZM471 481.6L470.5 484L464.9 487.6L465.8 492.8L466.8 494.2L465.7 496.5L466.2 496.8L465.5 498.8L462.2 501.7L458.3 497L456.5 496.9L454.5 492.5L451.3 490.2L456 489.9L458.5 488.8L466.8 483L469.9 481.5Z" tabindex="0" data-tip="Brunei: 4 thousand t paddy rice (2022)"/></g><g class="vz-rivers"><path d="M489.6 -9.7L490.7 -10.5L494 -19.3"/><path d="M428.1 -4.7L426 -2.6L420.9 -0.8L417 -1.2L409.9 -3.7"/><path d="M429.9 -7L431.4 -11.9"/><path d="M120.4 62.8L119 68.5L117.9 70.1L116.8 69.9L115 72.6L115.8 74.9L114.8 75.1L113.9 77.3L111.1 80.3L113.7 92.9L109.8 94.3L107.8 93.8L102.9 90.3L99.6 90.8L96.6 94.2L95.6 98.3L91.7 104.2L90.1 110.2L89 122.4L88.3 123.1L90.4 133L90.2 139.6L87.6 140.2L86.2 139.5L81.6 139.3L79.6 140.3L76.3 148.7L73.5 151L68 153.3L66.4 155L66.4 157.3L64.8 160.9L65.2 164L67.1 168.5L69.1 176.8L72.8 181.3L73.4 184.1L73.5 192.8L72.7 196.7L72.8 199.6L73.8 201.4L73.6 203.1L71.3 206.8L78 215L79.7 224.8L83.1 231L82.2 232.2L82.5 237.2L81.5 239.4L82 240.9L76.6 244.6L74.7 248.7L67.9 255.5"/><path d="M466.8 571.7L467.1 574.7L464.7 576L462.7 580L457 579.7L454.4 581.3L453.8 582.4L455.5 584.1L451.6 589L451.3 590.8L455.9 596.6L458.5 598.1L460.7 597.8L462.8 595.7L464.8 595.7L466.5 596.6L468.5 599.9L468.6 601.3L466.7 603.9L467.3 606.7L466.1 608.1L467.7 611.2L465.8 620.5L467.5 622.9L467 626L467.8 630.8L465 639.9L465.7 642.8L461.7 647.8L460.5 651.6"/><path d="M77.9 16.1L78.9 18.6L77.4 20.1L72.3 22.3L72.8 23.4L66 26.6L63 29.9L60.4 35L53.9 38.8L50.5 39.1L45 41.9L34.9 42.2L33.2 43.1L23.1 45L22.3 45.8L16.2 46.7L9.3 51.2L2.9 53.4L-1.3 53.6L-7 52.6L-14.8 53.6L-18.4 52.6"/><path d="M247 2.7L248.8 3.5L256.7 3.3L265.1 -0.4L269.7 0.2L271.8 1.5L281.5 -2.5L285.7 -2.1L287.2 -0.7L287.8 -1.7L286.7 -3.6L287.3 -4.6L292.9 -6.6L293.1 -8L300.4 -12.7L301.4 -16L306 -16L310 -19.5L311.7 -20L314.7 -18.2L318.4 -19.7L417.6 -20.1L418.2 -19L420.9 -20.1L422.6 -19.3L424.1 -20.2L425.6 -19.1L428.8 -19L428.5 -14.8L432.6 -13.4"/><path d="M213.6 -16.5L214.1 -12.9L215.7 -10.4L217.9 -9.7L222.3 -11.1L225.2 -10.4L226.8 -8.8L229.6 -9.9L230.4 -9.3L231.9 -9.9L235.6 -9.3L238.5 -10.5L242.9 -8.8L242.8 -10.6L241.2 -12.1L244.4 -14.9"/><path d="M983.7 681.5L984.8 683.7L983.9 686.6L974.5 698.1L974.3 699.8L976.2 703.9L975.3 709.1L976.8 712.4L977.4 718.4L973.1 722.5L971.8 726.3L970 728L966 727L964.1 729L961.8 729L960.4 730L959.2 728.2L957.1 729.1L953.5 728.8"/><path d="M57.1 -10.3L60.5 -12.9L66.9 -14.6L67.9 -15.8L68.2 -18L72.5 -20.1L77.2 -19.9L78.4 -14.8L77.7 -12.4L68.9 -5.9L66.2 -0.9L69.2 1L71.9 6L70.1 11L70.4 12.1L75.8 13.6L77.9 16.1"/><path d="M458.2 82.9L460.6 82.3L464.6 79.3L465 75.9L468 73L467.7 71.1L471.8 61.8L472 60.2L471.4 59.5L468.8 59.1L468.3 58.1L468.8 54.6L468.1 54.2L468.9 51.9L464.8 46.6L464.3 44.3L465.9 42.1L469.9 39.5L470.4 35.8L469.8 34.8L471.5 32.4L471.5 28.4L472.6 26.1L477.4 20.5L478.9 16.9L487 9.8L486.3 4.4L489.5 -1.8L490.3 -5.1L489.6 -9.7"/><path d="M300.4 172.3L297.7 171.1L295.4 171.2L293 166.6L289 162.8L286.7 156.9L279.5 153.8L278.5 152L276.5 152.4L274.3 150.1L273.9 150.7L263.8 140.2L239.6 119.4L233.2 115L228.1 112.6L212.4 107L204.9 100.1L197 87L194.8 86.3L186.2 76.9L182.8 76.5L177 73.9L173.7 68"/><path d="M308.9 72.4L310.4 75.7L313.1 76.8L315.5 79.5L317.2 85L320.8 90.8L322.2 91.5L319.9 95.4L320.2 96.6L322 98.1L323.5 98L328 102.8L339.1 96.5L346.7 100.5L348.4 104L353.8 102.8L356.4 103.3L359.4 100.3L360.6 101.3"/><path d="M181 594.6L183.2 594.8L186.8 596.8L190.1 596.5L192.3 595L195.2 596.1L199.7 596L202.6 593.5L205.4 593L209.1 594.1L211.9 594L217.4 590.4L226.9 593.4L234.6 589.9L238.1 590.5"/><path d="M64.1 248.8L64.8 240.8L69.1 233.7L69 232.6L70.8 231.4L76.1 223.4L80.4 220.6L81.5 220.6L89.1 236.3L89 237.4L91.8 242L93.8 243.6"/><path d="M79.6 242.7L74.7 256.5L72 260L71.6 262.4"/><path d="M82 240.9L83 243.6L87.4 247.2L87.3 250.3L90.9 252.3"/><path d="M79.4 223.9L77.1 225.5L75.9 227.7L76.7 231.3L75.3 232.8L75 235.3L73.7 237.4L73.5 240.9L74.4 243.1L72.1 247.6L71.2 247.7L68.1 253.4L63.1 259.4"/><path d="M158 13.8L158.6 19.4L162 27.8L169.9 38.4L170.8 37.7L172.2 32L174.6 28.4L174.4 25.2L176 20.4L177.8 19.5L181 30.3L179 33L179.7 35.4L178.2 40.6L178.6 51.1L179.2 51.9L186 53.1L189.2 52.4L194 49.5L197 49L201.8 44.7L204.7 44.6L206.8 45.5L208.8 49.4L206.9 54.7L207 56.4L208.2 57.1L210.5 56.8L216.6 51.3L221.7 49.2L222.7 51.6L223.7 51.9L229.8 48.7L230.8 46.1L227.9 36.2L228.1 30.1L229.4 28.1L232.9 27.7L234 25.6L239.6 20L240.7 17.8L240.6 16.4L238.9 14.9L239.7 12.9L241.8 11.1L244 11.6L246.8 10.2L247.2 8.6L246.2 4.8L247 2.7"/><path d="M150.1 -18.6L151.9 -9.1L152.9 3.2L154.4 8.9L158 13.6"/><path d="M439.3 558.9L434.7 563.6L429.1 565.9L420.7 566.9L418.4 568.4L409 571.1L408.3 573L406.8 573.8L406 575.6L402.9 576.9L400 581.1L391.5 581.3L386.7 583L381.6 582L378.4 584.5L373.5 584.3L370.1 585.1L368.9 586.9L361.9 590.2L359.1 590L353 586.9"/><path d="M465.2 547.5L469.1 544L477.2 542.1L481 543.3L482.3 542.9L485.6 538.9L486.9 538.5L487.7 540.5L489.2 541.3L491.3 541.2L496.5 533.3L503.1 526.5L505.1 527.9L509.6 526.3L513.4 527.4L516.8 526.3L519.2 524L521.4 523.9"/><path d="M134.8 -19.5L138.2 -12.7L142.4 -6.6L141.9 -4.2L146.2 6.5L148.8 17L150.7 20.9L150.1 23.8L153.5 35L152.3 45.9L153.1 58.4L156.2 63.9L156.8 70.6L158.8 72.9L164 76.6L168.8 81.8L172.1 83.3L176.6 82L180.2 86.2L181 89.3L180.6 92.9L179.7 95L178.3 95.6L177.1 100.2L173.7 104.9L171.3 111.8L172.1 114.4L174.7 117L178.3 124.8L181.3 127.5L182.9 131.5L182.4 131.9L184.1 133.5L185.4 136.7L189.7 140.8L193.3 142L192.7 142.3L192.9 146.2L191.6 148.5L188.6 150.5L185.1 151.6L182.3 156.7L180.7 158.1L180.4 159.5L182.5 160.8L176.5 162.1L175 163.4L172.3 173L176.4 170.4L179.8 174.5L181.1 174.7L181.9 180.4L183.1 181.7L187.1 180.7L199.7 181.8L212.7 176.4L214.7 178L206.5 186.2L206.4 188.1L207.7 190.9L206.4 194.8L206.5 204.6L205.4 207.2L199.8 213.4L198.2 216.3L199.2 220.7L201.3 222.3"/><path d="M944 647.8L942.5 647.9L941.8 644.5L939.1 641L938.1 636.9L934.4 632.2L930.4 629.8L926.8 625.9L926.3 624.2L927.2 621.8L927 616.6L928.2 613.2"/><path d="M269 348.5L269 350.1L270.8 351.8L272.1 362.9L276.2 369.9L286.6 380.7"/><path d="M269 348.5L275.3 353.2L275.6 354.9L274 360.9L274.2 362.7L277.2 366L277.5 367.7L283.9 372.8L292.7 376.2"/><path d="M201.3 222.3L203.7 220.9L205.5 218L208.9 217L212 214.4L219.2 219L221.1 219.4L222.3 222.1L223.2 222.4L226.1 219.8L231 218.1L231.8 215.9"/><path d="M231.8 215.9L231.8 215.9"/><path d="M231.8 215.9L231.8 215.8"/><path d="M231.8 215.9L233 214.2L235.3 213.1L235 211.1L235.8 210.4L239.8 210.2L245.8 212.3L249 212.2L258.6 224.8L264.8 229.6L266.3 232.9L264.9 241.3L265 246.1L266.4 249.8L269 252.3L270.9 255.9L278.1 259.4L277.5 260.4L278 262.6L282.4 265.3L282.3 269.6L280.4 272.7L283.3 273.9L288.1 280.6L288.5 283L286.6 296.5L287.1 298.3L289.6 300.7L290.4 305.8L288.4 311.7L290.5 316L289.6 322.1L290.4 331.5L289.7 334.3L282.7 334.4L280.9 336.1L279.7 339.7L277.8 341.5L273.4 341.8L270 343.8L269 348.5"/><path d="M244.4 -14.9L245.3 -14.5L247.1 -9.9L255 -4L256 -1.9L262.4 0.4"/><path d="M248.4 59.1L246.7 62.3L247.7 70L246.2 74.3L239.8 78.2L238.3 77.9L237.8 76.9L234.4 77.1L233.3 78.1L232.6 81.5L231.3 83.5L231.1 84.9L232.1 86.7L231.6 90.7L233.4 99.8L234.6 101.2L242.2 98.9L241.8 95L242.5 94.1L244.9 93.1L249.7 88.3L257.1 85.8L260.7 82.2L263.6 83.9L266 83.6L274.2 77.1L279 78.9L281.7 81.2L288.8 82.9L289.9 83.8L293.1 81.3L293.8 79.7L293.3 78.4L294.6 77.4L304.8 73.1L308.9 72.4"/><path d="M129.7 7.6L135.9 13.5L136.7 16L136.8 19.4L136 21.7L133.1 22.8L131.6 21.7L130.8 22.1L131.7 26.4L137.2 37L137.1 42.5L133.2 56.1L131.1 60.4L127.2 64L125.5 64.4L122.8 62.7L120.4 62.8"/><path d="M118.7 -18.8L120.9 -14.9L126.4 -11.5L129 -8.6L133.3 -1.4L136.9 1.7L139.5 11.7L143.6 18L143.5 19.9L146.3 24.7L147.4 29.5L147.9 43.4L147.1 53.1L147.6 69.4L147.1 73.4L148.5 80.4L150.6 83.5L150.3 89.4L151.8 90.8L151.2 92.2L148.4 93.6L139.5 96.7L138.4 98.6L142 103.9L142.7 109L144.4 110.2L144.5 111.5L139.5 113.9L141 116.1L140.3 117.7L142.6 119.1L142.6 120.1L141.2 121.3L142.5 128.9L141.7 132.6L144.8 136.4L144.4 137.8L142.1 139.6L141.5 142L142.5 144.8L141.9 148.2L145.5 156.4L144.5 157.5L140.2 158.9"/><path d="M360.6 101.3L360.9 102.7L363 104L364.3 107.3L368 108.7L370.4 108.3L371.8 109.2"/><path d="M140.2 158.9L140 161.4L143.6 172.7L141 175.2L132.8 178.4L128.9 179L125.4 181.2L120.6 191.7L119.1 201.4L117.1 201.6L116.6 202.9L117.6 208.7L120.5 212.7L122.6 212.8L124.8 220L124 222.1L125 230L123.2 233.9L122.2 240L122.4 246L123.4 248"/><path d="M975.9 658.3L968.8 656.7L965.8 655.1L961.5 654.7L959.7 653.5L954.2 652.9L949.2 649.1L944 647.8"/><path d="M430.7 121.6L435.3 130.3L438.3 134.1"/><path d="M430.7 121.6L436 123.6L438.9 125.6L441 125.8"/><path d="M429.6 116.6L438.9 116.3"/><path d="M426.1 114.5L427.8 119.1L429.3 121L430.7 121.6"/><path d="M426.1 114.5L428.2 115.2L431.8 119.3L436.8 119.7"/><path d="M396 107.7L398.7 108.4L400.8 112.4L404.1 114.2L412.7 115.6L415.4 114.6L418.5 115.9L420 115.9L422.9 114.1L426.1 114.5"/><path d="M371.8 109.2L374 106.4L376.7 106.2L382.4 108.3L386.3 108.4L387.4 109.4L396 107.7"/><path d="M432.6 -13.4L434.2 -14.9L494.2 -19.9"/><path d="M494 -19.3L494.2 -19.9"/><path d="M-19.9 -9.7L-15.1 -10.9L-14.3 -10.3L-12.1 -10.9L11.5 -9.7L19.3 -8.7L23.9 -6.1L27.9 -5.5L32.3 -6.2L32.8 -5.3L35 -4.3L38.5 -6.9L41.4 -7.7L48.6 -7.5L54.5 -8.9L57.1 -10.3"/><path d="M320.1 49.9L320 51.9L321.2 53.4L324.2 52.3L326.5 46L329.2 44.2L331.4 41.5L335 39.7L337.9 40.2L341.4 43.8L342.9 44.2L345 42.6L347.4 45L351.5 44.4L353.9 43L358.8 38.6L358.8 34.8L363.3 32.9L363.8 33.9L365.1 32.6L368.9 33.5L371 32.6L374.3 27.9L375.5 24.1L377.3 21.7L377.4 19.7L375 17.7L375 16.6L372.3 14.7L373.6 12.3L373.6 10.3L377 8.3L379.5 4L382.7 2.2L391.9 -0.9L395.6 0.8L398.1 0.2L401.2 -4.2L409.9 -3.7"/><path d="M428.1 -4.7L429.9 -7"/><path d="M431.4 -11.9L432.6 -13.4"/><path d="M299.3 374.6L297.7 374L292.8 374.5"/><path d="M292.8 374.5L288.6 374.9"/><path d="M292.8 374.5L293.7 375.6L296.6 375.7L299.4 379.7L303.2 381.7"/></g><g class="vz-clabels"><text x="90" y="141.7" text-anchor="middle">MYANMAR</text><text x="222" y="255.1" text-anchor="middle">THAILAND</text><text x="228" y="180.2" text-anchor="middle">LAO PDR</text><text x="362" y="328" text-anchor="middle">VIET NAM</text><text x="264" y="301.7" text-anchor="middle">CAMBODIA</text><text x="450" y="518.4" text-anchor="middle">MALAYSIA</text><text x="460" y="603.4" text-anchor="middle">INDONESIA</text><text x="722" y="307.8" text-anchor="middle">PHILIPPINES</text><text x="682" y="797.8" text-anchor="middle">TIMOR-LESTE</text></g><g class="vz-regions"><g data-tip="Irrawaddy Delta: major rice-growing area" tabindex="0"><circle cx="78" cy="247" r="9" class="hit"/><circle cx="78" cy="247" r="4.5"/><text x="88" y="251" text-anchor="start">Irrawaddy Delta</text></g><g data-tip="Central Plains: major rice-growing area" tabindex="0"><circle cx="176" cy="275.4" r="9" class="hit"/><circle cx="176" cy="275.4" r="4.5"/><text x="166" y="279.4" text-anchor="end">Central Plains</text></g><g data-tip="Tonlé Sap: major rice-growing area" tabindex="0"><circle cx="250" cy="324" r="9" class="hit"/><circle cx="250" cy="324" r="4.5"/><text x="260" y="328" text-anchor="start">Tonlé Sap</text></g><g data-tip="Mekong Delta: major rice-growing area" tabindex="0"><circle cx="284" cy="382.7" r="9" class="hit"/><circle cx="284" cy="382.7" r="4.5"/><text x="294" y="386.7" text-anchor="start">Mekong Delta</text></g><g data-tip="Red River Delta: major rice-growing area" tabindex="0"><circle cx="294" cy="162" r="9" class="hit"/><circle cx="294" cy="162" r="4.5"/><text x="304" y="166" text-anchor="start">Red River Delta</text></g><g data-tip="Central Luzon: major rice-growing area" tabindex="0"><circle cx="586" cy="267.3" r="9" class="hit"/><circle cx="586" cy="267.3" r="4.5"/><text x="576" y="271.3" text-anchor="end">Central Luzon</text></g><g data-tip="Java: major rice-growing area" tabindex="0"><circle cx="378" cy="726.9" r="9" class="hit"/><circle cx="378" cy="726.9" r="4.5"/><text x="388" y="730.9" text-anchor="start">Java</text></g></g><g class="vz-irri" data-tip="IRRI headquarters, Los Baños, Philippines" tabindex="0"><polygon points="594.8 287.2 597.2 293 603.4 293.5 598.6 297.5 600.1 303.5 594.8 300.2 589.5 303.5 591 297.5 586.2 293.5 592.4 293"/><text x="606.8" y="316.2">IRRI · Los Baños</text></g><g class="vz-scale"><path d="M30 780h91M30 775v10M121 775v10"/><text x="75.5" y="770" text-anchor="middle">500 km</text></g></svg><div class="vz-legend" aria-hidden="true"><span class="vz-legend-title">Paddy rice production, 2022</span><div class="vz-ramp"><span><i class="sw seq1"></i>< 5 Mt</span><span><i class="sw seq2"></i>5–15</span><span><i class="sw seq3"></i>15–25</span><span><i class="sw seq4"></i>25–40</span><span><i class="sw seq5"></i>≥ 40 Mt</span></div><span class="vz-legend-key"><i class="dot"></i>Major rice-growing area <i class="star">★</i>IRRI headquarters</span></div><details class="vz-table"><summary>View data table</summary><table><thead><tr><th>Country</th><th>Paddy rice, 2022 (t)</th></tr></thead><tbody><tr><td>Indonesia</td><td class="num">54,748,977</td></tr><tr><td>Viet Nam</td><td class="num">42,672,339</td></tr><tr><td>Thailand</td><td class="num">34,317,028</td></tr><tr><td>Myanmar</td><td class="num">24,680,200</td></tr><tr><td>Philippines</td><td class="num">19,756,392</td></tr><tr><td>Cambodia</td><td class="num">11,624,000</td></tr><tr><td>Lao PDR</td><td class="num">3,594,800</td></tr><tr><td>Malaysia</td><td class="num">2,364,453</td></tr><tr><td>Timor-Leste</td><td class="num">76,000</td></tr><tr><td>Brunei</td><td class="num">4,200</td></tr></tbody></table></details></div>
+          <p class="vz-src">Data: FAOSTAT, paddy rice production 2022. Boundaries: Natural Earth. Region markers are indicative.</p>
+        </article>
+        <!-- SLOT rice-dashboard -->
+        <article class="vpanel span2">
+          <header><span class="status">Illustrative example</span><h3>Irrigation dashboard</h3>
+          <p>Field water level under alternate wetting and drying (AWD), with irrigation triggered when water drops 15 cm below the soil surface.</p></header>
+          <div class="vz-wrap scroll"><div class="vz-kpis"><div><b>27%</b><span>water saved vs continuous flooding</span></div><div><b>5</b><span>irrigation events (vs 15)</span></div><div><b>2 days</b><span>until next irrigation</span></div></div><svg class="vz" viewBox="0 0 640 260" role="img" aria-label="Example field water level under alternate wetting and drying"><g class="vz-grid"><line x1="52" x2="624" y1="47.3" y2="47.3"/><line x1="52" x2="624" y1="76.1" y2="76.1"/><line x1="52" x2="624" y1="104.8" y2="104.8"/><line x1="52" x2="624" y1="133.6" y2="133.6"/><line x1="52" x2="624" y1="162.4" y2="162.4"/><line x1="52" x2="624" y1="191.2" y2="191.2"/><line x1="52" x2="624" y1="220" y2="220"/></g><g class="vz-axis"><text x="44" y="51.3" text-anchor="end">5</text><text x="44" y="80.1" text-anchor="end">0</text><text x="44" y="108.8" text-anchor="end">-5</text><text x="44" y="137.6" text-anchor="end">-10</text><text x="44" y="166.4" text-anchor="end">-15</text><text x="44" y="195.2" text-anchor="end">-20</text><text x="44" y="224" text-anchor="end">-25</text><text x="52" y="238" text-anchor="middle">0</text><text x="133.7" y="238" text-anchor="middle">15</text><text x="215.4" y="238" text-anchor="middle">30</text><text x="297.1" y="238" text-anchor="middle">45</text><text x="378.9" y="238" text-anchor="middle">60</text><text x="460.6" y="238" text-anchor="middle">75</text><text x="542.3" y="238" text-anchor="middle">90</text><text x="624" y="238" text-anchor="middle">105</text><text x="338" y="256" text-anchor="middle" class="t">Days after transplanting</text><text x="4" y="18" text-anchor="start" class="t">Field water level (cm)</text></g><rect class="vz-band" x="433.3" y="30" width="81.7" height="190"/><text class="vz-note" x="474.2" y="44" text-anchor="middle">Flowering</text><line class="vz-ref" x1="52" x2="624" y1="76.1" y2="76.1"/><line class="vz-thresh" x1="52" x2="624" y1="162.4" y2="162.4"/><text class="vz-note" x="620" y="156.4" text-anchor="end">Re-irrigate at 15 cm below surface</text><path class="ln s1" d="M52 47.3L57.4 47.3L62.9 47.3L68.3 47.3L73.8 47.3L79.2 47.3L84.7 47.3L90.1 47.3L95.6 47.3L101 47.3L106.5 47.3L111.9 47.3L117.4 47.3L122.8 47.3L128.3 47.3L133.7 56.5L139.2 64.8L144.6 73.2L150.1 82.4L155.5 90.7L161 99.1L166.4 108.3L171.8 116.7L177.3 125L182.7 134.2L188.2 142.6L193.6 150.9L199.1 160.1L204.5 47.3L210 55.6L215.4 64.8L220.9 73.2L226.3 81.5L231.8 90.7L237.2 99.1L242.7 107.4L248.1 116.7L253.6 125L259 133.3L264.5 142.6L269.9 150.9L275.4 159.3L280.8 47.3L286.2 55.6L291.7 64L297.1 73.2L302.6 81.5L308 89.9L313.5 99.1L318.9 107.4L324.4 115.8L329.8 125L335.3 133.3L340.7 141.7L346.2 150.9L351.6 159.3L357.1 47.3L362.5 56.5L368 64.8L373.4 73.2L378.9 82.4L384.3 90.7L389.8 99.1L395.2 108.3L400.6 116.7L406.1 125L411.5 134.2L417 142.6L422.4 150.9L427.9 160.1L433.3 47.3L438.8 47.3L444.2 47.3L449.7 47.3L455.1 47.3L460.6 47.3L466 47.3L471.5 47.3L476.9 47.3L482.4 47.3L487.8 47.3L493.3 47.3L498.7 47.3L504.2 47.3L509.6 47.3L515 55.6L520.5 64L525.9 73.2L531.4 81.5L536.8 89.9L542.3 99.1L547.7 107.4L553.2 115.8L558.6 125L564.1 133.3L569.5 142.6L575 151.8L580.4 161L585.9 170.2L591.3 179.4L596.8 188.6L602.2 197.8L607.7 207L613.1 216.3L618.6 220L624 220"/><g data-tip="Day 28: irrigation event (example)" tabindex="0"><circle class="hit" cx="204.5" cy="47.3" r="10"/><circle class="pt s1" cx="204.5" cy="47.3" r="4.5"/></g><g data-tip="Day 42: irrigation event (example)" tabindex="0"><circle class="hit" cx="280.8" cy="47.3" r="10"/><circle class="pt s1" cx="280.8" cy="47.3" r="4.5"/></g><g data-tip="Day 56: irrigation event (example)" tabindex="0"><circle class="hit" cx="357.1" cy="47.3" r="10"/><circle class="pt s1" cx="357.1" cy="47.3" r="4.5"/></g></svg></div>
+        </article>
+        <!-- SLOT rice-ai -->
+        <article class="vpanel">
+          <header><span class="status">Illustrative example</span><h3>AI models</h3>
+          <p>Machine learning combined with process-based models to turn field and satellite data into irrigation advice.</p></header>
+          <div class="vz-wrap"><svg class="vz" viewBox="0 0 420 330" role="img" aria-label="Schematic of an AI irrigation model combining data, machine learning and a process-based model"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="ahd"/></marker></defs><g class="node in"><rect x="8" y="14" width="132" height="38" rx="8"/><text x="74.0" y="37.0" text-anchor="middle" class="nt">Weather forecast</text></g><path class="edge" d="M140 33 C 165 33, 165 118, 186 118" marker-end="url(#ah)"/><g class="node in"><rect x="8" y="64" width="132" height="38" rx="8"/><text x="74.0" y="87.0" text-anchor="middle" class="nt">Soil moisture sensors</text></g><path class="edge" d="M140 83 C 165 83, 165 118, 186 118" marker-end="url(#ah)"/><g class="node in"><rect x="8" y="114" width="132" height="38" rx="8"/><text x="74.0" y="137.0" text-anchor="middle" class="nt">Satellite imagery</text></g><path class="edge" d="M140 133 C 165 133, 165 118, 186 118" marker-end="url(#ah)"/><g class="node in"><rect x="8" y="164" width="132" height="38" rx="8"/><text x="74.0" y="187.0" text-anchor="middle" class="nt">Field water level</text></g><path class="edge" d="M140 183 C 165 183, 165 118, 186 118" marker-end="url(#ah)"/><g class="node core"><rect x="188" y="84" width="130" height="68" rx="8"/><text x="253.0" y="114.0" text-anchor="middle" class="nt">Machine learning</text><text x="253.0" y="131.0" text-anchor="middle" class="ns">forecast & optimise</text></g><g class="node core2"><rect x="188" y="196" width="130" height="56" rx="8"/><text x="253.0" y="220.0" text-anchor="middle" class="nt">Process-based</text><text x="253.0" y="237.0" text-anchor="middle" class="ns">crop-water model</text></g><path class="edge" d="M240 152 V194" marker-end="url(#ah)"/><path class="edge" d="M266 194 V154" marker-end="url(#ah)"/><text class="ns" x="203" y="178">physics</text><text class="ns" x="270" y="178">learning</text><path class="edge" d="M318 118 H 410" marker-end="url(#ah)"/><text class="nt" x="414" y="104" text-anchor="end">Advice</text></svg><ul class="vz-outs"><li><b>When</b> to irrigate</li><li><b>How much</b> water to apply</li><li><b>Trade-offs</b> between water, yield and methane</li></ul></div>
+        </article>
+        <!-- SLOT rice-methane -->
+        <article class="vpanel full">
+          <header><span class="status">Illustrative example</span><h3>Water and methane</h3>
+          <p>Each drying event interrupts methane production in the flooded soil, lowering seasonal emissions compared with continuous flooding.</p></header>
+          <div class="vz-wrap scroll"><div class="vz-legend"><span><i class="ln-sw s2"></i>Continuous flooding</span><span><i class="ln-sw s1"></i>Alternate wetting and drying (AWD)</span></div><svg class="vz" viewBox="0 0 1000 250" role="img" aria-label="Example methane flux under continuous flooding and alternate wetting and drying"><g class="vz-grid"><line x1="52" x2="880" y1="210" y2="210"/><line x1="52" x2="880" y1="165" y2="165"/><line x1="52" x2="880" y1="120" y2="120"/><line x1="52" x2="880" y1="75" y2="75"/><line x1="52" x2="880" y1="30" y2="30"/></g><g class="vz-axis"><text x="44" y="214" text-anchor="end">0</text><text x="44" y="169" text-anchor="end">5</text><text x="44" y="124" text-anchor="end">10</text><text x="44" y="79" text-anchor="end">15</text><text x="44" y="34" text-anchor="end">20</text><text x="52" y="228" text-anchor="middle">0</text><text x="217.6" y="228" text-anchor="middle">20</text><text x="383.2" y="228" text-anchor="middle">40</text><text x="548.8" y="228" text-anchor="middle">60</text><text x="714.4" y="228" text-anchor="middle">80</text><text x="880" y="228" text-anchor="middle">100</text><text x="466" y="246" text-anchor="middle" class="t">Days after transplanting</text><text x="4" y="18" text-anchor="start" class="t">CH₄ flux (mg m⁻² h⁻¹)</text></g><rect class="vz-band" x="250.7" y="30" width="49.7" height="180"/><rect class="vz-band" x="350.1" y="30" width="49.7" height="180"/><rect class="vz-band" x="449.4" y="30" width="49.7" height="180"/><rect class="vz-band" x="548.8" y="30" width="49.7" height="180"/><rect class="vz-band" x="813.8" y="30" width="49.7" height="180"/><text class="vz-note" x="275.6" y="44" text-anchor="middle">Drying events</text><path class="ln s2" d="M52 191.8L60.3 191.7L68.6 191.6L76.8 191.5L85.1 191.4L93.4 191.3L101.7 191.1L110 190.9L118.2 190.7L126.5 190.4L134.8 190.1L143.1 189.7L151.4 189.2L159.6 188.7L167.9 188.1L176.2 187.4L184.5 186.6L192.8 185.6L201 184.6L209.3 183.3L217.6 182L225.9 180.4L234.2 178.7L242.4 176.8L250.7 174.7L259 172.4L267.3 169.8L275.6 167.1L283.8 164.1L292.1 160.8L300.4 157.4L308.7 153.7L317 149.8L325.2 145.6L333.5 141.3L341.8 136.9L350.1 132.2L358.4 127.5L366.6 122.6L374.9 117.8L383.2 112.8L391.5 108L399.8 103.1L408 98.4L416.3 93.9L424.6 89.5L432.9 85.4L441.2 81.6L449.4 78.1L457.7 75L466 72.3L474.3 70.1L482.6 68.3L490.8 67L499.1 66.3L507.4 66L515.7 66.3L524 67L532.2 68.3L540.5 70.1L548.8 72.3L557.1 74.9L565.4 78L573.6 81.3L581.9 85L590.2 88.9L598.5 92.9L606.8 97L615 101.1L623.3 105.2L631.6 109.1L639.9 112.7L648.2 116L656.4 119L664.7 121.5L673 123.6L681.3 125.3L689.6 126.7L697.8 127.7L706.1 128.6L714.4 129.3L722.7 130.1L731 131.2L739.2 132.5L747.5 134.2L755.8 136.4L764.1 139.1L772.4 142.2L780.6 145.8L788.9 149.8L797.2 153.9L805.5 158.2L813.8 162.5L822 166.6L830.3 170.5L838.6 174.1L846.9 177.4L855.2 180.2L863.4 182.6L871.7 184.6L880 186.3"/><path class="ln s1" d="M52 196.9L60.3 196.8L68.6 196.8L76.8 196.7L85.1 196.6L93.4 196.5L101.7 196.4L110 196.3L118.2 196.1L126.5 195.9L134.8 195.7L143.1 195.4L151.4 195.1L159.6 194.7L167.9 194.2L176.2 193.7L184.5 193.1L192.8 192.4L201 191.7L209.3 190.8L217.6 189.9L225.9 189.1L234.2 188.6L242.4 188.9L250.7 190.4L259 193L267.3 195.5L275.6 196.1L283.8 193.4L292.1 187.8L300.4 180.8L308.7 174.2L317 168.9L325.2 165.2L333.5 163.1L341.8 163.5L350.1 166.8L358.4 172.7L366.6 178.5L374.9 180.1L383.2 174.9L391.5 163.9L399.8 150.6L408 139L416.3 130.8L424.6 126.1L432.9 125L441.2 128.3L449.4 136.8L457.7 149L466 160.3L474.3 164.7L482.6 158.9L490.8 145.4L499.1 130.2L507.4 118.4L515.7 111.9L524 110.4L532.2 113.3L540.5 121L548.8 133.5L557.1 148.9L565.4 162.4L573.6 168.3L581.9 164.9L590.2 155.2L598.5 144.9L606.8 138L615 135.4L623.3 135.8L631.6 137.7L639.9 140L648.2 142.3L656.4 144.5L664.7 146.3L673 147.8L681.3 149L689.6 150L697.8 150.7L706.1 151.4L714.4 151.9L722.7 152.5L731 153.2L739.2 154.2L747.5 155.4L755.8 157L764.1 158.9L772.4 161.3L780.6 164L788.9 167.3L797.2 171.6L805.5 177L813.8 183.6L822 190.4L830.3 195.8L838.6 198.4L846.9 198.2L855.2 196.5L863.4 194.8L871.7 193.8L880 193.7"/><text class="dl" x="888" y="190.3">Continuous flooding</text><text class="dl" x="888" y="209.7">AWD</text><g data-tip="Day 0: flooding 2.0, AWD 1.5 mg m⁻² h⁻¹ (example)"><rect class="hit" x="32" y="30" width="40" height="180"/></g><g data-tip="Day 5: flooding 2.1, AWD 1.5 mg m⁻² h⁻¹ (example)"><rect class="hit" x="73.4" y="30" width="40" height="180"/></g><g data-tip="Day 10: flooding 2.2, AWD 1.6 mg m⁻² h⁻¹ (example)"><rect class="hit" x="114.8" y="30" width="40" height="180"/></g><g data-tip="Day 15: flooding 2.5, AWD 1.8 mg m⁻² h⁻¹ (example)"><rect class="hit" x="156.2" y="30" width="40" height="180"/></g><g data-tip="Day 20: flooding 3.1, AWD 2.2 mg m⁻² h⁻¹ (example)"><rect class="hit" x="197.6" y="30" width="40" height="180"/></g><g data-tip="Day 25: flooding 4.2, AWD 1.9 mg m⁻² h⁻¹ (example)"><rect class="hit" x="239" y="30" width="40" height="180"/></g><g data-tip="Day 30: flooding 5.8, AWD 3.2 mg m⁻² h⁻¹ (example)"><rect class="hit" x="280.4" y="30" width="40" height="180"/></g><g data-tip="Day 35: flooding 8.1, AWD 5.2 mg m⁻² h⁻¹ (example)"><rect class="hit" x="321.8" y="30" width="40" height="180"/></g><g data-tip="Day 40: flooding 10.8, AWD 3.9 mg m⁻² h⁻¹ (example)"><rect class="hit" x="363.2" y="30" width="40" height="180"/></g><g data-tip="Day 45: flooding 13.4, AWD 9.3 mg m⁻² h⁻¹ (example)"><rect class="hit" x="404.6" y="30" width="40" height="180"/></g><g data-tip="Day 50: flooding 15.3, AWD 5.5 mg m⁻² h⁻¹ (example)"><rect class="hit" x="446" y="30" width="40" height="180"/></g><g data-tip="Day 55: flooding 16.0, AWD 10.2 mg m⁻² h⁻¹ (example)"><rect class="hit" x="487.4" y="30" width="40" height="180"/></g><g data-tip="Day 60: flooding 15.3, AWD 8.5 mg m⁻² h⁻¹ (example)"><rect class="hit" x="528.8" y="30" width="40" height="180"/></g><g data-tip="Day 65: flooding 13.5, AWD 6.1 mg m⁻² h⁻¹ (example)"><rect class="hit" x="570.2" y="30" width="40" height="180"/></g><g data-tip="Day 70: flooding 11.2, AWD 8.0 mg m⁻² h⁻¹ (example)"><rect class="hit" x="611.6" y="30" width="40" height="180"/></g><g data-tip="Day 75: flooding 9.6, AWD 6.9 mg m⁻² h⁻¹ (example)"><rect class="hit" x="653" y="30" width="40" height="180"/></g><g data-tip="Day 80: flooding 9.0, AWD 6.5 mg m⁻² h⁻¹ (example)"><rect class="hit" x="694.4" y="30" width="40" height="180"/></g><g data-tip="Day 85: flooding 8.2, AWD 5.9 mg m⁻² h⁻¹ (example)"><rect class="hit" x="735.8" y="30" width="40" height="180"/></g><g data-tip="Day 90: flooding 6.2, AWD 4.3 mg m⁻² h⁻¹ (example)"><rect class="hit" x="777.2" y="30" width="40" height="180"/></g><g data-tip="Day 95: flooding 4.0, AWD 1.3 mg m⁻² h⁻¹ (example)"><rect class="hit" x="818.6" y="30" width="40" height="180"/></g><g data-tip="Day 100: flooding 2.6, AWD 1.8 mg m⁻² h⁻¹ (example)"><rect class="hit" x="860" y="30" width="40" height="180"/></g></svg></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="head"><h2>In the field</h2></div>
+      <figure>
+        <img decoding="async" src="img/rice-fieldwork.jpg" alt="Jordi and a colleague inspecting plants in an experimental rice plot" width="1280" height="991" loading="lazy" style="aspect-ratio: 16 / 9">
+        <figcaption><b>Fieldwork Friday:</b> exploring experimental rice paddies and methane emissions MRV research.</figcaption>
+      </figure>
+    </div>
+  </section>
+</div>
+
+<!-- ================= CONSULTING ================= -->
+<div id="consulting" data-view hidden>
+  <section class="block">
+    <div class="wrap" style="display:grid; gap:18px">
+      <span class="label">Consulting</span>
+      <h1>Consulting</h1>
+      <p class="lead muted">From building the evidence base to shaping the investment case for agricultural climate projects.</p>
+      <div class="actions"><a class="btn primary" href="#contact">Discuss a project</a></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="head"><h2>Selected clients</h2></div>
+      <div class="clients">
+        <div class="client"><span class="label">Bangkok, Thailand</span><h3>Food and Agriculture Organization of the UN (FAO)</h3></div>
+        <div class="client"><span class="label">Melbourne, Australia</span><h3>The Superpower Institute</h3></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="head">
+        <h2>How I work</h2>
+        <p class="muted">Contributions run from establishing a robust evidence base, through engaging landholders, to shaping the investment case.</p>
+      </div>
+      <ol class="steps">
+        <li><span class="n">01 — Evidence</span><h3>Build the evidence base</h3><p>Opportunity mapping, impact modelling and scenario testing.</p></li>
+        <li><span class="n">02 — Landholders</span><h3>Engage landholders</h3><p>Assessing private investment needs, farm-level scoping, recruiting and onboarding.</p></li>
+        <li><span class="n">03 — Investment</span><h3>Shape the investment case</h3><p>Cash-flow modelling, grant funding potential and demand-side engagement.</p></li>
+      </ol>
+    </div>
+  </section>
+
+</div>
+
+<!-- ================= TEACHING ================= -->
+<div id="teaching" data-view hidden>
+  <section class="block">
+    <div class="wrap" style="display:grid; gap:18px">
+      <span class="label">Over a decade of teaching</span>
+      <h1>Teaching and education</h1>
+      <p class="lead muted">Associate Professor at the University of the Philippines Los Baños (UPLB), with a background in secondary teaching, education research, one-to-one tutoring and public science engagement.</p>
+      <div class="actions">
+        <a class="btn primary" href="#contact">Book a lesson</a>
+        <a class="btn ghost" href="#tutoring">Subjects I tutor</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap split">
+      <div class="prose">
+        <h2>Cheltenham Ladies' College</h2>
+        <p>Teaching at Cheltenham Ladies' College remains a highlight of my career. At 22, freshly out of university and with the ink on my teaching qualification barely dry, I joined one of the UK's most prestigious schools. The students were unforgettable: driven, proactive and eager to learn every single day.</p>
+        <p>As a Teacher of Geography I taught students aged 11 to 18. Highlights included setting up a Geography Society, field trips to Wales, mock Oxbridge interviews and a fantastic day-to-day life. It remains one of the proudest and most memorable chapters of my life, thanks largely to the amazing staff and students at CLC.</p>
+        <p>Alongside my role at CLC, I completed a Master's in Education at the University of Cambridge, specialising in cross-curricular learning. My research explored how integrating overlapping themes between science and geography can strengthen interdisciplinary links and improve the student learning experience.</p>
+      </div>
+      <div class="pair">
+        <figure class="tall">
+          <img decoding="async" src="img/clc-portrait.jpg" alt="Jordi standing in the gardens of Cheltenham Ladies' College" width="484" height="605" loading="lazy">
+          <figcaption>Cheltenham Ladies' College</figcaption>
+        </figure>
+        <figure class="tall">
+          <img decoding="async" src="img/clc-celebration.jpg" alt="Jordi with three colleagues at an evening celebration in front of the college" width="734" height="920" loading="lazy">
+          <figcaption>End-of-year celebrations with colleagues</figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="wrap" style="margin-top:32px">
+      <div class="wide-pair">
+        <figure><img decoding="async" src="img/teaching-outdoor-1.jpg" alt="Students crouched on the grass running a hands-on experiment" width="1400" height="549" loading="lazy"></figure>
+        <figure><img decoding="async" src="img/teaching-outdoor-2.jpg" alt="Jordi and three students sitting on the grass during an outdoor lesson" width="1400" height="546" loading="lazy"></figure>
+      </div>
+      <p class="pair-cap">Taking geography outside the classroom: hands-on experiments with students.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="head">
+        <h2>Outreach and training</h2>
+      </div>
+      <div class="quad4">
+        <figure>
+          <img decoding="async" src="img/teacher-training.jpg" alt="Jordi in a suit next to an office printer" width="1000" height="1000" loading="lazy">
+          <figcaption><b>First week on teacher training (2019).</b> Back then learning how to use a printer was of the essence!</figcaption>
+        </figure>
+        <figure>
+          <img decoding="async" src="img/pint-of-science.jpg" alt="Jordi and a colleague with a Pint of Science banner" width="562" height="562" loading="lazy">
+          <figcaption><b>Organising Pint of Science London</b> (science education and outreach)</figcaption>
+        </figure>
+        <figure>
+          <img decoding="async" src="img/oxford-maths.jpg" alt="Jordi at the Mathematical Institute, University of Oxford" width="531" height="531" loading="lazy">
+          <figcaption><b>Land Surface Modelling,</b> Oxford</figcaption>
+        </figure>
+        <figure>
+          <img decoding="async" src="img/air-quality-sensor.jpg" alt="Jordi holding a prototype air quality sensor" width="1000" height="1000" loading="lazy">
+          <figcaption><b>Building prototype, low-cost air quality sensors</b> (PM2.5) for education with KCL</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="head">
+        <h2>From my students</h2>
+        <p class="muted">When I left CLC I was bombarded with kind notes from students. Whenever I was having a tough time during my PhD, I'd open a folder in my desk drawer and read through them. A few are shared here anonymously.</p>
+      </div>
+      <figure class="note">
+        <img decoding="async" src="img/farewell-note-2.jpg" alt="Handwritten farewell note from a sixth-form student thanking Mr Buckley-Paules for his passion for Geography and his encouragement with the Geography Society" width="930" height="661" loading="lazy">
+        <figcaption>Farewell note from an incredibly bright sixth form student who later went on to achieve straight A*s.</figcaption>
+      </figure>
+      <div class="quotes">
+        <blockquote>
+          <p>“Thank you so much for teaching us this year. You have been such a great teacher and I have really enjoyed every lesson with you… You have been such an inspiration to me and many others, and because of that I am hoping to take geography for many years to come. I hope to read about some of the discoveries you make in your research!”</p>
+          <footer>Year 9 student</footer>
+        </blockquote>
+        <blockquote>
+          <p>“At the start of the year I was not very excited about taking geography, but thanks to you I saw the connection it had to conservation. I have now become quite fond of the subject, not only because of that link but also because of the fun debates and discussions we have had in class. Over the summer I am going to create an entry for the competition you sent me.”</p>
+          <footer>Year 10 student</footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="tutoring">
+    <div class="wrap">
+      <div class="head">
+        <h2>Tutoring</h2>
+        <p class="muted">Tutoring started as a way to fund student life in London, and the odd pint, while I studied. Today I teach purely out of passion, at a reduced capacity alongside my research. Over the last ten years I've mentored many students and worked with some of London's leading tutoring agencies. I also take students independently and keep my rates as accessible as possible, in line with standard London tutoring benchmarks.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Level</th><th>Subjects</th></tr></thead>
+          <tbody>
+            <tr><td>GCSE / IGCSE</td><td>Geography, Maths, Physics, Biology</td></tr>
+            <tr><td>A-Level</td><td>Geography, Maths, EPQ</td></tr>
+            <tr><td>IB</td><td>Geography, Maths, Physics, Environmental Systems and Societies (ESS), Extended Essay</td></tr>
+            <tr><td>University</td><td>Undergraduate and Master's modules on request, particularly geography and environmental economics</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="actions" style="margin-top:24px">
+        <a class="btn primary" href="#contact">Book a lesson slot</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= ADVENTURES ================= -->
+<div id="adventures" data-view hidden>
+  <section class="block">
+    <div class="wrap" style="display:grid; gap:18px">
+      <span class="label">Beyond research</span>
+      <h1>Adventures</h1>
+      <p class="lead muted">Alpine passes on a 125cc scooter, glaciers on Mont Blanc, a few long walks and the occasional dive.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap split">
+    <div style="display:grid; gap:24px; min-width:0">
+      <h2>A Vespa through the Swiss and Italian Alps</h2>
+      <div class="stats">
+        <div class="stat"><b>125cc</b><span>yellow Vespa, “Bumblebee”</span></div>
+        <div class="stat"><b>40 km/h</b><span>climbing</span></div>
+        <div class="stat"><b>~90 km/h</b><span>descending</span></div>
+      </div>
+      <div class="prose">
+        <p>Taking a yellow 125cc Vespa across Switzerland from east to west, over some of the highest alpine passes along the way, is no small feat. The bike is designed for city life rather than alpine touring, yet it proved a remarkably reliable companion.</p>
+        <p>Bumblebee and I would climb slowly through the Alps, then fly back down the descents. The most unsettling part wasn't the terrain but the lack of protective gear: little more than a helmet. One of the most nerve-racking experiences was plunging into long, dark tunnels at speed: the sudden temperature drop, the disorienting transition, and those few seconds of total darkness before my eyes adjusted.</p>
+        <p>I alternated between a one-person tent and, when it made sense, the occasional hotel splurge. The coldest night I've ever experienced was in St. Moritz; I thought I might lose feeling in my extremities. It's no surprise the town is home to the world's only natural-ice bobsleigh and skeleton track.</p>
+        <p>From there I swept through Italy, where the Vespa blended in more naturally. People often smiled as I passed, and occasionally someone would wave me down for a photo. Those moments usually turned into brief exchanges in whatever shared language we could manage, often a mix of English and Spanish that eventually collapsed into my broken Italian.</p>
+        <p>Lake Iseo stood out as the most beautiful of the Italian lakes, especially compared to Lecco, which was overflowing with tourists and had gelato queues stretching over 100 metres. Aosta was similarly busy, particularly its medieval main street.</p>
+        <p>The road back home was straight and dull.</p>
+      </div>
+    </div>
+      <figure style="position:sticky; top:90px">
+        <img decoding="async" src="img/vespa-route.jpg" alt="Jordi on a yellow Vespa at Cervinia with the Matterhorn behind, with a map of the route from Lausanne to Geneva" width="904" height="1200" loading="lazy">
+        <figcaption><b>Bumblebee</b> at Cervinia, under the Matterhorn, with the route from Lausanne to Geneva.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="head">
+        <h2>One push: Mont Blanc</h2>
+        <p class="muted">A summit attempt on western Europe's highest peak, 4,806 m.</p>
+      </div>
+      <div class="quad">
+        <figure>
+          <img decoding="async" src="img/chamonix-above.jpg" alt="Jordi on a snow slope high above the Chamonix valley" width="645" height="900" loading="lazy">
+          <figcaption><b>Chamonix as seen from above:</b> making our way down after an unsuccessful summit attempt.</figcaption>
+        </figure>
+        <figure>
+          <img decoding="async" src="img/grands-mulets.jpg" alt="The Refuge des Grands Mulets perched on a rocky spire above a glacier" width="646" height="900" loading="lazy">
+          <figcaption><b>Refuge des Grands Mulets (3,057 m):</b> had some time to spare so went up for a beer.</figcaption>
+        </figure>
+        <figure>
+          <img decoding="async" src="img/jonction.jpg" alt="Jordi holding touring skis among glacier seracs" width="721" height="900" loading="lazy">
+          <figcaption><b>Jonction, Mont Blanc:</b> as the glacier is effectively “alive”, flowing much like a river, no crossing on any two days is the same.</figcaption>
+        </figure>
+        <figure>
+          <img decoding="async" src="img/petit-combin.jpg" alt="Two ski mountaineers climbing a snowy ridge with skis on their packs" width="630" height="900" loading="lazy">
+          <figcaption><b>Petit Combin (3,668 m):</b> training run the week prior.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="head"><h2>Miscellaneous</h2></div>
+    </div>
+    <div class="reel" aria-label="Miscellaneous trips">
+      <div class="reel-track">
+        <figure>
+          <img decoding="async" src="img/camino.jpg" alt="Jordi with a rucksack in front of a blue church door in Spain" width="800" height="800" loading="lazy">
+          <figcaption><b>El Camino:</b> a long walk through Spain.</figcaption>
+        </figure>
+        <figure>
+          <img decoding="async" src="img/via-alpina.jpg" alt="Jordi with a large rucksack beside a mountain stream" width="469" height="469" loading="lazy">
+          <figcaption><b>Via Alpina:</b> hiking across the Alps.</figcaption>
+        </figure>
+        <figure>
+          <img decoding="async" src="img/thailand-train.jpg" alt="Jordi leaning out of a train window in Thailand" width="800" height="800" loading="lazy">
+          <figcaption><b>Thailand by train:</b> Bridge over the River Kwai was a personal favourite – there is a terrific movie too.</figcaption>
+        </figure>
+        <figure>
+          <img decoding="async" src="img/diving.jpg" alt="Scuba diver silhouetted against sunlight streaming through the water" width="1600" height="900" loading="lazy" style="object-position: 40% 60%">
+          <figcaption><b>Diving:</b> Philippines.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= GAME ================= -->
+<div id="game" data-view hidden>
+  <section class="block">
+    <div class="wrap" style="display:grid; gap:18px">
+      <span class="label">Teaching game · rice, water and floods</span>
+      <h1>Oryza Basin</h1>
+      <p class="lead muted">Run agriculture and disaster planning for a Philippine river basin for four years. Set farming practices, spend a budget on the landscape, then see how El Niño, La Niña and typhoons play out against business-as-usual.</p>
+      <div class="game-facts"><span>8 seasons</span><span>6 targets</span><span>ORYZA-style yield emulator</span><span>IPCC 2019 methane factors</span><span>Generated or Pampanga basin</span></div>
+      <div class="actions">
+        <a class="btn primary" href="game/" target="_blank" rel="noopener">Play full screen</a>
+        <a class="btn ghost" href="#game-play">Play here</a>
+      </div>
+    </div>
+  </section>
+  <section class="block" id="game-play" style="padding-top:0; border-top:0">
+    <div class="wrap wide">
+      <div class="game-frame"><iframe id="game-iframe" title="Oryza Basin game" data-src="game/" loading="lazy" allow="fullscreen"></iframe></div>
+      <p class="muted" style="font-size:.9rem; margin-top:10px">Best on a laptop or tablet. A teaching emulator: it shows the direction and rough size of real responses, not a calibrated forecast. Model notes are in the game's Science tab.</p>
+    </div>
+  </section>
+</div>
+
+<!-- ================= CONTACT ================= -->
+<div id="contact" data-view hidden>
+  <section class="block">
+    <div class="wrap" style="display:grid; gap:18px">
+      <span class="label">Contact</span>
+      <h1>Get in touch</h1>
+      <p class="lead muted">For research collaboration, consulting, speaking or tutoring enquiries, please get in touch by email.</p>
+    </div>
+  </section>
+  <section class="block">
+    <div class="wrap contact-grid">
+      <div class="contact-item">
+        <span class="label">Email</span>
+        <div class="email-row">
+          <span class="email" id="email">jjab2@cantab.ac.uk</span>
+          <button class="copy" id="copy-email" type="button">Copy</button>
+        </div>
+        <p class="muted">Research, consulting, media and general enquiries.</p>
+      </div>
+      <div class="contact-item">
+        <span class="label">Tutoring</span>
+        <h3>Book a lesson slot</h3>
+        <p class="muted">Reserve a session directly through the online booking calendar.</p>
+        <div class="actions"><a class="btn primary" href="https://calendar.app.google/nKK1fMY5eXn7HViU8" target="_blank" rel="noopener">Open booking calendar</a></div>
+      </div>
+      <div class="contact-item">
+        <span class="label">Research</span>
+        <h3>Publications</h3>
+        <p class="muted">Papers and citations are listed on Google Scholar.</p>
+        <div class="actions"><a class="btn ghost" href="https://scholar.google.com/citations?user=2eecasgAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <span>© 2026 Jordi Buckley-Paules</span>
+    <span>jjab2@cantab.ac.uk · <a href="https://scholar.google.com/citations?user=2eecasgAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a> · <a href="#game">Oryza Basin game</a> · <a href="#contact">Contact</a></span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var views = Array.prototype.slice.call(document.querySelectorAll('[data-view]'));
+  var links = document.querySelectorAll('nav.main a');
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  var TITLES = {
+    home: 'Jordi Buckley-Paules · Hydrology and water for rice',
+    rice: 'Water for rice · Jordi Buckley-Paules',
+    consulting: 'Consulting · Jordi Buckley-Paules',
+    teaching: 'Teaching and tutoring · Jordi Buckley-Paules',
+    adventures: 'Adventures · Jordi Buckley-Paules',
+    game: 'Oryza Basin game · Jordi Buckley-Paules',
+    contact: 'Contact · Jordi Buckley-Paules'
+  };
+
+  // Mobile menu
+  var nav = document.getElementById('site-nav'), menuBtn = document.getElementById('menu-btn');
+  menuBtn.addEventListener('click', function () {
+    var open = nav.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && nav.classList.contains('open')) { nav.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); menuBtn.focus(); }
+  });
+
+  // Light / dark toggle (remembered per browser; the game page reads the same key)
+  var root = document.documentElement, themeBtn = document.getElementById('theme-btn');
+  function isDark() {
+    var t = root.getAttribute('data-theme');
+    if (t) return t === 'dark';
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  themeBtn.addEventListener('click', function () {
+    var next = isDark() ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('jbp.theme', next); } catch (e) {}
+  });
+
+  function route() {
+    var id = (location.hash || '#home').slice(1);
+    var target = document.getElementById(id);
+    var view = target ? target.closest('[data-view]') : null;
+    if (!view) { view = views[0]; target = view; }
+    views.forEach(function (v) { v.hidden = v !== view; });
+    links.forEach(function (a) {
+      if (a.getAttribute('href') === '#' + view.id) a.setAttribute('aria-current', 'page');
+      else a.removeAttribute('aria-current');
+    });
+    // run after the browser's own jump to the #anchor, so a view always opens at its top
+    var jump = function () { if (target === view) window.scrollTo(0, 0); else target.scrollIntoView(); };
+    jump(); requestAnimationFrame(jump); setTimeout(jump, 60);
+    document.title = TITLES[view.id] || TITLES.home;
+    if (view.id === 'home') draw();
+    if (view.id === 'game') {
+      var f = document.getElementById('game-iframe');
+      if (f && !f.getAttribute('src')) f.setAttribute('src', f.getAttribute('data-src'));
+    }
+    nav.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false');
+  }
+  window.addEventListener('hashchange', route);
+  window.addEventListener('load', function () { setTimeout(route, 0); });
+
+  // Copy email
+  var btn = document.getElementById('copy-email');
+  btn.addEventListener('click', function () {
+    var text = document.getElementById('email').textContent;
+    function selectIt() {
+      var r = document.createRange(); r.selectNodeContents(document.getElementById('email'));
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      btn.textContent = 'Selected';
+    }
+    try {
+      navigator.clipboard.writeText(text).then(function () { btn.textContent = 'Copied'; }, selectIt);
+    } catch (e) { selectIt(); }
+    setTimeout(function () { btn.textContent = 'Copy'; }, 2000);
+  });
+
+  // Terraced contour lines behind the hero
+  var canvas = document.getElementById('terraces');
+  function draw() {
+    if (!canvas || !canvas.offsetWidth) return;
+    var dpr = window.devicePixelRatio || 1;
+    var w = canvas.offsetWidth, h = canvas.offsetHeight;
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    var ctx = canvas.getContext('2d');
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, w, h);
+    var css = getComputedStyle(document.documentElement);
+    var green = css.getPropertyValue('--accent').trim();
+    var blue = css.getPropertyValue('--water').trim();
+    var spacing = 14, n = Math.ceil(h / spacing) + 12;
+    for (var i = -6; i < n; i++) {
+      var base = i * spacing;
+      var k = 1 + i * 0.045;
+      ctx.beginPath();
+      for (var x = 0; x <= w; x += 4) {
+        var y = base
+          + k * (16 * Math.sin(x / 150 + 0.6) + 9 * Math.sin(x / 61 + 1.7))
+          - (x / w) * 70 * Math.sin(i / 9);
+        if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      }
+      var major = i % 5 === 0;
+      ctx.strokeStyle = major ? blue : green;
+      ctx.globalAlpha = major ? 0.28 : 0.12;
+      ctx.lineWidth = major ? 1.2 : 0.8;
+      ctx.stroke();
+    }
+    ctx.globalAlpha = 1;
+  }
+  var t;
+  window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(draw, 120); });
+  if (window.matchMedia) {
+    var mq = window.matchMedia('(prefers-color-scheme: dark)');
+    if (mq.addEventListener) mq.addEventListener('change', draw);
+  }
+  new MutationObserver(draw).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+  // Photo reel: repeat the photos until one half of the track is wider than the screen
+  var track = document.querySelector('.reel-track');
+  if (track) {
+    var originals = Array.prototype.slice.call(track.children);
+    var reps = Math.max(2, Math.ceil(2400 / (originals.length * 340)));
+    for (var r = 1; r < reps * 2; r++) {
+      originals.forEach(function (f) {
+        var c = f.cloneNode(true);
+        c.setAttribute('aria-hidden', 'true');
+        c.querySelector('img').loading = 'eager';
+        track.appendChild(c);
+      });
+    }
+    track.style.setProperty('--reel-dur', (originals.length * reps * 16) + 's');
+    track.classList.add('moving');
+  }
+
+  // Organisations ticker: repeat the list so it loops seamlessly
+  var tt = document.querySelector('.ticker-track');
+  if (tt) {
+    var items = Array.prototype.slice.call(tt.children);
+    for (var k = 0; k < 3; k++) {
+      items.forEach(function (li) { var c = li.cloneNode(true); c.setAttribute('aria-hidden', 'true'); tt.appendChild(c); });
+    }
+    tt.style.setProperty('--tick-dur', (items.length * 8) + 's');
+    tt.classList.add('moving');
+  }
+
+  // Tooltips for charts and map
+  var tip = document.createElement('div'); tip.id = 'vz-tip'; tip.hidden = true; document.body.appendChild(tip);
+  function showTip(el, x, y) {
+    tip.textContent = el.getAttribute('data-tip'); tip.hidden = false;
+    var w = tip.offsetWidth, h = tip.offsetHeight;
+    var left = Math.min(window.innerWidth - w - 8, Math.max(8, x + 14));
+    var top = y - h - 12 < 8 ? y + 16 : y - h - 12;
+    tip.style.left = left + 'px'; tip.style.top = top + 'px';
+  }
+  document.addEventListener('pointermove', function (e) {
+    var el = e.target.closest && e.target.closest('[data-tip]');
+    if (el) showTip(el, e.clientX, e.clientY); else tip.hidden = true;
+  });
+  document.addEventListener('focusin', function (e) {
+    var el = e.target.closest && e.target.closest('[data-tip]');
+    if (el) { var r = el.getBoundingClientRect(); showTip(el, r.left + r.width / 2, r.top); }
+  });
+  document.addEventListener('focusout', function () { tip.hidden = true; });
+  window.addEventListener('scroll', function () { tip.hidden = true; }, { passive: true });
+
+  route();
+})();
+</script>
+
+
+</body>
+</html>
