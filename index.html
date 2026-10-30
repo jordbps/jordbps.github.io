@@ -271,6 +271,7 @@ figcaption b { color: var(--ink); font-weight: 600; }
 .panel p { color: var(--muted); font-size: .95rem; max-width: 46ch; }
 .status { justify-self: start; font-family: var(--mono); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase;
   color: var(--water); background: var(--bg); border: 1px solid var(--line); border-radius: 4px; padding: 3px 7px; margin-bottom: 4px; }
+.status.example { color: var(--s2); border-color: color-mix(in srgb, var(--s2) 45%, var(--line)); }
 .more { font-weight: 600; font-size: .93rem; text-decoration: none; margin-top: 4px; }
 .more:hover { text-decoration: underline; }
 .clients { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
@@ -431,8 +432,6 @@ footer.site a { color: var(--muted); }
   :root:not([data-theme="light"]) .theme-btn .moon { display: block; }
 }
 .menu-btn { display: none; }
-nav.main a.game-link::after { content: "new"; font-family: var(--mono); font-size: .62rem; letter-spacing: .06em; text-transform: uppercase;
-  color: var(--on-accent); background: var(--water); border-radius: 3px; padding: 1px 4px; margin-left: 6px; vertical-align: 2px; }
 .game-frame { position: relative; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--surface);
   height: min(86vh, 900px); min-height: 560px; }
 .game-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
@@ -465,7 +464,7 @@ nav.main a.game-link::after { content: "new"; font-family: var(--mono); font-siz
       <a href="#consulting">Consulting</a>
       <a href="#teaching">Teaching</a>
       <a href="#adventures">Adventures</a>
-      <a href="#game" class="game-link">Game</a>
+      <a href="#game">Game</a>
       <a href="#contact">Contact</a>
     </nav>
     <div class="hdr-tools">
@@ -498,7 +497,7 @@ nav.main a.game-link::after { content: "new"; font-family: var(--mono); font-siz
       </div>
       </div>
       <figure class="hero-photo">
-        <img decoding="async" src="img/imperial-graduation.jpg" alt="Jordi in PhD graduation robes outside Imperial College London" width="880" height="1100" fetchpriority="high">
+        <img decoding="async" src="img/imperial-graduation.webp" alt="Jordi in PhD graduation robes outside Imperial College London" width="880" height="1100" fetchpriority="high">
         <figcaption>South Kensington, London (2026)</figcaption>
       </figure>
     </div>
@@ -542,7 +541,7 @@ nav.main a.game-link::after { content: "new"; font-family: var(--mono); font-siz
           <li><span class="yr">BSc</span><div><strong>Geography, First Class</strong><span>Durham University</span></div></li>
         </ol>
         <figure class="tall">
-          <img decoding="async" src="img/cambridge-senate-house.jpg" alt="Jordi in academic gown outside Senate House, Cambridge" width="840" height="1000" loading="lazy">
+          <img decoding="async" src="img/cambridge-senate-house.webp" alt="Jordi in academic gown outside Senate House, Cambridge" width="840" height="1000" loading="lazy">
           <figcaption>Senate House, Cambridge (2022)</figcaption>
         </figure>
       </div>
@@ -618,10 +617,10 @@ nav.main a.game-link::after { content: "new"; font-family: var(--mono); font-siz
         <h2>Overview</h2>
         <p>Rice is one of the world's most water-intensive crops. As a postdoctoral researcher at the International Rice Research Institute (IRRI), part of CGIAR, I work on water management and hydrology in rice systems, with a focus on optimising irrigation and water use.</p>
         <p>The work combines process-based hydrological modelling with AI methods to support decisions on when and how much to irrigate. Water management in paddies is closely linked to methane emissions, and fieldwork includes emissions measurement, reporting and verification (MRV).</p>
-        <p>This page will bring together maps, dashboards and outputs from that work as they become available.</p>
+        <p>Below are a map of where rice is grown across Southeast Asia and a few examples of the kinds of decision tools this work builds.</p>
       </div>
       <figure class="sq">
-        <img decoding="async" src="img/rice-selfie.jpg" alt="Jordi and Dr Jean-Martial in a rice field" width="1000" height="984" loading="lazy">
+        <img decoding="async" src="img/rice-selfie.webp" alt="Jordi and Dr Jean-Martial in a rice field" width="1000" height="984" loading="lazy">
         <figcaption>Methane emissions MRV research with my friend Dr Jean-Martial.</figcaption>
       </figure>
     </div>
@@ -631,7 +630,7 @@ nav.main a.game-link::after { content: "new"; font-family: var(--mono); font-siz
     <div class="wrap">
       <div class="head">
         <h2>Maps and dashboards</h2>
-        <p class="muted">Outputs from ongoing water-management research. Dashboard panels show illustrative example data until project results are published.</p>
+        <p class="muted">The map uses published FAOSTAT data. The three panels after it use made-up example numbers to show how the tools work: they are not project results.</p>
       </div>
       <div class="vpanels">
         <!-- SLOT rice-map -->
@@ -643,19 +642,19 @@ nav.main a.game-link::after { content: "new"; font-family: var(--mono); font-siz
         </article>
         <!-- SLOT rice-dashboard -->
         <article class="vpanel span2">
-          <header><span class="status">Illustrative example</span><h3>Irrigation dashboard</h3>
+          <header><span class="status example">Example data · not results</span><h3>Irrigation dashboard</h3>
           <p>Field water level under alternate wetting and drying (AWD), with irrigation triggered when water drops 15 cm below the soil surface.</p></header>
           <div class="vz-wrap scroll"><div class="vz-kpis"><div><b>27%</b><span>water saved vs continuous flooding</span></div><div><b>5</b><span>irrigation events (vs 15)</span></div><div><b>2 days</b><span>until next irrigation</span></div></div><svg class="vz" viewBox="0 0 640 260" role="img" aria-label="Example field water level under alternate wetting and drying"><g class="vz-grid"><line x1="52" x2="624" y1="47.3" y2="47.3"/><line x1="52" x2="624" y1="76.1" y2="76.1"/><line x1="52" x2="624" y1="104.8" y2="104.8"/><line x1="52" x2="624" y1="133.6" y2="133.6"/><line x1="52" x2="624" y1="162.4" y2="162.4"/><line x1="52" x2="624" y1="191.2" y2="191.2"/><line x1="52" x2="624" y1="220" y2="220"/></g><g class="vz-axis"><text x="44" y="51.3" text-anchor="end">5</text><text x="44" y="80.1" text-anchor="end">0</text><text x="44" y="108.8" text-anchor="end">-5</text><text x="44" y="137.6" text-anchor="end">-10</text><text x="44" y="166.4" text-anchor="end">-15</text><text x="44" y="195.2" text-anchor="end">-20</text><text x="44" y="224" text-anchor="end">-25</text><text x="52" y="238" text-anchor="middle">0</text><text x="133.7" y="238" text-anchor="middle">15</text><text x="215.4" y="238" text-anchor="middle">30</text><text x="297.1" y="238" text-anchor="middle">45</text><text x="378.9" y="238" text-anchor="middle">60</text><text x="460.6" y="238" text-anchor="middle">75</text><text x="542.3" y="238" text-anchor="middle">90</text><text x="624" y="238" text-anchor="middle">105</text><text x="338" y="256" text-anchor="middle" class="t">Days after transplanting</text><text x="4" y="18" text-anchor="start" class="t">Field water level (cm)</text></g><rect class="vz-band" x="433.3" y="30" width="81.7" height="190"/><text class="vz-note" x="474.2" y="44" text-anchor="middle">Flowering</text><line class="vz-ref" x1="52" x2="624" y1="76.1" y2="76.1"/><line class="vz-thresh" x1="52" x2="624" y1="162.4" y2="162.4"/><text class="vz-note" x="620" y="156.4" text-anchor="end">Re-irrigate at 15 cm below surface</text><path class="ln s1" d="M52 47.3L57.4 47.3L62.9 47.3L68.3 47.3L73.8 47.3L79.2 47.3L84.7 47.3L90.1 47.3L95.6 47.3L101 47.3L106.5 47.3L111.9 47.3L117.4 47.3L122.8 47.3L128.3 47.3L133.7 56.5L139.2 64.8L144.6 73.2L150.1 82.4L155.5 90.7L161 99.1L166.4 108.3L171.8 116.7L177.3 125L182.7 134.2L188.2 142.6L193.6 150.9L199.1 160.1L204.5 47.3L210 55.6L215.4 64.8L220.9 73.2L226.3 81.5L231.8 90.7L237.2 99.1L242.7 107.4L248.1 116.7L253.6 125L259 133.3L264.5 142.6L269.9 150.9L275.4 159.3L280.8 47.3L286.2 55.6L291.7 64L297.1 73.2L302.6 81.5L308 89.9L313.5 99.1L318.9 107.4L324.4 115.8L329.8 125L335.3 133.3L340.7 141.7L346.2 150.9L351.6 159.3L357.1 47.3L362.5 56.5L368 64.8L373.4 73.2L378.9 82.4L384.3 90.7L389.8 99.1L395.2 108.3L400.6 116.7L406.1 125L411.5 134.2L417 142.6L422.4 150.9L427.9 160.1L433.3 47.3L438.8 47.3L444.2 47.3L449.7 47.3L455.1 47.3L460.6 47.3L466 47.3L471.5 47.3L476.9 47.3L482.4 47.3L487.8 47.3L493.3 47.3L498.7 47.3L504.2 47.3L509.6 47.3L515 55.6L520.5 64L525.9 73.2L531.4 81.5L536.8 89.9L542.3 99.1L547.7 107.4L553.2 115.8L558.6 125L564.1 133.3L569.5 142.6L575 151.8L580.4 161L585.9 170.2L591.3 179.4L596.8 188.6L602.2 197.8L607.7 207L613.1 216.3L618.6 220L624 220"/><g data-tip="Day 28: irrigation event (example)" tabindex="0"><circle class="hit" cx="204.5" cy="47.3" r="10"/><circle class="pt s1" cx="204.5" cy="47.3" r="4.5"/></g><g data-tip="Day 42: irrigation event (example)" tabindex="0"><circle class="hit" cx="280.8" cy="47.3" r="10"/><circle class="pt s1" cx="280.8" cy="47.3" r="4.5"/></g><g data-tip="Day 56: irrigation event (example)" tabindex="0"><circle class="hit" cx="357.1" cy="47.3" r="10"/><circle class="pt s1" cx="357.1" cy="47.3" r="4.5"/></g></svg></div>
         </article>
         <!-- SLOT rice-ai -->
         <article class="vpanel">
-          <header><span class="status">Illustrative example</span><h3>AI models</h3>
+          <header><span class="status example">Example data · not results</span><h3>AI models</h3>
           <p>Machine learning combined with process-based models to turn field and satellite data into irrigation advice.</p></header>
           <div class="vz-wrap"><svg class="vz" viewBox="0 0 420 330" role="img" aria-label="Schematic of an AI irrigation model combining data, machine learning and a process-based model"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="ahd"/></marker></defs><g class="node in"><rect x="8" y="14" width="132" height="38" rx="8"/><text x="74.0" y="37.0" text-anchor="middle" class="nt">Weather forecast</text></g><path class="edge" d="M140 33 C 165 33, 165 118, 186 118" marker-end="url(#ah)"/><g class="node in"><rect x="8" y="64" width="132" height="38" rx="8"/><text x="74.0" y="87.0" text-anchor="middle" class="nt">Soil moisture sensors</text></g><path class="edge" d="M140 83 C 165 83, 165 118, 186 118" marker-end="url(#ah)"/><g class="node in"><rect x="8" y="114" width="132" height="38" rx="8"/><text x="74.0" y="137.0" text-anchor="middle" class="nt">Satellite imagery</text></g><path class="edge" d="M140 133 C 165 133, 165 118, 186 118" marker-end="url(#ah)"/><g class="node in"><rect x="8" y="164" width="132" height="38" rx="8"/><text x="74.0" y="187.0" text-anchor="middle" class="nt">Field water level</text></g><path class="edge" d="M140 183 C 165 183, 165 118, 186 118" marker-end="url(#ah)"/><g class="node core"><rect x="188" y="84" width="130" height="68" rx="8"/><text x="253.0" y="114.0" text-anchor="middle" class="nt">Machine learning</text><text x="253.0" y="131.0" text-anchor="middle" class="ns">forecast & optimise</text></g><g class="node core2"><rect x="188" y="196" width="130" height="56" rx="8"/><text x="253.0" y="220.0" text-anchor="middle" class="nt">Process-based</text><text x="253.0" y="237.0" text-anchor="middle" class="ns">crop-water model</text></g><path class="edge" d="M240 152 V194" marker-end="url(#ah)"/><path class="edge" d="M266 194 V154" marker-end="url(#ah)"/><text class="ns" x="203" y="178">physics</text><text class="ns" x="270" y="178">learning</text><path class="edge" d="M318 118 H 410" marker-end="url(#ah)"/><text class="nt" x="414" y="104" text-anchor="end">Advice</text></svg><ul class="vz-outs"><li><b>When</b> to irrigate</li><li><b>How much</b> water to apply</li><li><b>Trade-offs</b> between water, yield and methane</li></ul></div>
         </article>
         <!-- SLOT rice-methane -->
         <article class="vpanel full">
-          <header><span class="status">Illustrative example</span><h3>Water and methane</h3>
+          <header><span class="status example">Example data · not results</span><h3>Water and methane</h3>
           <p>Each drying event interrupts methane production in the flooded soil, lowering seasonal emissions compared with continuous flooding.</p></header>
           <div class="vz-wrap scroll"><div class="vz-legend"><span><i class="ln-sw s2"></i>Continuous flooding</span><span><i class="ln-sw s1"></i>Alternate wetting and drying (AWD)</span></div><svg class="vz" viewBox="0 0 1000 250" role="img" aria-label="Example methane flux under continuous flooding and alternate wetting and drying"><g class="vz-grid"><line x1="52" x2="880" y1="210" y2="210"/><line x1="52" x2="880" y1="165" y2="165"/><line x1="52" x2="880" y1="120" y2="120"/><line x1="52" x2="880" y1="75" y2="75"/><line x1="52" x2="880" y1="30" y2="30"/></g><g class="vz-axis"><text x="44" y="214" text-anchor="end">0</text><text x="44" y="169" text-anchor="end">5</text><text x="44" y="124" text-anchor="end">10</text><text x="44" y="79" text-anchor="end">15</text><text x="44" y="34" text-anchor="end">20</text><text x="52" y="228" text-anchor="middle">0</text><text x="217.6" y="228" text-anchor="middle">20</text><text x="383.2" y="228" text-anchor="middle">40</text><text x="548.8" y="228" text-anchor="middle">60</text><text x="714.4" y="228" text-anchor="middle">80</text><text x="880" y="228" text-anchor="middle">100</text><text x="466" y="246" text-anchor="middle" class="t">Days after transplanting</text><text x="4" y="18" text-anchor="start" class="t">CH₄ flux (mg m⁻² h⁻¹)</text></g><rect class="vz-band" x="250.7" y="30" width="49.7" height="180"/><rect class="vz-band" x="350.1" y="30" width="49.7" height="180"/><rect class="vz-band" x="449.4" y="30" width="49.7" height="180"/><rect class="vz-band" x="548.8" y="30" width="49.7" height="180"/><rect class="vz-band" x="813.8" y="30" width="49.7" height="180"/><text class="vz-note" x="275.6" y="44" text-anchor="middle">Drying events</text><path class="ln s2" d="M52 191.8L60.3 191.7L68.6 191.6L76.8 191.5L85.1 191.4L93.4 191.3L101.7 191.1L110 190.9L118.2 190.7L126.5 190.4L134.8 190.1L143.1 189.7L151.4 189.2L159.6 188.7L167.9 188.1L176.2 187.4L184.5 186.6L192.8 185.6L201 184.6L209.3 183.3L217.6 182L225.9 180.4L234.2 178.7L242.4 176.8L250.7 174.7L259 172.4L267.3 169.8L275.6 167.1L283.8 164.1L292.1 160.8L300.4 157.4L308.7 153.7L317 149.8L325.2 145.6L333.5 141.3L341.8 136.9L350.1 132.2L358.4 127.5L366.6 122.6L374.9 117.8L383.2 112.8L391.5 108L399.8 103.1L408 98.4L416.3 93.9L424.6 89.5L432.9 85.4L441.2 81.6L449.4 78.1L457.7 75L466 72.3L474.3 70.1L482.6 68.3L490.8 67L499.1 66.3L507.4 66L515.7 66.3L524 67L532.2 68.3L540.5 70.1L548.8 72.3L557.1 74.9L565.4 78L573.6 81.3L581.9 85L590.2 88.9L598.5 92.9L606.8 97L615 101.1L623.3 105.2L631.6 109.1L639.9 112.7L648.2 116L656.4 119L664.7 121.5L673 123.6L681.3 125.3L689.6 126.7L697.8 127.7L706.1 128.6L714.4 129.3L722.7 130.1L731 131.2L739.2 132.5L747.5 134.2L755.8 136.4L764.1 139.1L772.4 142.2L780.6 145.8L788.9 149.8L797.2 153.9L805.5 158.2L813.8 162.5L822 166.6L830.3 170.5L838.6 174.1L846.9 177.4L855.2 180.2L863.4 182.6L871.7 184.6L880 186.3"/><path class="ln s1" d="M52 196.9L60.3 196.8L68.6 196.8L76.8 196.7L85.1 196.6L93.4 196.5L101.7 196.4L110 196.3L118.2 196.1L126.5 195.9L134.8 195.7L143.1 195.4L151.4 195.1L159.6 194.7L167.9 194.2L176.2 193.7L184.5 193.1L192.8 192.4L201 191.7L209.3 190.8L217.6 189.9L225.9 189.1L234.2 188.6L242.4 188.9L250.7 190.4L259 193L267.3 195.5L275.6 196.1L283.8 193.4L292.1 187.8L300.4 180.8L308.7 174.2L317 168.9L325.2 165.2L333.5 163.1L341.8 163.5L350.1 166.8L358.4 172.7L366.6 178.5L374.9 180.1L383.2 174.9L391.5 163.9L399.8 150.6L408 139L416.3 130.8L424.6 126.1L432.9 125L441.2 128.3L449.4 136.8L457.7 149L466 160.3L474.3 164.7L482.6 158.9L490.8 145.4L499.1 130.2L507.4 118.4L515.7 111.9L524 110.4L532.2 113.3L540.5 121L548.8 133.5L557.1 148.9L565.4 162.4L573.6 168.3L581.9 164.9L590.2 155.2L598.5 144.9L606.8 138L615 135.4L623.3 135.8L631.6 137.7L639.9 140L648.2 142.3L656.4 144.5L664.7 146.3L673 147.8L681.3 149L689.6 150L697.8 150.7L706.1 151.4L714.4 151.9L722.7 152.5L731 153.2L739.2 154.2L747.5 155.4L755.8 157L764.1 158.9L772.4 161.3L780.6 164L788.9 167.3L797.2 171.6L805.5 177L813.8 183.6L822 190.4L830.3 195.8L838.6 198.4L846.9 198.2L855.2 196.5L863.4 194.8L871.7 193.8L880 193.7"/><text class="dl" x="888" y="190.3">Continuous flooding</text><text class="dl" x="888" y="209.7">AWD</text><g data-tip="Day 0: flooding 2.0, AWD 1.5 mg m⁻² h⁻¹ (example)"><rect class="hit" x="32" y="30" width="40" height="180"/></g><g data-tip="Day 5: flooding 2.1, AWD 1.5 mg m⁻² h⁻¹ (example)"><rect class="hit" x="73.4" y="30" width="40" height="180"/></g><g data-tip="Day 10: flooding 2.2, AWD 1.6 mg m⁻² h⁻¹ (example)"><rect class="hit" x="114.8" y="30" width="40" height="180"/></g><g data-tip="Day 15: flooding 2.5, AWD 1.8 mg m⁻² h⁻¹ (example)"><rect class="hit" x="156.2" y="30" width="40" height="180"/></g><g data-tip="Day 20: flooding 3.1, AWD 2.2 mg m⁻² h⁻¹ (example)"><rect class="hit" x="197.6" y="30" width="40" height="180"/></g><g data-tip="Day 25: flooding 4.2, AWD 1.9 mg m⁻² h⁻¹ (example)"><rect class="hit" x="239" y="30" width="40" height="180"/></g><g data-tip="Day 30: flooding 5.8, AWD 3.2 mg m⁻² h⁻¹ (example)"><rect class="hit" x="280.4" y="30" width="40" height="180"/></g><g data-tip="Day 35: flooding 8.1, AWD 5.2 mg m⁻² h⁻¹ (example)"><rect class="hit" x="321.8" y="30" width="40" height="180"/></g><g data-tip="Day 40: flooding 10.8, AWD 3.9 mg m⁻² h⁻¹ (example)"><rect class="hit" x="363.2" y="30" width="40" height="180"/></g><g data-tip="Day 45: flooding 13.4, AWD 9.3 mg m⁻² h⁻¹ (example)"><rect class="hit" x="404.6" y="30" width="40" height="180"/></g><g data-tip="Day 50: flooding 15.3, AWD 5.5 mg m⁻² h⁻¹ (example)"><rect class="hit" x="446" y="30" width="40" height="180"/></g><g data-tip="Day 55: flooding 16.0, AWD 10.2 mg m⁻² h⁻¹ (example)"><rect class="hit" x="487.4" y="30" width="40" height="180"/></g><g data-tip="Day 60: flooding 15.3, AWD 8.5 mg m⁻² h⁻¹ (example)"><rect class="hit" x="528.8" y="30" width="40" height="180"/></g><g data-tip="Day 65: flooding 13.5, AWD 6.1 mg m⁻² h⁻¹ (example)"><rect class="hit" x="570.2" y="30" width="40" height="180"/></g><g data-tip="Day 70: flooding 11.2, AWD 8.0 mg m⁻² h⁻¹ (example)"><rect class="hit" x="611.6" y="30" width="40" height="180"/></g><g data-tip="Day 75: flooding 9.6, AWD 6.9 mg m⁻² h⁻¹ (example)"><rect class="hit" x="653" y="30" width="40" height="180"/></g><g data-tip="Day 80: flooding 9.0, AWD 6.5 mg m⁻² h⁻¹ (example)"><rect class="hit" x="694.4" y="30" width="40" height="180"/></g><g data-tip="Day 85: flooding 8.2, AWD 5.9 mg m⁻² h⁻¹ (example)"><rect class="hit" x="735.8" y="30" width="40" height="180"/></g><g data-tip="Day 90: flooding 6.2, AWD 4.3 mg m⁻² h⁻¹ (example)"><rect class="hit" x="777.2" y="30" width="40" height="180"/></g><g data-tip="Day 95: flooding 4.0, AWD 1.3 mg m⁻² h⁻¹ (example)"><rect class="hit" x="818.6" y="30" width="40" height="180"/></g><g data-tip="Day 100: flooding 2.6, AWD 1.8 mg m⁻² h⁻¹ (example)"><rect class="hit" x="860" y="30" width="40" height="180"/></g></svg></div>
         </article>
@@ -667,7 +666,7 @@ nav.main a.game-link::after { content: "new"; font-family: var(--mono); font-siz
     <div class="wrap">
       <div class="head"><h2>In the field</h2></div>
       <figure>
-        <img decoding="async" src="img/rice-fieldwork.jpg" alt="Jordi and a colleague inspecting plants in an experimental rice plot" width="1280" height="991" loading="lazy" style="aspect-ratio: 16 / 9">
+        <img decoding="async" src="img/rice-fieldwork.webp" alt="Jordi and a colleague inspecting plants in an experimental rice plot" width="1280" height="991" loading="lazy" style="aspect-ratio: 16 / 9">
         <figcaption><b>Fieldwork Friday:</b> exploring experimental rice paddies and methane emissions MRV research.</figcaption>
       </figure>
     </div>
@@ -719,7 +718,7 @@ nav.main a.game-link::after { content: "new"; font-family: var(--mono); font-siz
       <h1>Teaching and education</h1>
       <p class="lead muted">Associate Professor at the University of the Philippines Los Baños (UPLB), with a background in secondary teaching, education research, one-to-one tutoring and public science engagement.</p>
       <div class="actions">
-        <a class="btn primary" href="#contact">Book a lesson</a>
+        <a class="btn primary" href="mailto:jjab2@cantab.ac.uk?subject=Tutoring%20enquiry">Ask about tutoring</a>
         <a class="btn ghost" href="#tutoring">Subjects I tutor</a>
       </div>
     </div>
@@ -735,19 +734,19 @@ nav.main a.game-link::after { content: "new"; font-family: var(--mono); font-siz
       </div>
       <div class="pair">
         <figure class="tall">
-          <img decoding="async" src="img/clc-portrait.jpg" alt="Jordi standing in the gardens of Cheltenham Ladies' College" width="484" height="605" loading="lazy">
+          <img decoding="async" src="img/clc-portrait.webp" alt="Jordi standing in the gardens of Cheltenham Ladies' College" width="484" height="605" loading="lazy">
           <figcaption>Cheltenham Ladies' College</figcaption>
         </figure>
         <figure class="tall">
-          <img decoding="async" src="img/clc-celebration.jpg" alt="Jordi with three colleagues at an evening celebration in front of the college" width="734" height="920" loading="lazy">
+          <img decoding="async" src="img/clc-celebration.webp" alt="Jordi with three colleagues at an evening celebration in front of the college" width="734" height="920" loading="lazy">
           <figcaption>End-of-year celebrations with colleagues</figcaption>
         </figure>
       </div>
     </div>
     <div class="wrap" style="margin-top:32px">
       <div class="wide-pair">
-        <figure><img decoding="async" src="img/teaching-outdoor-1.jpg" alt="Students crouched on the grass running a hands-on experiment" width="1400" height="549" loading="lazy"></figure>
-        <figure><img decoding="async" src="img/teaching-outdoor-2.jpg" alt="Jordi and three students sitting on the grass during an outdoor lesson" width="1400" height="546" loading="lazy"></figure>
+        <figure><img decoding="async" src="img/teaching-outdoor-1.webp" alt="Students crouched on the grass running a hands-on experiment" width="1400" height="549" loading="lazy"></figure>
+        <figure><img decoding="async" src="img/teaching-outdoor-2.webp" alt="Jordi and three students sitting on the grass during an outdoor lesson" width="1400" height="546" loading="lazy"></figure>
       </div>
       <p class="pair-cap">Taking geography outside the classroom: hands-on experiments with students.</p>
     </div>
@@ -760,19 +759,19 @@ nav.main a.game-link::after { content: "new"; font-family: var(--mono); font-siz
       </div>
       <div class="quad4">
         <figure>
-          <img decoding="async" src="img/teacher-training.jpg" alt="Jordi in a suit next to an office printer" width="1000" height="1000" loading="lazy">
+          <img decoding="async" src="img/teacher-training.webp" alt="Jordi in a suit next to an office printer" width="1000" height="1000" loading="lazy">
           <figcaption><b>First week on teacher training (2019).</b> Back then learning how to use a printer was of the essence!</figcaption>
         </figure>
         <figure>
-          <img decoding="async" src="img/pint-of-science.jpg" alt="Jordi and a colleague with a Pint of Science banner" width="562" height="562" loading="lazy">
+          <img decoding="async" src="img/pint-of-science.webp" alt="Jordi and a colleague with a Pint of Science banner" width="562" height="562" loading="lazy">
           <figcaption><b>Organising Pint of Science London</b> (science education and outreach)</figcaption>
         </figure>
         <figure>
-          <img decoding="async" src="img/oxford-maths.jpg" alt="Jordi at the Mathematical Institute, University of Oxford" width="531" height="531" loading="lazy">
+          <img decoding="async" src="img/oxford-maths.webp" alt="Jordi at the Mathematical Institute, University of Oxford" width="531" height="531" loading="lazy">
           <figcaption><b>Land Surface Modelling,</b> Oxford</figcaption>
         </figure>
         <figure>
-          <img decoding="async" src="img/air-quality-sensor.jpg" alt="Jordi holding a prototype air quality sensor" width="1000" height="1000" loading="lazy">
+          <img decoding="async" src="img/air-quality-sensor.webp" alt="Jordi holding a prototype air quality sensor" width="1000" height="1000" loading="lazy">
           <figcaption><b>Building prototype, low-cost air quality sensors</b> (PM2.5) for education with KCL</figcaption>
         </figure>
       </div>
@@ -786,7 +785,7 @@ nav.main a.game-link::after { content: "new"; font-family: var(--mono); font-siz
         <p class="muted">When I left CLC I was bombarded with kind notes from students. Whenever I was having a tough time during my PhD, I'd open a folder in my desk drawer and read through them. A few are shared here anonymously.</p>
       </div>
       <figure class="note">
-        <img decoding="async" src="img/farewell-note-2.jpg" alt="Handwritten farewell note from a sixth-form student thanking Mr Buckley-Paules for his passion for Geography and his encouragement with the Geography Society" width="930" height="661" loading="lazy">
+        <img decoding="async" src="img/farewell-note-2.webp" alt="Handwritten farewell note from a sixth-form student thanking Mr Buckley-Paules for his passion for Geography and his encouragement with the Geography Society" width="930" height="661" loading="lazy">
         <figcaption>Farewell note from an incredibly bright sixth form student who later went on to achieve straight A*s.</figcaption>
       </figure>
       <div class="quotes">
@@ -820,7 +819,7 @@ nav.main a.game-link::after { content: "new"; font-family: var(--mono); font-siz
         </table>
       </div>
       <div class="actions" style="margin-top:24px">
-        <a class="btn primary" href="#contact">Book a lesson slot</a>
+        <a class="btn primary" href="mailto:jjab2@cantab.ac.uk?subject=Tutoring%20enquiry">Email me about tutoring</a>
       </div>
     </div>
   </section>
@@ -855,7 +854,7 @@ nav.main a.game-link::after { content: "new"; font-family: var(--mono); font-siz
       </div>
     </div>
       <figure style="position:sticky; top:90px">
-        <img decoding="async" src="img/vespa-route.jpg" alt="Jordi on a yellow Vespa at Cervinia with the Matterhorn behind, with a map of the route from Lausanne to Geneva" width="904" height="1200" loading="lazy">
+        <img decoding="async" src="img/vespa-route.webp" alt="Jordi on a yellow Vespa at Cervinia with the Matterhorn behind, with a map of the route from Lausanne to Geneva" width="904" height="1200" loading="lazy">
         <figcaption><b>Bumblebee</b> at Cervinia, under the Matterhorn, with the route from Lausanne to Geneva.</figcaption>
       </figure>
     </div>
@@ -869,19 +868,19 @@ nav.main a.game-link::after { content: "new"; font-family: var(--mono); font-siz
       </div>
       <div class="quad">
         <figure>
-          <img decoding="async" src="img/chamonix-above.jpg" alt="Jordi on a snow slope high above the Chamonix valley" width="645" height="900" loading="lazy">
+          <img decoding="async" src="img/chamonix-above.webp" alt="Jordi on a snow slope high above the Chamonix valley" width="645" height="900" loading="lazy">
           <figcaption><b>Chamonix as seen from above:</b> making our way down after an unsuccessful summit attempt.</figcaption>
         </figure>
         <figure>
-          <img decoding="async" src="img/grands-mulets.jpg" alt="The Refuge des Grands Mulets perched on a rocky spire above a glacier" width="646" height="900" loading="lazy">
+          <img decoding="async" src="img/grands-mulets.webp" alt="The Refuge des Grands Mulets perched on a rocky spire above a glacier" width="646" height="900" loading="lazy">
           <figcaption><b>Refuge des Grands Mulets (3,057 m):</b> had some time to spare so went up for a beer.</figcaption>
         </figure>
         <figure>
-          <img decoding="async" src="img/jonction.jpg" alt="Jordi holding touring skis among glacier seracs" width="721" height="900" loading="lazy">
+          <img decoding="async" src="img/jonction.webp" alt="Jordi holding touring skis among glacier seracs" width="721" height="900" loading="lazy">
           <figcaption><b>Jonction, Mont Blanc:</b> as the glacier is effectively “alive”, flowing much like a river, no crossing on any two days is the same.</figcaption>
         </figure>
         <figure>
-          <img decoding="async" src="img/petit-combin.jpg" alt="Two ski mountaineers climbing a snowy ridge with skis on their packs" width="630" height="900" loading="lazy">
+          <img decoding="async" src="img/petit-combin.webp" alt="Two ski mountaineers climbing a snowy ridge with skis on their packs" width="630" height="900" loading="lazy">
           <figcaption><b>Petit Combin (3,668 m):</b> training run the week prior.</figcaption>
         </figure>
       </div>
@@ -895,19 +894,19 @@ nav.main a.game-link::after { content: "new"; font-family: var(--mono); font-siz
     <div class="reel" aria-label="Miscellaneous trips">
       <div class="reel-track">
         <figure>
-          <img decoding="async" src="img/camino.jpg" alt="Jordi with a rucksack in front of a blue church door in Spain" width="800" height="800" loading="lazy">
+          <img decoding="async" src="img/camino.webp" alt="Jordi with a rucksack in front of a blue church door in Spain" width="800" height="800" loading="lazy">
           <figcaption><b>El Camino:</b> a long walk through Spain.</figcaption>
         </figure>
         <figure>
-          <img decoding="async" src="img/via-alpina.jpg" alt="Jordi with a large rucksack beside a mountain stream" width="469" height="469" loading="lazy">
+          <img decoding="async" src="img/via-alpina.webp" alt="Jordi with a large rucksack beside a mountain stream" width="469" height="469" loading="lazy">
           <figcaption><b>Via Alpina:</b> hiking across the Alps.</figcaption>
         </figure>
         <figure>
-          <img decoding="async" src="img/thailand-train.jpg" alt="Jordi leaning out of a train window in Thailand" width="800" height="800" loading="lazy">
+          <img decoding="async" src="img/thailand-train.webp" alt="Jordi leaning out of a train window in Thailand" width="800" height="800" loading="lazy">
           <figcaption><b>Thailand by train:</b> Bridge over the River Kwai was a personal favourite – there is a terrific movie too.</figcaption>
         </figure>
         <figure>
-          <img decoding="async" src="img/diving.jpg" alt="Scuba diver silhouetted against sunlight streaming through the water" width="1600" height="900" loading="lazy" style="object-position: 40% 60%">
+          <img decoding="async" src="img/diving.webp" alt="Scuba diver silhouetted against sunlight streaming through the water" width="1600" height="900" loading="lazy" style="object-position: 40% 60%">
           <figcaption><b>Diving:</b> Philippines.</figcaption>
         </figure>
       </div>
