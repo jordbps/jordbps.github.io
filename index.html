@@ -198,6 +198,11 @@ section.block + section.block { border-top: 1px solid var(--line); }
 .ledger .meta { font-family: var(--mono); font-size: .85rem; color: var(--water); padding-top: 3px; font-variant-numeric: tabular-nums; }
 .ledger strong { font-weight: 600; }
 .ledger p { color: var(--muted); }
+.pubs-head { margin: 36px 0 12px; }
+.pubs strong a { color: var(--ink); text-decoration: none; }
+.pubs strong a:hover { color: var(--accent); text-decoration: underline; }
+.pubs p { font-size: .95rem; margin-top: 4px; }
+.pubs p b { color: var(--ink); font-weight: 600; }
 
 /* Quotes */
 .quotes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
@@ -552,7 +557,7 @@ footer.site a { color: var(--muted); }
     <div class="wrap">
       <div class="head">
         <h2>Research</h2>
-        <p class="muted">Most of my work is open access. The full list of publications is on Google Scholar, and I presented posters at the European Geosciences Union (EGU) General Assembly in 2024 and 2025.</p>
+        <p class="muted">Most of my work is open access. Selected papers are below and the full list is on Google Scholar. I also presented posters at the European Geosciences Union (EGU) General Assembly in 2024 and 2025.</p>
       </div>
       <div class="areas">
         <div class="area">
@@ -579,6 +584,13 @@ footer.site a { color: var(--muted); }
           <a class="more" href="#consulting">Consulting work →</a>
         </div>
       </div>
+      <h3 class="pubs-head">Selected publications</h3>
+      <ol class="ledger pubs">
+        <li><span class="meta">2025 · GMD</span><div>
+          <strong><a href="https://doi.org/10.5194/gmd-18-1287-2025" target="_blank" rel="noopener">T&amp;C-CROP: representing mechanistic crop growth with a terrestrial biosphere model (T&amp;C, v1.5) – model formulation and validation</a></strong>
+          <p><b>Buckley Paules, J.</b>, Fatichi, S., Warring, B. and Paschalis, A. <i>Geoscientific Model Development</i>, 18, 1287–1305. Open access · <a href="https://doi.org/10.5194/gmd-18-1287-2025" target="_blank" rel="noopener">doi:10.5194/gmd-18-1287-2025</a></p>
+        </div></li>
+      </ol>
       <div class="actions" style="margin-top:28px">
         <a class="btn primary" href="https://scholar.google.com/citations?user=2eecasgAAAAJ&amp;hl=en" target="_blank" rel="noopener">Publications on Google Scholar</a>
         <a class="btn ghost" href="https://docs.google.com/presentation/d/1T5bfALhKF1XDqYVPb3DJB7Y2GRx4-NZzkO3MvnVeYdY/present" target="_blank" rel="noopener">View EGU poster</a>
@@ -688,8 +700,8 @@ footer.site a { color: var(--muted); }
     <div class="wrap">
       <div class="head"><h2>Selected clients</h2></div>
       <div class="clients">
-        <div class="client"><span class="label">Bangkok, Thailand</span><h3>Food and Agriculture Organization of the UN (FAO)</h3></div>
-        <div class="client"><span class="label">Melbourne, Australia</span><h3>The Superpower Institute</h3></div>
+        <div class="client"><span class="label">Bangkok, Thailand · 2022</span><h3>Food and Agriculture Organization of the UN (FAO)</h3><p>Crop modelling as a loaned expert to the Regional Office for Asia and the Pacific: large-scale AquaCrop simulations on high-performance computing across South-East Asia, supporting regional crop-production and food-security analysis.</p></div>
+        <div class="client"><span class="label">Melbourne, Australia · 2026</span><h3>The Superpower Institute</h3><p>Led the technical delivery of a feasibility study, <i>Understanding Australia’s Biomass Feedstock Potential</i>, for low-carbon liquid fuels: carbon-cycle modelling with APSIM and LPJ-GUESS, life-cycle assessment and techno-economic analysis.</p></div>
       </div>
     </div>
   </section>
