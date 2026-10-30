@@ -281,6 +281,14 @@ figcaption b { color: var(--ink); font-weight: 600; }
 .fm-fig figcaption a, .vpanel header p a { color: var(--accent); }
 .fm-side { display: grid; gap: 12px; align-content: start; }
 @media (max-width: 760px) { .fm-grid { grid-template-columns: minmax(0, 1fr); } }
+.themes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.theme { display: grid; gap: 6px; align-content: start; padding-top: 16px; border-top: 2px solid var(--accent); }
+.theme p { color: var(--muted); font-size: .97rem; }
+@media (max-width: 980px) { .themes { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 760px) { .themes { grid-template-columns: minmax(0, 1fr); } }
+.field-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.field-pair img { aspect-ratio: 3 / 2; }
+@media (max-width: 760px) { .field-pair { grid-template-columns: minmax(0, 1fr); } }
 .status.example { color: var(--s2); border-color: color-mix(in srgb, var(--s2) 45%, var(--line)); }
 .more { font-weight: 600; font-size: .93rem; text-decoration: none; margin-top: 4px; }
 .more:hover { text-decoration: underline; }
@@ -650,6 +658,22 @@ footer.site a { color: var(--muted); }
   <section class="block">
     <div class="wrap">
       <div class="head">
+        <h2>What I'm working on</h2>
+        <p class="muted">Five connected problems in irrigated rice: how much water farms use, where it comes from, and what it costs in yield, groundwater and emissions.</p>
+      </div>
+      <div class="themes">
+        <div class="theme"><span class="unit">Groundwater</span><h3>Saltwater intrusion</h3><p>Over-pumping groundwater for dry-season irrigation can pull seawater into coastal aquifers. I'm tracking where water tables are falling and salinity is rising, to guide safer pumping.</p></div>
+        <div class="theme"><span class="unit">Water saving</span><h3>Alternate wetting and drying (AWD)</h3><p>Letting fields dry out between irrigations saves water without hurting yields. I work on taking AWD from single fields to whole irrigation systems.</p></div>
+        <div class="theme"><span class="unit">Emissions</span><h3>Reducing methane</h3><p>Flooded paddies are a major source of methane. I measure and model how water and straw management cut emissions, including measurement, reporting and verification (MRV).</p></div>
+        <div class="theme"><span class="unit">Productivity</span><h3>Closing yield gaps</h3><p>Many farms harvest well below what their soils and climate allow. I apply AI to under-used agricultural data to find where the gaps are and what closes them.</p></div>
+        <div class="theme"><span class="unit">Decision support</span><h3>Irrigation optimisation</h3><p>Deciding when, where and how much canal and groundwater to deliver, with tools for monitoring irrigation canals and groundwater resources.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="head">
         <h2>Maps and dashboards</h2>
         <p class="muted">The map uses published FAOSTAT data. The methane panel uses made-up example numbers to show the idea: it is not a project result.</p>
       </div>
@@ -690,10 +714,16 @@ footer.site a { color: var(--muted); }
   <section class="block">
     <div class="wrap">
       <div class="head"><h2>In the field</h2></div>
-      <figure>
-        <img decoding="async" src="img/rice-fieldwork.webp" alt="Jordi and a colleague inspecting plants in an experimental rice plot" width="1280" height="991" loading="lazy" style="aspect-ratio: 16 / 9">
-        <figcaption><b>Fieldwork Friday:</b> exploring experimental rice paddies and methane emissions MRV research.</figcaption>
-      </figure>
+      <div class="field-pair">
+        <figure>
+          <img decoding="async" src="img/rice-fieldwork.webp" alt="Jordi and a colleague inspecting plants in an experimental rice plot" width="1280" height="991" loading="lazy">
+          <figcaption><b>Fieldwork Friday:</b> exploring experimental rice paddies and methane emissions MRV research.</figcaption>
+        </figure>
+        <figure>
+          <img decoding="async" src="img/rice-focus-group.webp" alt="Jordi with a group of Filipino rice farmers and project staff after a focus group discussion" width="1400" height="872" loading="lazy">
+          <figcaption><b>Focus group discussion</b> with rice farmers in the Philippines.</figcaption>
+        </figure>
+      </div>
     </div>
   </section>
 </div>
